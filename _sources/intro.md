@@ -1,6 +1,6 @@
 # AI School 2025
 
-This page contains training materials for the [AI School at Leibnitz IOM Leipzig](https://aischool.iom-leipzig.de/).
+This page contains training materials for the [AI School at Leibniz IOM Leipzig](https://aischool.iom-leipzig.de/).
 
 **Note: This page is undery heavy construction**
 
