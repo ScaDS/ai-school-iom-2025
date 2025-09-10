@@ -10,4 +10,5 @@ Following main steps are typical for a machine learning project:
 5. Select a model and train it.
 6. Fine-tune your model.
 7. Present your model and make it ready for later usage.
+   
 We will go through them in the following.
