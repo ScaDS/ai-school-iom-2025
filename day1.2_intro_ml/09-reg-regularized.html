@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Get the data &#8212; AI School at Leibniz IOM 2025</title>
+    <title>Regularized Linear Regression &#8212; AI School at Leibniz IOM 2025</title>
   
   
   
@@ -58,11 +58,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'day1.2_intro_ml/02-getdata';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day1.2_intro_ml/09-reg-regularized';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Create a test data set" href="03-data-split.html" />
-    <link rel="prev" title="Look at the big picture" href="01-bigpicture.html" />
+    <link rel="next" title="Random Forests Regression" href="10-reg-RF.html" />
+    <link rel="prev" title="Polynomial Regression" href="08-reg-polynom.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -183,8 +185,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="02-getdata.html">
                         Get the data
                       </a>
                     </li>
@@ -232,8 +234,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="09-reg-regularized.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Regularized Linear Regression
                       </a>
                     </li>
@@ -431,6 +433,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -501,8 +507,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="02-getdata.html">
                         Get the data
                       </a>
                     </li>
@@ -550,8 +556,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="09-reg-regularized.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Regularized Linear Regression
                       </a>
                     </li>
@@ -789,7 +795,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Overview central Steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01-bigpicture.html">Look at the big picture</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Get the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-getdata.html">Get the data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-data-split.html">Create a test data set</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-exploredata.html">Explore and Visualize</a></li>
 
@@ -798,7 +804,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="06-reg-overview.html">Overview Training and Tuning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07-reg-linear.html">Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08-reg-polynom.html">Polynomial Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09-reg-regularized.html">Regularized Linear Regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regularized Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10-reg-RF.html">Random Forests Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11-reg-SVR.html">Support Vector Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-reg-boosting.html">Boosting (Regression)</a></li>
@@ -928,7 +934,7 @@ title="Source repository"
 </a>
 </a>
       
-      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday1.2_intro_ml/02-getdata.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday1.2_intro_ml/09-reg-regularized.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -953,7 +959,7 @@ title="Open an issue"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="../_sources/day1.2_intro_ml/02-getdata.ipynb" target="_blank"
+      <li><a href="../_sources/day1.2_intro_ml/09-reg-regularized.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -986,7 +992,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -994,128 +1002,90 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Get the data</h1>
+    <h1>Regularized Linear Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ridge-regression">
+   Ridge Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lasso-regression">
+   Lasso Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elasticnet-regression">
+   ElasticNet Regression
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="get-the-data">
-<h1>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this heading">#</a></h1>
-<p>We will use pandas to read a csv file which is in the same file as your Jupyter notebook. Pandas is an open source data analysis and manipulation tool based on Python (More information: <a href="https://pandas.pydata.org/"> Link to website</a>).</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="regularized-linear-regression">
+<h1>Regularized Linear Regression<a class="headerlink" href="#regularized-linear-regression" title="Permalink to this heading">#</a></h1>
+<p>The question arises: Can we get a better fourth degree polynomial fit if we apply selected constrains to our weights during fitting? This can be done by regularized linear regression models where we will introduce three examples in more detail in the following.</p>
+<section id="ridge-regression">
+<h2>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Permalink to this heading">#</a></h2>
+<p>The first example is called ridge regression. The cost function <span class="math notranslate nohighlight">\(J\)</span> is extended as follow:</p>
+<p><span class="math notranslate nohighlight">\(
+J(\mathbf{w})=\underbrace{\frac{1}{m}\sum\limits_{i=1}^m\left(\mathbf{w}^T\mathbf{x}^{(i)}-y^{(i)}\right)^2}_{MSE}+\underbrace{\frac{\alpha}{m}\sum\limits_{i=1}^n w_i^2}_{l2~norm}
+\)</span></p>
+<p>The extension represents the l2 norm of the feature weights from 1 to <span class="math notranslate nohighlight">\(n\)</span>. The bias term is not regularized since the sum over the features <span class="math notranslate nohighlight">\(n\)</span> starts at 1. Increasing the hyperparameter <span class="math notranslate nohighlight">\(α\)</span> leads to flatter predictions. Thus, the variance of the model is reduced and increasing <span class="math notranslate nohighlight">\(\alpha\)</span> to infinity will result in predicting the mean value of the training data independent of the input features. Let us check if we can get a better fourth degree polynomial by applying this technique:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># code from previous notebooks of this section</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_column_selector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">hb_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;HB_data.csv&#39;</span><span class="p">)</span>
-<span class="c1"># If you want to read from a directory you can use following lines:</span>
-<span class="c1"># from pathlib import Path</span>
-<span class="c1"># path = Path(&#39;path-to-my-data/HB_data.csv&#39;)</span>
-<span class="c1"># HB_data = pd.read_csv(path)</span>
+<span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">hb_data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># We will look on the first 5 instances to check if it was imported successfully. </span>
-<span class="c1"># Please note, it starts counting with 0 instead of 1:</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Following data was read (showing only first 5 rows):</span><span class="se">\n</span><span class="si">{</span><span class="n">hb_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Following data was read (showing only first 5 rows):
-    energy  bo-acc  bo-donor     q-acc   q-donor   q-hatom   dist-dh  \
-0 -34.5895  0.2457    0.8981 -0.088121  0.069022  0.030216  1.029201   
-1 -39.2652  0.2061    0.9089 -0.100112  0.070940  0.042037  1.027247   
-2 -41.0025  0.1748    0.9185 -0.108372  0.072666  0.050028  1.025135   
-3 -40.8874  0.1496    0.9269 -0.114255  0.074115  0.055766  1.023101   
-4 -39.6642  0.1289    0.9341 -0.118741  0.075412  0.060208  1.021107   
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_set</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;energy&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    dist-ah atomtype-acc atomtype-don  
-0  1.670799            N            N  
-1  1.772753            N            N  
-2  1.874865            N            N  
-3  1.976899            N            N  
-4  2.078893            N            N  
-</pre></div>
-</div>
-</div>
-</div>
-<p>You see 10 columns.</p>
-<p>The first column is called “energy” which is the label of each instance, the hydrogen bond energy in kJ/mol.</p>
-<p>“bo-acc” and “bo-don” are Löwdin bond orders obtained from a density functional theory calculation. A value of 1.0 means exactly one pair of electrons is shared between the respective atoms. Thus, it provides a measure of the covalent contributions to the interaction between two atoms. “bo-acc” refers to the bond order between the hydrogen atom and the hydrogen bond acceptor atom. “bo-donor” refers to the bond order between the hydrogen atom and the hydrogen bond donor atom. The latter has a higher bond order since it is a typical chemical bond and not a noncovalent interaction.</p>
-<p>“q-acc”, “q-donor” and “q-hatom” are Löwdin partial charges in atomic units of the hydrogen bond acceptor atom, the hydrogen bond donor atom and the hydrogen bond atom, respectively.</p>
-<p>“dist-dh” and “dist-ah” refers to the distance in Angstrom between the nucleus of the hydrogen atom and the hydrogen bond donor atom or acceptor atom.</p>
-<p>“atomtype-acc” and “atomtype-don” refer to the element type of the hydrogen bond acceptor atom and donor atom, respectively.</p>
-<center><img src="img/HB.png" style="width: 500px;"/></center><p>You get a short description of the data type by:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hb_data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 1638 entries, 0 to 1637
-Data columns (total 10 columns):
- #   Column        Non-Null Count  Dtype  
----  ------        --------------  -----  
- 0   energy        1638 non-null   float64
- 1   bo-acc        1638 non-null   float64
- 2   bo-donor      1638 non-null   float64
- 3   q-acc         1638 non-null   float64
- 4   q-donor       1638 non-null   float64
- 5   q-hatom       1638 non-null   float64
- 6   dist-dh       1638 non-null   float64
- 7   dist-ah       1638 non-null   float64
- 8   atomtype-acc  1638 non-null   object 
- 9   atomtype-don  1638 non-null   object 
-dtypes: float64(8), object(2)
-memory usage: 128.1+ KB
-</pre></div>
-</div>
-</div>
-</div>
-<p>As you can see, the atomtypes are recognized as objects while the rest are real numbers.</p>
-<p>You can check how many instances are available for each category by:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hb_data</span><span class="p">[</span><span class="s2">&quot;atomtype-acc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>atomtype-acc
-O     990
-S     288
-N     216
-Cl     90
-F      54
-Name: count, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>You can make a quick histogram of your numerical data by following code:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">num_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="n">StandardScaler</span><span class="p">())</span>
+<span class="n">cat_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<span class="n">hb_data</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/50a7b1cd2d13d40196ec9a9d844cea4d8be9d7b91f1f97e0239f1c77f3a714d6.png" src="../_images/50a7b1cd2d13d40196ec9a9d844cea4d8be9d7b91f1f97e0239f1c77f3a714d6.png" />
-</div>
-</div>
-<p>The describe tool allows you to get a more detailed information on the numerical data:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hb_data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">preprocessing</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span><span class="n">num_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)),</span>
+                                        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="n">cat_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="nb">object</span><span class="p">)),])</span>
+<span class="c1"># end code from previous notebooks of this section </span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ridge</span>
+
+<span class="n">model_ridge</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessing</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;ridge__alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span><span class="mf">0.0005</span><span class="p">,</span><span class="mf">0.001</span><span class="p">,</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">}]</span>
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model_ridge</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_root_mean_squared_error&#39;</span><span class="p">)</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">cv_hyperpara</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
+<span class="n">cv_hyperpara</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cv_hyperpara</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1138,111 +1108,435 @@ Name: count, dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>energy</th>
-      <th>bo-acc</th>
-      <th>bo-donor</th>
-      <th>q-acc</th>
-      <th>q-donor</th>
-      <th>q-hatom</th>
-      <th>dist-dh</th>
-      <th>dist-ah</th>
+      <th>mean_fit_time</th>
+      <th>std_fit_time</th>
+      <th>mean_score_time</th>
+      <th>std_score_time</th>
+      <th>param_ridge__alpha</th>
+      <th>params</th>
+      <th>split0_test_score</th>
+      <th>split1_test_score</th>
+      <th>split2_test_score</th>
+      <th>split3_test_score</th>
+      <th>split4_test_score</th>
+      <th>mean_test_score</th>
+      <th>std_test_score</th>
+      <th>rank_test_score</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>count</th>
-      <td>1638.000000</td>
-      <td>1638.000000</td>
-      <td>1638.000000</td>
-      <td>1638.000000</td>
-      <td>1638.000000</td>
-      <td>1638.000000</td>
-      <td>1638.000000</td>
-      <td>1638.000000</td>
+      <th>2</th>
+      <td>0.435438</td>
+      <td>0.191815</td>
+      <td>0.012485</td>
+      <td>0.007760</td>
+      <td>0.0010</td>
+      <td>{'ridge__alpha': 0.001}</td>
+      <td>-2.474718</td>
+      <td>-3.311104</td>
+      <td>-1.991025</td>
+      <td>-1.705258</td>
+      <td>-2.041419</td>
+      <td>-2.304705</td>
+      <td>0.560142</td>
+      <td>1</td>
     </tr>
     <tr>
-      <th>mean</th>
-      <td>-34.783759</td>
-      <td>0.138418</td>
-      <td>1.013692</td>
-      <td>-0.155270</td>
-      <td>-0.022809</td>
-      <td>0.044391</td>
-      <td>1.040342</td>
-      <td>2.156605</td>
+      <th>1</th>
+      <td>0.283580</td>
+      <td>0.095317</td>
+      <td>0.017382</td>
+      <td>0.020987</td>
+      <td>0.0005</td>
+      <td>{'ridge__alpha': 0.0005}</td>
+      <td>-2.446675</td>
+      <td>-3.707638</td>
+      <td>-1.855732</td>
+      <td>-1.656615</td>
+      <td>-1.986956</td>
+      <td>-2.330723</td>
+      <td>0.735874</td>
+      <td>2</td>
     </tr>
     <tr>
-      <th>std</th>
-      <td>29.955517</td>
-      <td>0.075418</td>
-      <td>0.087824</td>
-      <td>0.249997</td>
-      <td>0.151830</td>
-      <td>0.041812</td>
-      <td>0.108458</td>
-      <td>0.290894</td>
+      <th>3</th>
+      <td>0.173137</td>
+      <td>0.049710</td>
+      <td>0.019708</td>
+      <td>0.009537</td>
+      <td>0.0050</td>
+      <td>{'ridge__alpha': 0.005}</td>
+      <td>-2.741799</td>
+      <td>-2.957761</td>
+      <td>-2.365332</td>
+      <td>-1.944842</td>
+      <td>-2.306915</td>
+      <td>-2.463330</td>
+      <td>0.353527</td>
+      <td>3</td>
     </tr>
     <tr>
-      <th>min</th>
-      <td>-200.597000</td>
-      <td>0.034200</td>
-      <td>0.781200</td>
-      <td>-0.898797</td>
-      <td>-0.275322</td>
-      <td>-0.110008</td>
-      <td>0.930018</td>
-      <td>1.564120</td>
+      <th>4</th>
+      <td>0.243274</td>
+      <td>0.081895</td>
+      <td>0.011746</td>
+      <td>0.004618</td>
+      <td>0.0100</td>
+      <td>{'ridge__alpha': 0.01}</td>
+      <td>-2.922780</td>
+      <td>-2.943772</td>
+      <td>-2.528130</td>
+      <td>-2.102223</td>
+      <td>-2.319368</td>
+      <td>-2.563254</td>
+      <td>0.330852</td>
+      <td>4</td>
     </tr>
     <tr>
-      <th>25%</th>
-      <td>-48.226500</td>
-      <td>0.080125</td>
-      <td>0.942050</td>
-      <td>-0.186461</td>
-      <td>-0.159131</td>
-      <td>0.022605</td>
-      <td>0.978411</td>
-      <td>1.927490</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>-24.801450</td>
-      <td>0.120600</td>
-      <td>1.015000</td>
-      <td>-0.130414</td>
-      <td>-0.036496</td>
-      <td>0.045868</td>
-      <td>1.013607</td>
-      <td>2.158575</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>-14.991750</td>
-      <td>0.181000</td>
-      <td>1.073400</td>
-      <td>-0.090575</td>
-      <td>0.073683</td>
-      <td>0.067276</td>
-      <td>1.038072</td>
-      <td>2.383549</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>45.413900</td>
-      <td>0.478100</td>
-      <td>1.232500</td>
-      <td>0.353389</td>
-      <td>0.354334</td>
-      <td>0.149418</td>
-      <td>1.459200</td>
-      <td>2.868591</td>
+      <th>0</th>
+      <td>0.169815</td>
+      <td>0.055283</td>
+      <td>0.011536</td>
+      <td>0.008210</td>
+      <td>0.0001</td>
+      <td>{'ridge__alpha': 0.0001}</td>
+      <td>-2.794982</td>
+      <td>-4.791535</td>
+      <td>-1.634192</td>
+      <td>-1.668841</td>
+      <td>-2.564554</td>
+      <td>-2.690821</td>
+      <td>1.148973</td>
+      <td>5</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>std is the standard deviation of the attribute.
-25%, 50% and 75% refers to the percentiles: It is the value below the given percentage of observations fall.</p>
+<p>The best model with <span class="math notranslate nohighlight">\(\alpha=0.001\)</span> has an average RMSE of 2.30 kJ/mol. This is better than our third degree polynomial (RMSE: 3.52 kJ/mol).</p>
+</section>
+<section id="lasso-regression">
+<h2>Lasso Regression<a class="headerlink" href="#lasso-regression" title="Permalink to this heading">#</a></h2>
+<p>The best model with <span class="math notranslate nohighlight">\(\alpha=0.001\)</span> has an average RMSE of 2.30 kJ/mol. This is better than our third degree polynomial (RMSE: 3.52 kJ/mol).</p>
+<p>Let us try lasso regression next which extends the cost function as follow:</p>
+<p><span class="math notranslate nohighlight">\(
+J(\mathbf{w})=\underbrace{\frac{1}{m}\sum\limits_{i=1}^m\left(\mathbf{w}^T\mathbf{x}^{(i)}-y^{(i)}\right)^2}_{MSE}+\underbrace{2\alpha\sum\limits_{i=1}^n |w_i|}_{l1~norm}
+\)</span></p>
+<p>An important characteristic of lasso regression is that it tends to eliminate the weights of the least important features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lasso</span>
+
+<span class="n">num_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="n">StandardScaler</span><span class="p">())</span>
+<span class="n">cat_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="n">preprocessing</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span><span class="n">num_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)),</span>
+                                        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="n">cat_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="nb">object</span><span class="p">)),])</span>
+
+<span class="n">model_lasso</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessing</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;lasso__alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">}]</span>
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model_lasso</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_root_mean_squared_error&#39;</span><span class="p">)</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">cv_hyperpara</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
+<span class="n">cv_hyperpara</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cv_hyperpara</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean_fit_time</th>
+      <th>std_fit_time</th>
+      <th>mean_score_time</th>
+      <th>std_score_time</th>
+      <th>param_lasso__alpha</th>
+      <th>params</th>
+      <th>split0_test_score</th>
+      <th>split1_test_score</th>
+      <th>split2_test_score</th>
+      <th>split3_test_score</th>
+      <th>split4_test_score</th>
+      <th>mean_test_score</th>
+      <th>std_test_score</th>
+      <th>rank_test_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.136063</td>
+      <td>0.194438</td>
+      <td>0.006329</td>
+      <td>0.000435</td>
+      <td>0.01</td>
+      <td>{'lasso__alpha': 0.01}</td>
+      <td>-4.672010</td>
+      <td>-3.804662</td>
+      <td>-3.465088</td>
+      <td>-3.330916</td>
+      <td>-3.395455</td>
+      <td>-3.733626</td>
+      <td>0.496842</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.216253</td>
+      <td>0.020953</td>
+      <td>0.006121</td>
+      <td>0.000155</td>
+      <td>0.05</td>
+      <td>{'lasso__alpha': 0.05}</td>
+      <td>-5.462308</td>
+      <td>-5.585104</td>
+      <td>-4.147108</td>
+      <td>-4.482182</td>
+      <td>-4.149371</td>
+      <td>-4.765214</td>
+      <td>0.632390</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.162689</td>
+      <td>0.034862</td>
+      <td>0.006765</td>
+      <td>0.000687</td>
+      <td>0.10</td>
+      <td>{'lasso__alpha': 0.1}</td>
+      <td>-5.877349</td>
+      <td>-6.386720</td>
+      <td>-4.705775</td>
+      <td>-5.037777</td>
+      <td>-4.732187</td>
+      <td>-5.347962</td>
+      <td>0.670383</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.067492</td>
+      <td>0.010111</td>
+      <td>0.007745</td>
+      <td>0.001291</td>
+      <td>0.50</td>
+      <td>{'lasso__alpha': 0.5}</td>
+      <td>-7.852872</td>
+      <td>-8.679819</td>
+      <td>-7.103944</td>
+      <td>-7.422412</td>
+      <td>-7.022961</td>
+      <td>-7.616402</td>
+      <td>0.606497</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.048799</td>
+      <td>0.006630</td>
+      <td>0.006862</td>
+      <td>0.000191</td>
+      <td>1.00</td>
+      <td>{'lasso__alpha': 1}</td>
+      <td>-8.326920</td>
+      <td>-9.490296</td>
+      <td>-7.606208</td>
+      <td>-8.001640</td>
+      <td>-7.512350</td>
+      <td>-8.187483</td>
+      <td>0.713441</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The best set of hyperparameters has on average a RMSE of 3.73 kJ/mol which is not as good as the third degree polynomial (RMSE: 3.52 kJ/mol).</p>
+</section>
+<section id="elasticnet-regression">
+<h2>ElasticNet Regression<a class="headerlink" href="#elasticnet-regression" title="Permalink to this heading">#</a></h2>
+<p>Elastic net is the combination of both previous regularization techniques. It has two hyperparameters: <span class="math notranslate nohighlight">\(\alpha\)</span> and the l1-ratio. The l1-ratio determines the weight of the l1 and l2 norm and can be between 0 and 1. In the example below, we will employ additionally an alternative to the grid search. RandomizedSearchCV will train models only for a number of randomly selected combinations of hyperparameters. Thus, it is efficient for a large number of hyperparameters but it might miss the optimal values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ElasticNet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomizedSearchCV</span>
+
+<span class="n">num_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="n">StandardScaler</span><span class="p">())</span>
+<span class="n">cat_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="n">preprocessing</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span><span class="n">num_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)),</span>
+                                        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="n">cat_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="nb">object</span><span class="p">)),])</span>
+
+<span class="n">model_elasticnet</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessing</span><span class="p">,</span> <span class="n">ElasticNet</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span><span class="n">tol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+
+<span class="n">param_distribs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;elasticnet__alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                  <span class="s1">&#39;elasticnet__l1_ratio&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.9</span><span class="p">]}</span>
+
+<span class="n">rnd_search</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span><span class="n">model_elasticnet</span><span class="p">,</span> <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_distribs</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_root_mean_squared_error&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rnd_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">cv_hyperpara</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rnd_search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
+<span class="n">cv_hyperpara</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cv_hyperpara</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean_fit_time</th>
+      <th>std_fit_time</th>
+      <th>mean_score_time</th>
+      <th>std_score_time</th>
+      <th>param_elasticnet__l1_ratio</th>
+      <th>param_elasticnet__alpha</th>
+      <th>params</th>
+      <th>split0_test_score</th>
+      <th>split1_test_score</th>
+      <th>split2_test_score</th>
+      <th>split3_test_score</th>
+      <th>split4_test_score</th>
+      <th>mean_test_score</th>
+      <th>std_test_score</th>
+      <th>rank_test_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>0.143747</td>
+      <td>0.076474</td>
+      <td>0.007933</td>
+      <td>0.002688</td>
+      <td>0.4</td>
+      <td>0.01</td>
+      <td>{'elasticnet__l1_ratio': 0.4, 'elasticnet__alp...</td>
+      <td>-5.132070</td>
+      <td>-4.486064</td>
+      <td>-3.815053</td>
+      <td>-3.763908</td>
+      <td>-3.765210</td>
+      <td>-4.192461</td>
+      <td>0.543637</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.082414</td>
+      <td>0.009320</td>
+      <td>0.006356</td>
+      <td>0.000242</td>
+      <td>0.5</td>
+      <td>0.01</td>
+      <td>{'elasticnet__l1_ratio': 0.5, 'elasticnet__alp...</td>
+      <td>-5.144582</td>
+      <td>-4.374075</td>
+      <td>-3.841969</td>
+      <td>-3.824129</td>
+      <td>-3.791464</td>
+      <td>-4.195244</td>
+      <td>0.521304</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.059473</td>
+      <td>0.007288</td>
+      <td>0.006203</td>
+      <td>0.000154</td>
+      <td>0.7</td>
+      <td>0.01</td>
+      <td>{'elasticnet__l1_ratio': 0.7, 'elasticnet__alp...</td>
+      <td>-5.256995</td>
+      <td>-4.363637</td>
+      <td>-3.873677</td>
+      <td>-3.893520</td>
+      <td>-3.835811</td>
+      <td>-4.244728</td>
+      <td>0.541676</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.046171</td>
+      <td>0.003873</td>
+      <td>0.006102</td>
+      <td>0.000098</td>
+      <td>0.9</td>
+      <td>0.01</td>
+      <td>{'elasticnet__l1_ratio': 0.9, 'elasticnet__alp...</td>
+      <td>-5.325776</td>
+      <td>-4.433316</td>
+      <td>-3.929402</td>
+      <td>-3.976640</td>
+      <td>-3.888517</td>
+      <td>-4.310730</td>
+      <td>0.544176</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.042612</td>
+      <td>0.002461</td>
+      <td>0.005982</td>
+      <td>0.000127</td>
+      <td>0.9</td>
+      <td>0.05</td>
+      <td>{'elasticnet__l1_ratio': 0.9, 'elasticnet__alp...</td>
+      <td>-5.629445</td>
+      <td>-5.646073</td>
+      <td>-4.293566</td>
+      <td>-4.542854</td>
+      <td>-4.297907</td>
+      <td>-4.881969</td>
+      <td>0.623686</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The best set of hyperparameters has an average RMSE of 4.19 kJ/mol. Thus, the combination of both regularization techniques did not result in a better model than applying solely ridge regression.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1273,17 +1567,17 @@ Name: count, dtype: int64
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="01-bigpicture.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="08-reg-polynom.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Look at the big picture</p>
+          <p class="prev-next-title">Polynomial Regression</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="03-data-split.html" title="next page">
+  <a class='right-next' id="next-link" href="10-reg-RF.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Create a test data set</p>
+      <p class="prev-next-title">Random Forests Regression</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
@@ -1293,6 +1587,37 @@ Name: count, dtype: int64
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ridge-regression">
+   Ridge Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lasso-regression">
+   Lasso Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elasticnet-regression">
+   ElasticNet Regression
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>

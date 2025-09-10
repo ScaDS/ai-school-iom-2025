@@ -61,8 +61,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'day1.2_intro_ml/10-reg-RF';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Present and store your model" href="14-present.html" />
-    <link rel="prev" title="Polynomial Regression" href="08-reg-polynom.html" />
+    <link rel="next" title="Support Vector Regression" href="11-reg-SVR.html" />
+    <link rel="prev" title="Regularized Linear Regression" href="09-reg-regularized.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -205,8 +205,22 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="05-prepare-data.html">
+                        Prepare the data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="06-reg-overview.html">
                         Overview Training and Tuning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="07-reg-linear.html">
+                        Linear Regression
                       </a>
                     </li>
                 
@@ -218,9 +232,37 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="09-reg-regularized.html">
+                        Regularized Linear Regression
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
                         Random Forests Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="11-reg-SVR.html">
+                        Support Vector Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="12-reg-boosting.html">
+                        Boosting (Regression)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="13-reg-exercise.html">
+                        Exercise on regression
                       </a>
                     </li>
                 
@@ -481,8 +523,22 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="05-prepare-data.html">
+                        Prepare the data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="06-reg-overview.html">
                         Overview Training and Tuning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="07-reg-linear.html">
+                        Linear Regression
                       </a>
                     </li>
                 
@@ -494,9 +550,37 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="09-reg-regularized.html">
+                        Regularized Linear Regression
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
                         Random Forests Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="11-reg-SVR.html">
+                        Support Vector Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="12-reg-boosting.html">
+                        Boosting (Regression)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="13-reg-exercise.html">
+                        Exercise on regression
                       </a>
                     </li>
                 
@@ -709,9 +793,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="03-data-split.html">Create a test data set</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-exploredata.html">Explore and Visualize</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="05-prepare-data.html">Prepare the data</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="06-reg-overview.html">Overview Training and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-reg-linear.html">Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08-reg-polynom.html">Polynomial Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-reg-regularized.html">Regularized Linear Regression</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Random Forests Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-reg-SVR.html">Support Vector Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-reg-boosting.html">Boosting (Regression)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-reg-exercise.html">Exercise on regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="14-present.html">Present and store your model</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Wrangling</span></p>
@@ -1071,17 +1162,17 @@ This is an average root mean square error of 4.50 kJ/mol with a standard deviati
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="08-reg-polynom.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="09-reg-regularized.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Polynomial Regression</p>
+          <p class="prev-next-title">Regularized Linear Regression</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="14-present.html" title="next page">
+  <a class='right-next' id="next-link" href="11-reg-SVR.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Present and store your model</p>
+      <p class="prev-next-title">Support Vector Regression</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
