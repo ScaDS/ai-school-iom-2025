@@ -1,7 +1,5 @@
-# Central steps
+# Overview central steps
 
-This session will introduce in programming a machine learning based code with scikit-learn (<a href="https://scikit-learn.org/stable/">link to library</a>).
-A regression model is used as example to outline the general workflow for a machine learning project. 
 Following main steps are typical for a machine learning project:
 1. Look at the big picture.
 2. Get the data.
@@ -10,5 +8,11 @@ Following main steps are typical for a machine learning project:
 5. Select a model and train it.
 6. Fine-tune your model.
 7. Present your model and make it ready for later usage.
-   
-We will go through them in the following.
+
+We will go through them in the following using scikit-learn as machine learning library.
+ 
+Scikit-learn is a python library providing access to classification, regression, clustering and dimensionality reduction with few lines of code.
+Furthermore, essential workflows for preprocessing the data or to validate the generated models are available as well.
+More details on scikit-learn can be found here: <a href="https://scikit-learn.org/stable/">Link</a>
+
+Within this session, diverse regression models will be trained to introduce the general workflow of a machine learning project and to get familiar with scikit-learn.
