@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Present and store your model &#8212; AI School at Leibniz IOM 2025</title>
+    <title>Linear Regression &#8212; AI School at Leibniz IOM 2025</title>
   
   
   
@@ -58,11 +58,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'day1.2_intro_ml/14-present';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day1.2_intro_ml/07-reg-linear';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="placeholder" href="../day2.1_data_wrangling/readme.html" />
-    <link rel="prev" title="Exercise on regression" href="13-reg-exercise.html" />
+    <link rel="next" title="Polynomial Regression" href="08-reg-polynom.html" />
+    <link rel="prev" title="Overview Training and Tuning" href="06-reg-overview.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -218,8 +220,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="07-reg-linear.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Linear Regression
                       </a>
                     </li>
@@ -267,8 +269,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="14-present.html">
                         Present and store your model
                       </a>
                     </li>
@@ -536,8 +538,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="07-reg-linear.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Linear Regression
                       </a>
                     </li>
@@ -585,8 +587,8 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="14-present.html">
                         Present and store your model
                       </a>
                     </li>
@@ -796,14 +798,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="05-prepare-data.html">Prepare the data</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="06-reg-overview.html">Overview Training and Tuning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07-reg-linear.html">Linear Regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08-reg-polynom.html">Polynomial Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09-reg-regularized.html">Regularized Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10-reg-RF.html">Random Forests Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11-reg-SVR.html">Support Vector Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12-reg-boosting.html">Boosting (Regression)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13-reg-exercise.html">Exercise on regression</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Present and store your model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-present.html">Present and store your model</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Wrangling</span></p>
 <ul class="nav bd-sidenav">
@@ -928,7 +930,7 @@ title="Source repository"
 </a>
 </a>
       
-      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday1.2_intro_ml/14-present.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday1.2_intro_ml/07-reg-linear.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -953,7 +955,7 @@ title="Open an issue"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="../_sources/day1.2_intro_ml/14-present.ipynb" target="_blank"
+      <li><a href="../_sources/day1.2_intro_ml/07-reg-linear.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -994,7 +996,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Present and store your model</h1>
+    <h1>Linear Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -1005,16 +1007,24 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="present-and-store-your-model">
-<h1>Present and store your model<a class="headerlink" href="#present-and-store-your-model" title="Permalink to this heading">#</a></h1>
-<p>We have identified and optimized our best model by cross-validation. We train this model on the full training data now.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
+<h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h1>
+<p>We will start with a linear regression since this approach was often used in the literature to predict the hydrogen bond energy. It has following form:</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{y} = \mathbf{w}\cdot\mathbf{x} = \mathbf{w^T}\mathbf{x}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is the feature vector of an instance and contains <span class="math notranslate nohighlight">\(x_0\)</span> to <span class="math notranslate nohighlight">\(x_m\)</span> where <span class="math notranslate nohighlight">\(x_0=1\)</span>. <span class="math notranslate nohighlight">\(w\)</span> is the parameter vector containing the bias term <span class="math notranslate nohighlight">\(w_0\)</span> and the feature weights <span class="math notranslate nohighlight">\(w_1\)</span> to <span class="math notranslate nohighlight">\(w_m\)</span>.</p>
+<p>We can define a cost function <span class="math notranslate nohighlight">\(J\)</span> which should be minimized during training the model. Scikit-learn used the mean square error (MSE) (also called L2 loss) for the linear regression:</p>
+<p><span class="math notranslate nohighlight">\(
+J(\mathbf{w})=\underbrace{\frac{1}{m}\sum\limits_{i=1}^m\left(\mathbf{w}^T\mathbf{x}^{(i)}-y^{(i)}\right)^2}_{MSE}
+\)</span></p>
+<p>An alternative would be the mean absolute error (also called L1 loss). The implementation in scikit-learn to minimize the MSE for a linear regression scales linear with the number of instances <span class="math notranslate nohighlight">\(m\)</span> and cubic with the number of input features <span class="math notranslate nohighlight">\(n\)</span>. You can use the stochastic gradient descent regressor in scikit-learn (SGDRegressor) to fit a linear regression model for data sets with a large number of input features. The SGDRegressor scales linear with the number of instances and features.</p>
+<p>We can easily setup a pipeline for a linear regression with Scikit-Learn:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># code from previous notebooks of this section</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVR</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
@@ -1029,16 +1039,17 @@ title="Print to PDF"
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">train_set</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;energy&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">num_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">())</span>
-<span class="n">cat_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">cat_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">())</span> 
 
 <span class="n">preprocessing</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span><span class="n">num_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)),</span>
-                                        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="n">cat_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="nb">object</span><span class="p">)),])</span>
+                                        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="n">cat_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="nb">object</span><span class="p">))])</span>
 <span class="c1"># end code from previous notebooks of this section</span>
- 
-<span class="n">model_final</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessing</span><span class="p">,</span><span class="n">GradientBoostingRegressor</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="n">SVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;rbf&quot;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-                                  <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="n">model_final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># fit_intercepts determines if the bias term is set to zero (False) or will be fitted (True).</span>
+<span class="n">model_linr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessing</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">model_linr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1524,14 +1535,12 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                  ColumnTransformer(transformers=[(&#x27;num&#x27;,
                                                   Pipeline(steps=[(&#x27;standardscaler&#x27;,
                                                                    StandardScaler())]),
-                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x79b2fe78ac00&gt;),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x711a84674620&gt;),
                                                  (&#x27;cat&#x27;,
                                                   Pipeline(steps=[(&#x27;onehotencoder&#x27;,
-                                                                   OneHotEncoder(sparse_output=False))]),
-                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x79b2fdee4b30&gt;)])),
-                (&#x27;gradientboostingregressor&#x27;,
-                 GradientBoostingRegressor(init=SVR(C=5000), max_depth=5,
-                                           n_estimators=70, random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+                                                                   OneHotEncoder())]),
+                                                  &lt;sklearn.compose._column_transformer.make_column_selector object at 0x711a84674260&gt;)])),
+                (&#x27;linearregression&#x27;, LinearRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -1544,7 +1553,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                           this.parentElement.nextElementSibling)"
             ></i></td>
             <td class="param">steps&nbsp;</td>
-            <td class="value">[(&#x27;columntransformer&#x27;, ...), (&#x27;gradientboostingregressor&#x27;, ...)]</td>
+            <td class="value">[(&#x27;columntransformer&#x27;, ...), (&#x27;linearregression&#x27;, ...)]</td>
         </tr>
     
 
@@ -1671,7 +1680,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                 </table>
             </details>
         </div>
-    </div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted" data-param-prefix="columntransformer__num__"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x79b2fe78ac00&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="columntransformer__num__standardscaler__">
+    </div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted" data-param-prefix="columntransformer__num__"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x711a84674620&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="columntransformer__num__standardscaler__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -1711,7 +1720,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                 </table>
             </details>
         </div>
-    </div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted" data-param-prefix="columntransformer__cat__"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x79b2fdee4b30&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="columntransformer__cat__onehotencoder__">
+    </div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted" data-param-prefix="columntransformer__cat__"><pre>&lt;sklearn.compose._column_transformer.make_column_selector object at 0x711a84674260&gt;</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="columntransformer__cat__onehotencoder__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -1738,13 +1747,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
         </tr>
     
 
-        <tr class="user-set">
+        <tr class="default">
             <td><i class="copy-paste-icon"
                  onclick="copyToClipboard('sparse_output',
                           this.parentElement.nextElementSibling)"
             ></i></td>
             <td class="param">sparse_output&nbsp;</td>
-            <td class="value">False</td>
+            <td class="value">True</td>
         </tr>
     
 
@@ -1801,7 +1810,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                 </table>
             </details>
         </div>
-    </div></div></div></div></div></div></div></div></div></div><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>gradientboostingregressor: GradientBoostingRegressor</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html">?<span>Documentation for gradientboostingregressor: GradientBoostingRegressor</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="gradientboostingregressor__">
+    </div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LinearRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="linearregression__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -1810,338 +1819,58 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                     
         <tr class="default">
             <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('loss',
+                 onclick="copyToClipboard('fit_intercept',
                           this.parentElement.nextElementSibling)"
             ></i></td>
-            <td class="param">loss&nbsp;</td>
-            <td class="value">&#x27;squared_error&#x27;</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('learning_rate',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">learning_rate&nbsp;</td>
-            <td class="value">0.1</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('n_estimators',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">n_estimators&nbsp;</td>
-            <td class="value">70</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('subsample',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">subsample&nbsp;</td>
-            <td class="value">1.0</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('criterion',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">criterion&nbsp;</td>
-            <td class="value">&#x27;friedman_mse&#x27;</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('min_samples_split',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">min_samples_split&nbsp;</td>
-            <td class="value">2</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('min_samples_leaf',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">min_samples_leaf&nbsp;</td>
-            <td class="value">1</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('min_weight_fraction_leaf',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">min_weight_fraction_leaf&nbsp;</td>
-            <td class="value">0.0</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_depth',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_depth&nbsp;</td>
-            <td class="value">5</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('min_impurity_decrease',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">min_impurity_decrease&nbsp;</td>
-            <td class="value">0.0</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('init',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">init&nbsp;</td>
-            <td class="value">SVR(C=5000)</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('random_state',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">random_state&nbsp;</td>
-            <td class="value">42</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_features',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_features&nbsp;</td>
-            <td class="value">None</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('alpha',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">alpha&nbsp;</td>
-            <td class="value">0.9</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('verbose',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">verbose&nbsp;</td>
-            <td class="value">0</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_leaf_nodes',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_leaf_nodes&nbsp;</td>
-            <td class="value">None</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('warm_start',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">warm_start&nbsp;</td>
-            <td class="value">False</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('validation_fraction',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">validation_fraction&nbsp;</td>
-            <td class="value">0.1</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('n_iter_no_change',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">n_iter_no_change&nbsp;</td>
-            <td class="value">None</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('tol',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">tol&nbsp;</td>
-            <td class="value">0.0001</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('ccp_alpha',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">ccp_alpha&nbsp;</td>
-            <td class="value">0.0</td>
-        </tr>
-    
-                  </tbody>
-                </table>
-            </details>
-        </div>
-    </div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>init: SVR</div></div></label><div class="sk-toggleable__content fitted" data-param-prefix="gradientboostingregressor__init__"><pre>SVR(C=5000)</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>SVR</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.svm.SVR.html">?<span>Documentation for SVR</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="gradientboostingregressor__init__">
-        <div class="estimator-table">
-            <details>
-                <summary>Parameters</summary>
-                <table class="parameters-table">
-                  <tbody>
-                    
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('kernel',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">kernel&nbsp;</td>
-            <td class="value">&#x27;rbf&#x27;</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('degree',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">degree&nbsp;</td>
-            <td class="value">3</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('gamma',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">gamma&nbsp;</td>
-            <td class="value">&#x27;scale&#x27;</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('coef0',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">coef0&nbsp;</td>
-            <td class="value">0.0</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('tol',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">tol&nbsp;</td>
-            <td class="value">0.001</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('C',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">C&nbsp;</td>
-            <td class="value">5000</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('epsilon',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">epsilon&nbsp;</td>
-            <td class="value">0.1</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('shrinking',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">shrinking&nbsp;</td>
+            <td class="param">fit_intercept&nbsp;</td>
             <td class="value">True</td>
         </tr>
     
 
         <tr class="default">
             <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('cache_size',
+                 onclick="copyToClipboard('copy_X',
                           this.parentElement.nextElementSibling)"
             ></i></td>
-            <td class="param">cache_size&nbsp;</td>
-            <td class="value">200</td>
+            <td class="param">copy_X&nbsp;</td>
+            <td class="value">True</td>
         </tr>
     
 
         <tr class="default">
             <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('verbose',
+                 onclick="copyToClipboard('tol',
                           this.parentElement.nextElementSibling)"
             ></i></td>
-            <td class="param">verbose&nbsp;</td>
+            <td class="param">tol&nbsp;</td>
+            <td class="value">1e-06</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('n_jobs',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">n_jobs&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('positive',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">positive&nbsp;</td>
             <td class="value">False</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_iter',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_iter&nbsp;</td>
-            <td class="value">-1</td>
         </tr>
     
                   </tbody>
                 </table>
             </details>
         </div>
-    </div></div></div></div></div></div></div></div></div></div></div></div><script>function copyToClipboard(text, element) {
+    </div></div></div></div></div></div></div><script>function copyToClipboard(text, element) {
     // Get the parameter prefix from the closest toggleable content
     const toggleableContent = element.closest('.sk-toggleable__content');
     const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
@@ -2185,105 +1914,104 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 });
 </script></body></div></div>
 </div>
-<p>And we can validate our model on the test data set which was never used during the model development.</p>
+<p>We can now use our model to predict the hydrogen bond energy. In the example below, we use the instances of our training data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">max_error</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HB_predict</span> <span class="o">=</span> <span class="n">model_linr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">HB_predict</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  1.88, -91.99,  -4.82, -62.76, -38.48])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We compare it to the label of our training data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>63        2.25
+1316   -108.41
+1018    -14.47
+1046    -65.69
+1149    -27.65
+Name: energy, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>It does not look so good. Let us do the comparison in a more systematic way. Scikit-Learn provides diverse options. A possibility is the coefficient of determination (<span class="math notranslate nohighlight">\(R^2\)</span>) which is given by:</p>
+<p><span class="math notranslate nohighlight">\(
+R^2 = 1-\frac{\sum\limits_{i=1}^m\left(y^{(i)}-h(\mathbf{x}^{(i)})\right)^2}{\sum\limits_{i=1}^m\left(y^{(i)}-\overline{y}\right)^2}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{y}\)</span> is the average value of <span class="math notranslate nohighlight">\(y\)</span>. A determination coefficient close to 1 would be desirable. More examples to evaluate the model are given below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">r2_score</span>
+<span class="n">lin_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">HB_predict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a coefficient of determination of </span><span class="si">%0.2f</span><span class="s2"> on the training data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lin_r2</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span>
+<span class="n">lin_mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">HB_predict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a mean absolute error of </span><span class="si">%0.2f</span><span class="s2"> kJ/mol on the training data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lin_mae</span><span class="p">)</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span>
+<span class="n">lin_maep</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">HB_predict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a mean absolute percentage error of </span><span class="si">%0.3f</span><span class="s2"> on the training data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lin_maep</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="n">lin_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">HB_predict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a mean squared error of </span><span class="si">%0.2f</span><span class="s2"> kJ/mol on the training data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lin_mse</span><span class="p">)</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">root_mean_squared_error</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">r2_score</span>
-
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_set</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_set</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;energy&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">final_predictions</span> <span class="o">=</span> <span class="n">model_final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">final_mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">final_predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a mean absolute error of </span><span class="si">%0.2f</span><span class="s2"> kJ/mol on the test data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">final_mae</span><span class="p">)</span>
-<span class="n">final_maep</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">final_predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a mean absolute percentage error of </span><span class="si">%0.2f</span><span class="s2"> on the test data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">final_maep</span><span class="p">)</span>
-<span class="n">final_rmse</span> <span class="o">=</span> <span class="n">root_mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">final_predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a root mean square error of </span><span class="si">%0.2f</span><span class="s2"> kJ/mol on the test data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">final_rmse</span><span class="p">)</span>
-<span class="n">final_max</span> <span class="o">=</span> <span class="n">max_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">final_predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a maximum residual error of </span><span class="si">%0.2f</span><span class="s2"> kJ/mol on the test data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">final_max</span><span class="p">)</span>
-<span class="n">final_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">final_predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a coefficient of determination of </span><span class="si">%0.3f</span><span class="s2"> on the test data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">final_r2</span><span class="p">)</span>
+<span class="n">lin_rmse</span> <span class="o">=</span> <span class="n">root_mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">HB_predict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a root mean squared error of </span><span class="si">%0.2f</span><span class="s2"> kJ/mol on the training data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lin_rmse</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has a mean absolute error of 0.51 kJ/mol on the test data set
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has a coefficient of determination of 0.90 on the training data set
 
-The model has a mean absolute percentage error of 0.03 on the test data set
+The model has a mean absolute error of 6.77 kJ/mol on the training data set
 
-The model has a root mean square error of 0.85 kJ/mol on the test data set
+The model has a mean absolute percentage error of 0.558 on the training data set
 
-The model has a maximum residual error of 4.23 kJ/mol on the test data set
+The model has a mean squared error of 87.06 kJ/mol on the training data set
 
-The model has a coefficient of determination of 0.999 on the test data set
+The model has a root mean squared error of 9.33 kJ/mol on the training data set
 </pre></div>
 </div>
 </div>
 </div>
-<p>We see that the root mean squared error is 0.85 kJ/mol. The smaller value compared to the cross-validation seems reasonable since we used a larger data set to train the model. We can also visualize the performance of our model by a scatter plot:</p>
+<p>The evaluation above has a drawback: All values are compared for data which was used during the training. Thus, we have no chance to detect overfitting! It would be much better to use our test data set for validation. However, we would like to compare different approaches subsequently. If we take for validation the test data set now, it will affect our final choice. Thus, we do not have a good proof for the accuracy of our model on unseen data. We want to use the test data set solely on our final model!</p>
+<p>To solve this problem, we can split our training data set again and use only a part of it for training a model. The other part is used to validate the model on unseen data. In practice, one uses n-fold cross validation. It splits the training data set in n subregions of similar size. Subsequently, one subregion is used vor validation while the rest is used to train the model. This is repeated for all subregions. Below is the code of a 5-fold cross-validation of our linear regression model:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_score</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8&#39;</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="o">-</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model_linr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_root_mean_squared_error&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="c1"># The next line will add y=x to our graph </span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axline</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">slope</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">final_predictions</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;reference HB energy in kJ/mol&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;predicted HB energy in kJ/mol&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;comparison of predicted HB energy to the reference&quot;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Root mean square error of each validation in kJ/mol:</span><span class="se">\n</span><span class="si">{</span><span class="n">scores</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is an average root mean square error of </span><span class="si">%0.2f</span><span class="s2"> kJ/mol with a standard deviation of </span><span class="si">%0.2f</span><span class="s2"> kJ/mol</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">scores</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3b8a89719d2f2d90fbf7045246f6cc433195ff9abff1d267afff1753680dfdfb.png" src="../_images/3b8a89719d2f2d90fbf7045246f6cc433195ff9abff1d267afff1753680dfdfb.png" />
-</div>
-</div>
-<p>We can store our model by:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Root mean square error of each validation in kJ/mol:
+[10.23310927 10.13593914  8.86243621  9.07401867  8.99106553]
 
-<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model_final</span><span class="p">,</span> <span class="s2">&quot;HB_energy.pkl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;HB_energy.pkl&#39;]
+This is an average root mean square error of 9.46 kJ/mol with a standard deviation of 0.60 kJ/mol
 </pre></div>
 </div>
 </div>
 </div>
-<p>You can use it later by:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
-
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_set</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_set</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;energy&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">final_model_reloaded</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;HB_energy.pkl&quot;</span><span class="p">)</span>
-
-<span class="n">test_stored_model</span> <span class="o">=</span> <span class="n">final_model_reloaded</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">final_mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_stored_model</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model has a mean absolute error of </span><span class="si">%0.2f</span><span class="s2"> kJ/mol on the test data set</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">final_mae</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model has a mean absolute error of 0.51 kJ/mol on the test data set
-</pre></div>
-</div>
-</div>
-</div>
+<p>The comparison of the 5 models allows us to estimate how strong the fit depends on the provided data.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2314,17 +2042,17 @@ The model has a coefficient of determination of 0.999 on the test data set
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="13-reg-exercise.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="06-reg-overview.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Exercise on regression</p>
+          <p class="prev-next-title">Overview Training and Tuning</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="../day2.1_data_wrangling/readme.html" title="next page">
+  <a class='right-next' id="next-link" href="08-reg-polynom.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">placeholder</p>
+      <p class="prev-next-title">Polynomial Regression</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
