@@ -1,6 +1,6 @@
 # Overview Central Steps
 
-Following main steps are typical for a machine learning project:
+Following steps are typical for a machine learning project:
 1. Look at the big picture.
 2. Get the data.
 3. Explore and visualize the data.
