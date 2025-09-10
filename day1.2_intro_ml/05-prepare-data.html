@@ -1,0 +1,1570 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Prepare the data &#8212; AI School at Leibniz IOM 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day1.2_intro_ml/05-prepare-data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo-all.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo-all.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day0_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.1_juypter_notebooks/01_our_first_juptyer_notebook.html">
+                        Python code in Jupyter notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.1_juypter_notebooks/02_Dont_try_this_at_home.html">
+                        Pitfalls when working with Jupyter notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.1_juypter_notebooks/03_image_processing.html">
+                        Bioimage Analysis in Jupyter Notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="readme.html">
+                        Overview central Steps
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.1_data_wrangling/readme.html">
+                        placeholder
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.2_ml_classification/readme.html">
+                        placeholder
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/readme.html">
+                        placeholder
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.1_deep_learning/readme.html">
+                        placeholder
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/readme.html">
+                        Plotting Basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/01_Introduction_to_Seaborn.html">
+                        Introduction to Seaborn
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/02_Plotting_distributions.html">
+                        Plotting Distributions with Seaborn
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/03_Multivariate_views.html">
+                        Multivariate views
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/bia-bob-demo.html">
+                        BiA-Bob
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/generate_notebook.html">
+                        AI-assisted Notebook generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/translating_notebooks.html">
+                        Translating notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/bia_bob-statistical_testing.html">
+                        Statistical testing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/under_the_hood.html">
+                        Under the hood: Configure bia-bob’s behaviour through system messages
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://aischool.iom-leipzig.de/">
+                        AI School Website
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://creativecommons.org/licenses/by/4.0/">
+                        License CC-BY 4.0
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day0_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.1_juypter_notebooks/01_our_first_juptyer_notebook.html">
+                        Python code in Jupyter notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.1_juypter_notebooks/02_Dont_try_this_at_home.html">
+                        Pitfalls when working with Jupyter notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.1_juypter_notebooks/03_image_processing.html">
+                        Bioimage Analysis in Jupyter Notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="readme.html">
+                        Overview central Steps
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.1_data_wrangling/readme.html">
+                        placeholder
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.2_ml_classification/readme.html">
+                        placeholder
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/readme.html">
+                        placeholder
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.1_deep_learning/readme.html">
+                        placeholder
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/readme.html">
+                        Plotting Basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/01_Introduction_to_Seaborn.html">
+                        Introduction to Seaborn
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/02_Plotting_distributions.html">
+                        Plotting Distributions with Seaborn
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/03_Multivariate_views.html">
+                        Multivariate views
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/bia-bob-demo.html">
+                        BiA-Bob
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/generate_notebook.html">
+                        AI-assisted Notebook generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/translating_notebooks.html">
+                        Translating notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/bia_bob-statistical_testing.html">
+                        Statistical testing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/under_the_hood.html">
+                        Under the hood: Configure bia-bob’s behaviour through system messages
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://aischool.iom-leipzig.de/">
+                        AI School Website
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://creativecommons.org/licenses/by/4.0/">
+                        License CC-BY 4.0
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo-all.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo-all.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    AI School 2025
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day0_setup/readme.html">Setting up your computer</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Jupyter Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day1.1_juypter_notebooks/01_our_first_juptyer_notebook.html">Python code in Jupyter notebooks</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../day1.1_juypter_notebooks/02_Dont_try_this_at_home.html">Pitfalls when working with Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.1_juypter_notebooks/03_image_processing.html">Bioimage Analysis in Jupyter Notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Overview central Steps</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Wrangling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day2.1_data_wrangling/readme.html">placeholder</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Machine Learning / Classification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day2.2_ml_classification/readme.html">placeholder</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Machine Learning / Clustering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day2.3_ml_clustering/readme.html">placeholder</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day3.1_deep_learning/readme.html">placeholder</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/readme.html">Plotting Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/02_Plotting_distributions.html">Plotting Distributions with Seaborn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/03_Multivariate_views.html">Multivariate views</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/bia-bob-demo.html">BiA-Bob</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/generate_notebook.html">AI-assisted Notebook generation</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/translating_notebooks.html">Translating notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/bia_bob-statistical_testing.html">Statistical testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/under_the_hood.html">Under the hood: Configure bia-bob’s <em>behaviour</em> through system messages</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://aischool.iom-leipzig.de/">AI School Website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">License CC-BY 4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imprint.html">Imprint</a></li>
+
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday1.2_intro_ml/05-prepare-data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/day1.2_intro_ml/05-prepare-data.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Prepare the data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Prepare the data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="prepare-the-data">
+<h1>Prepare the data<a class="headerlink" href="#prepare-the-data" title="Permalink to this heading">#</a></h1>
+<p>Before we train our first regression model, the data must be prepared for the machine learning approach. For example, we must transform the character values to numerical attributes as in the previous subsection. Furthermore, some algorithm are sensitive to the scaling of the input features, e.g. support vector regression or k-nearest neighbor regression. It might be also that some values in selected columns are missing. We will show some of these transformations first before we setup a pipeline which will make the data handling much easier.</p>
+<p>At first, we will pick all input data X from our training data by using drop from pandas to remove the energy column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># code from previous notebooks of this section</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">hb_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;HB_data.csv&#39;</span><span class="p">)</span>
+<span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">hb_data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># end code from previous notebooks of this section</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_set</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;energy&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bo-acc</th>
+      <th>bo-donor</th>
+      <th>q-acc</th>
+      <th>q-donor</th>
+      <th>q-hatom</th>
+      <th>dist-dh</th>
+      <th>dist-ah</th>
+      <th>atomtype-acc</th>
+      <th>atomtype-don</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>63</th>
+      <td>0.2549</td>
+      <td>1.1085</td>
+      <td>0.167554</td>
+      <td>-0.178104</td>
+      <td>-0.030259</td>
+      <td>0.965293</td>
+      <td>2.034707</td>
+      <td>S</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1316</th>
+      <td>0.1725</td>
+      <td>0.8950</td>
+      <td>-0.261959</td>
+      <td>0.276786</td>
+      <td>0.108965</td>
+      <td>1.055615</td>
+      <td>1.844385</td>
+      <td>O</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>1018</th>
+      <td>0.2110</td>
+      <td>1.0962</td>
+      <td>0.205667</td>
+      <td>-0.182710</td>
+      <td>-0.008530</td>
+      <td>0.970337</td>
+      <td>2.129663</td>
+      <td>S</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1046</th>
+      <td>0.1783</td>
+      <td>1.0630</td>
+      <td>-0.377025</td>
+      <td>-0.211999</td>
+      <td>0.049246</td>
+      <td>0.996096</td>
+      <td>1.903904</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1149</th>
+      <td>0.0623</td>
+      <td>1.0837</td>
+      <td>-0.215193</td>
+      <td>-0.064738</td>
+      <td>0.078079</td>
+      <td>0.972071</td>
+      <td>2.327929</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The first row refers to the instance in the original data set. A common problem might be that your data is not complete. Selected values might be missing in some columns. You can remove these instances with the dropna feature of pandas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;q-acc&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since our data set is complete, no instance will be removed from our example.</p>
+<p>You can also provide a guess by fillna of pandas. Here is a code example where each missing value is replaced by the average value of this column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">median</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="s2">&quot;q-acc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span> 
+<span class="n">X_train</span><span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="s2">&quot;q-acc&quot;</span><span class="p">:</span> <span class="n">median</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You have already seen in a previous section how to transform characters into numerical attributes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrdinalEncoder</span>
+
+<span class="n">atomtype_acc_c</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[[</span><span class="s2">&quot;atomtype-acc&quot;</span><span class="p">]]</span>
+
+<span class="n">ordinal_encoder</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="n">atomtype_acc_num</span> <span class="o">=</span> <span class="n">ordinal_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">atomtype_acc_c</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First five instances before transformation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">atomtype_acc_c</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First five instances after transformation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">atomtype_acc_num</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First five instances before transformation:
+     atomtype-acc
+63              S
+1316            O
+1018            S
+1046            O
+1149            O
+
+First five instances after transformation:
+[[4.]
+ [3.]
+ [4.]
+ [3.]
+ [3.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can check the numbers assigned to each element by following line:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ordinal_encoder</span><span class="o">.</span><span class="n">categories_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array([&#39;Cl&#39;, &#39;F&#39;, &#39;N&#39;, &#39;O&#39;, &#39;S&#39;], dtype=object)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Please note, it starts counting with 0. Passing this to a regression algorithm is not reasonable since it will assume that two nearby values are more similar than two distant values. This is not the case!</p>
+<p>A common solution is to create one binary attribute per category: The attribute for the element C is equal to 1 when the element is “C” and 0 otherwise. Scikit-learn provides a OneHotEncoder class to convert categorical values into one-hot vectors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
+
+<span class="n">atomtype_acc_c</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[[</span><span class="s2">&quot;atomtype-acc&quot;</span><span class="p">]]</span>
+
+<span class="n">cat_encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">()</span>
+<span class="n">atomtype_acc_1hot</span> <span class="o">=</span> <span class="n">cat_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">atomtype_acc_c</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First five instances before transformation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">atomtype_acc_c</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First five instances after transformation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">atomtype_acc_1hot</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First five instances before transformation:
+     atomtype-acc
+63              S
+1316            O
+1018            S
+1046            O
+1149            O
+
+First five instances after transformation:
+[[0. 0. 0. 0. 1.]
+ [0. 0. 0. 1. 0.]
+ [0. 0. 0. 0. 1.]
+ [0. 0. 0. 1. 0.]
+ [0. 0. 0. 1. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can get the categories similar as for the ordinal encoder:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_encoder</span><span class="o">.</span><span class="n">categories_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array([&#39;Cl&#39;, &#39;F&#39;, &#39;N&#39;, &#39;O&#39;, &#39;S&#39;], dtype=object)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Please note, the one-hot encoder will raise an exception when the trained model will be applied to an instance with an unknown category.</p>
+<p>Most machine learning approaches do not perform well on input features of different scales. Thus, it is important that you apply a feature scaling before passing the input features to the regression model. Scikit-Learn provides two approaches.</p>
+<p>In min-max scaling (also called normalization), the values are scaled in a given range (default is between 0 and 1). This is performed by subtracting the minimum value and dividing it by the difference between the minimum and the maximum. Please note, some models work best on selected scales. For example, neural networks work best with a zero-mean input. Thus, a range from -1 to 1 is desirable since the activation function of neural networks change strongest close to zero. A code example is given below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="n">X_train_num</span> <span class="o">=</span> <span class="n">train_set</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span><span class="s1">&#39;atomtype-acc&#39;</span><span class="p">,</span><span class="s1">&#39;atomtype-don&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">min_max_scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">X_train_num_min_max</span> <span class="o">=</span> <span class="n">min_max_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_num</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First five instances before transformation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train_num</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First five instances after transformation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train_num_min_max</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First five instances before transformation:
+      bo-acc  bo-donor     q-acc   q-donor   q-hatom   dist-dh   dist-ah
+63    0.2549    1.1085  0.167554 -0.178104 -0.030259  0.965293  2.034707
+1316  0.1725    0.8950 -0.261959  0.276786  0.108965  1.055615  1.844385
+1018  0.2110    1.0962  0.205667 -0.182710 -0.008530  0.970337  2.129663
+1046  0.1783    1.0630 -0.377025 -0.211999  0.049246  0.996096  1.903904
+1149  0.0623    1.0837 -0.215193 -0.064738  0.078079  0.972071  2.327929
+
+First five instances after transformation:
+[[-0.0056319   0.4504764   0.72635861 -0.73536865 -0.38518884 -0.86668117
+  -0.27765376]
+ [-0.37688669 -0.49567915  0.03100271  0.74724875  0.68813457 -0.52531492
+  -0.56979647]
+ [-0.20342419  0.39596721  0.78806129 -0.75038093 -0.21767286 -0.84761657
+  -0.1318979 ]
+ [-0.35075467  0.24883669 -0.15528228 -0.84584221  0.22774124 -0.75026229
+  -0.47843542]
+ [-0.87339491  0.34057168  0.10671407 -0.36587624  0.45002428 -0.84106274
+   0.17243787]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Standardization is an alternative approach. First, it subtracts the mean value. Thus, the mean value is shifted to zero. Subsequently, the results are divided by the standard deviation. Thus, standardization is not restricted to values within a specific range and much less affected by outliers. You can setup this with following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">X_train_num</span> <span class="o">=</span> <span class="n">train_set</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span><span class="s1">&#39;atomtype-acc&#39;</span><span class="p">,</span><span class="s1">&#39;atomtype-don&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">std_scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train_num_std</span> <span class="o">=</span> <span class="n">std_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_num</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First five instances before transformation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train_num</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First five instances after transformation:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train_num_std</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First five instances before transformation:
+      bo-acc  bo-donor     q-acc   q-donor   q-hatom   dist-dh   dist-ah
+63    0.2549    1.1085  0.167554 -0.178104 -0.030259  0.965293  2.034707
+1316  0.1725    0.8950 -0.261959  0.276786  0.108965  1.055615  1.844385
+1018  0.2110    1.0962  0.205667 -0.182710 -0.008530  0.970337  2.129663
+1046  0.1783    1.0630 -0.377025 -0.211999  0.049246  0.996096  1.903904
+1149  0.0623    1.0837 -0.215193 -0.064738  0.078079  0.972071  2.327929
+
+First five instances after transformation:
+[[ 1.5289407   1.08558958  1.30277591 -1.04442968 -1.7550715  -0.69528915
+  -0.40588825]
+ [ 0.4406232  -1.34253292 -0.43263547  1.96015514  1.51792787  0.11637256
+  -1.0615082 ]
+ [ 0.94912106  0.94570243  1.4567683  -1.07485268 -1.24424719 -0.64995954
+  -0.07878632]
+ [ 0.51722807  0.56812085 -0.89755003 -1.26830886  0.11400147 -0.41848162
+  -0.85647783]
+ [-1.01486938  0.80354069 -0.24368135 -0.29563819  0.79183281 -0.63437658
+   0.60419701]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Please note, both approaches are not suited for data with a heavy tail. Most data will be still in a small range after the transformation. Thus, you should shrink the heavy tail before scaling!</p>
+<p>Scikit-learn provides the possibility to setup a pipeline for the transformations. This will make it much easier to execute everything correctly, for example to run the fitted model on the test data set. Below is the example for a standard scaling and a one-hot encoder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_column_selector</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1">#This line will get solely the column energy from the training data set.</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
+<span class="c1">#This line will remove solely the column energy from the training data set.</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_set</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;energy&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">num_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">())</span>
+<span class="c1"># If you want to give a specific name your pipeline, you can also use following two lines of code:</span>
+<span class="c1"># from sklearn.pipeline import Pipeline</span>
+<span class="c1"># num_pipeline = Pipeline([(&quot;scaling&quot;, StandardScaler()),])</span>
+<span class="n">cat_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">())</span> 
+
+<span class="c1"># The num_pipeline is solely applied to numerical values while cat_pipelines is used on characters</span>
+<span class="n">preprocessing</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span><span class="n">num_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)),</span>
+                                        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="n">cat_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="nb">object</span><span class="p">))])</span>
+<span class="c1"># You can also apply a transformer solely to selected features:</span>
+<span class="c1">#cat_attribs = [&quot;atomtype-acc&quot;]</span>
+<span class="c1">#preprocessing = ColumnTransformer([(&quot;cat-acc&quot;,cat_pipeline, cat_attribs)],remainder=&#39;passthrough&#39;)</span>
+
+<span class="n">X_train_prepared</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;These are the first 5 instances of our input features after the pipeline:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train_prepared</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>These are the first 5 instances of our input features after the pipeline:
+[[ 1.5289407   1.08558958  1.30277591 -1.04442968 -1.7550715  -0.69528915
+  -0.40588825  0.          0.          0.          0.          1.
+   0.          0.          1.          0.        ]
+ [ 0.4406232  -1.34253292 -0.43263547  1.96015514  1.51792787  0.11637256
+  -1.0615082   0.          0.          0.          1.          0.
+   0.          1.          0.          0.        ]
+ [ 0.94912106  0.94570243  1.4567683  -1.07485268 -1.24424719 -0.64995954
+  -0.07878632  0.          0.          0.          0.          1.
+   0.          0.          1.          0.        ]
+ [ 0.51722807  0.56812085 -0.89755003 -1.26830886  0.11400147 -0.41848162
+  -0.85647783  0.          0.          0.          1.          0.
+   0.          0.          1.          0.        ]
+ [-1.01486938  0.80354069 -0.24368135 -0.29563819  0.79183281 -0.63437658
+   0.60419701  0.          0.          0.          1.          0.
+   0.          0.          1.          0.        ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, our data set is now ready for training our first regression model. Please note, never use fit() or fit_transform() on anything else then the training data! You can use transform() on any data. You can get the column names of your pipeline by using pandas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_prepared</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>num__bo-acc</th>
+      <th>num__bo-donor</th>
+      <th>num__q-acc</th>
+      <th>num__q-donor</th>
+      <th>num__q-hatom</th>
+      <th>num__dist-dh</th>
+      <th>num__dist-ah</th>
+      <th>cat__atomtype-acc_Cl</th>
+      <th>cat__atomtype-acc_F</th>
+      <th>cat__atomtype-acc_N</th>
+      <th>cat__atomtype-acc_O</th>
+      <th>cat__atomtype-acc_S</th>
+      <th>cat__atomtype-don_F</th>
+      <th>cat__atomtype-don_N</th>
+      <th>cat__atomtype-don_O</th>
+      <th>cat__atomtype-don_S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.528941</td>
+      <td>1.085590</td>
+      <td>1.302776</td>
+      <td>-1.044430</td>
+      <td>-1.755071</td>
+      <td>-0.695289</td>
+      <td>-0.405888</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.440623</td>
+      <td>-1.342533</td>
+      <td>-0.432635</td>
+      <td>1.960155</td>
+      <td>1.517928</td>
+      <td>0.116373</td>
+      <td>-1.061508</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.949121</td>
+      <td>0.945702</td>
+      <td>1.456768</td>
+      <td>-1.074853</td>
+      <td>-1.244247</td>
+      <td>-0.649960</td>
+      <td>-0.078786</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.517228</td>
+      <td>0.568121</td>
+      <td>-0.897550</td>
+      <td>-1.268309</td>
+      <td>0.114001</td>
+      <td>-0.418482</td>
+      <td>-0.856478</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.014869</td>
+      <td>0.803541</td>
+      <td>-0.243681</td>
+      <td>-0.295638</td>
+      <td>0.791833</td>
+      <td>-0.634377</td>
+      <td>0.604197</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1305</th>
+      <td>0.699495</td>
+      <td>-1.220842</td>
+      <td>1.126638</td>
+      <td>1.097076</td>
+      <td>0.425000</td>
+      <td>-0.107656</td>
+      <td>1.091242</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1306</th>
+      <td>0.900252</td>
+      <td>-0.223436</td>
+      <td>-2.857524</td>
+      <td>-1.191333</td>
+      <td>-0.740334</td>
+      <td>-0.023279</td>
+      <td>0.724262</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1307</th>
+      <td>-0.777130</td>
+      <td>0.341799</td>
+      <td>0.155201</td>
+      <td>-0.975407</td>
+      <td>-0.225631</td>
+      <td>-0.235411</td>
+      <td>0.106780</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1308</th>
+      <td>0.020617</td>
+      <td>0.327015</td>
+      <td>-0.032606</td>
+      <td>0.012793</td>
+      <td>-1.577556</td>
+      <td>2.758347</td>
+      <td>-1.385322</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1309</th>
+      <td>2.184044</td>
+      <td>-1.547246</td>
+      <td>1.382905</td>
+      <td>1.018680</td>
+      <td>-0.542061</td>
+      <td>-0.026322</td>
+      <td>-0.317851</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1310 rows × 16 columns</p>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise">
+<h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h1>
+<p>Make a pipeline with a MinMaxScaler in the range from 0 to 1 for the input features of housing.csv which is in the same directory as this notebook.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "venv-ai-school"
+        },
+        kernelOptions: {
+            name: "venv-ai-school",
+            path: "./day1.2_intro_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'venv-ai-school'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Prepare the data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on 2025-09-10.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+Copyright: Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> unless mentioned otherwise. 
+Contributions and feedback are welcome.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
