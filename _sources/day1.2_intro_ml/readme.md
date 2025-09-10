@@ -1,4 +1,4 @@
-# Overview Central Steps
+# Overview central Steps
 
 Following steps are typical for a machine learning project:
 1. Look at the big picture.
