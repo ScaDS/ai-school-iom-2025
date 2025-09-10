@@ -2,7 +2,7 @@
 
 This page contains training materials for the [AI School at Leibniz IOM Leipzig](https://aischool.iom-leipzig.de/).
 
-**Note: This page is undery heavy construction**
+**Note: This page is under heavy construction**
 
 ## Target audience
 
