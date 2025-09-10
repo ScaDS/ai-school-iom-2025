@@ -1,6 +1,6 @@
 # Central steps
 
-This session will introduce in programming a machine learning based code with scikit-learn (<a href="https://scikit-learn.org/stable/">(link to library)</a>).
+This session will introduce in programming a machine learning based code with scikit-learn (<a href="https://scikit-learn.org/stable/">link to library</a>).
 A regression model is used as example to outline the general workflow for a machine learning project. 
 Following main steps are typical for a machine learning project:
 1. Look at the big picture.
