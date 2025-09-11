@@ -17,8 +17,6 @@ The notebooks are written for scientists with basic knowledge of Python programm
 
 ## Preliminary Program
 
-```
-
 Monday:
 12:00–13:00: Arrival of participants
 13:00–14:00: Introduction round of instructors and participants
@@ -45,7 +43,6 @@ Thursday:
 14:00–18:00: Breakout sessions on specialized topics
 From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peaceful revolution of 1989
 
-´´´
 
 ## Covered Python libraries
 
