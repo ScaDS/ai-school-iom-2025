@@ -53,7 +53,7 @@ From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peacefu
 * [numpy](https://numpy.org/): Basic numeric Processing
 * scipy
 * [scikit-image](https://scikit-image.org/): Scientific Image Processing
-* scikit-learn
+* [scikit-learn](https://scikit-learn.org/): Machine Learning Library
 * seaborn
 * pytorch
 * [stackview](https://github.com/haesleinhuepf/stackview): An interactive nD image viewer for Jupyter Notebooks
