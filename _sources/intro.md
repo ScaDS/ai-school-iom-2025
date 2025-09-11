@@ -45,11 +45,6 @@ Thursday:
 14:00–18:00: Breakout sessions on specialized topics
 From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peaceful revolution of 1989
 
-Friday:
-10:00–12:00: Keynote lecture
-12:00–13:00: Departure of participants
-```
-
 ## Covered Python libraries
 
 * [bia-bob](https://github.com/haesleinhuepf/bia-bob): AI-assisted Code Generation
