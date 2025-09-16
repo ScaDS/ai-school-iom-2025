@@ -1,6 +1,6 @@
 # Leibniz MMS AI School 2025
 
-This page contains training materials for the [AI School of the Leibniz Research Network Modelling and Simulation (MMS) at Leibniz Institute of Surface Engineering (IOM) in Leipzig](https://aischool.iom-leipzig.de/).
+This page contains training materials for the [AI School of the Leibniz Research Network Modelling and Simulation (MMS)](https://aischool.iom-leipzig.de/) at the Leibniz Institute of Surface Engineering (IOM) in Leipzig.
 
 **Note: This page is under heavy construction**
 
