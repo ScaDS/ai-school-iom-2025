@@ -14,6 +14,7 @@ The notebooks are written for scientists with basic knowledge of Python programm
 * [Dr. Martin Rudolph](https://www.iom-leipzig.de/en/martin-rudolph.html)
 * [Matthias Täschner](https://dbs.uni-leipzig.de/person/matthias_taeschner)
 * [Dr. Robert Haase](https://haesleinhuepf.github.io/)
+* Rodrigo Escobar Díaz Guerrero
 
 ## Preliminary Program
 
