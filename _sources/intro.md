@@ -15,6 +15,7 @@ The notebooks are written for scientists with basic knowledge of Python programm
 * [Matthias Täschner](https://dbs.uni-leipzig.de/person/matthias_taeschner)
 * [Dr. Robert Haase](https://haesleinhuepf.github.io/)
 * Dr. Rodrigo Escobar Díaz Guerrero
+* [Dr. Omid Shayestehpour](https://www.uni-paderborn.de/en/person/114187)
 
 ## Preliminary Program
 
