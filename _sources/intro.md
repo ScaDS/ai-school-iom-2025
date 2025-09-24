@@ -25,26 +25,33 @@ Monday:
 12:00–13:00: Arrival of participants
 13:00–14:00: Introduction round of instructors and participants
 14:00–15:00: Introduction to the technical setup for the workshop and JupyterLab for all participants
-15:00–18:00: Introduction to Machine Learning
+15:00-15:15: Coffee break
+15:15–18:00: Machine Learning Techniques: Regression
 
 Tuesday:
-09:00–12:00: Data Wrangling
-12:00–13:00: Machine Learning Techniques Part 1
+09:00–11:00: Data Wrangling Part 1
+11:00-11:15: Coffee break
+11:15-12:00: Data Wrangling Part 2
+12:00–13:00: Machine Learning Techniques: Classification
 13:00–14:00: Lunch break
-14:00–16:00: Machine Learning Techniques Part 2
+14:00–16:00: Machine Learning Techniques: Clustering
 19:00–22:00: Conference dinner
 
 Wednesday:
 09:00–11:00: Deep Learning
-11:00–13:00: Data Visualization in a JupyterLab Environment
+11:00-11:15: Coffee break
+11:15–13:00: Data Visualization in a JupyterLab Environment
 13:00–14:00: Lunch break
 15:00–17:00: City tour
 
 Thursday:
 09:00–11:00: Language Models
-11:00–13:00: Breakout sessions on specialized topics
-13:00–14:00: Lunch break
-14:00–18:00: Breakout sessions on specialized topics
+11:00-11:15: Coffee break
+11:15–13:00: Breakout sessions on specialized topics
+13:00–14:00: Lunch Break
+14:00–16:00: Breakout sessions on specialized topics
+16:00-16:15: Coffee break
+16:15–18:00: Breakout sessions on specialized topics
 From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peaceful revolution of 1989
 
 ```
