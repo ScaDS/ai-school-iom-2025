@@ -10,7 +10,7 @@ The notebooks are written for scientists with basic knowledge of Python programm
 
 ## Trainer / Speaker
 
-* [Dr. Stefan Zahn](https://www.iom-leipzig.de/en/stefan-zahn.html)
+* [Dr. Stefan Zahn](https://www.iom-leipzig.de/en/stefan-zahn.html) ([IOM](https://www.iom-leipzig.de/index.html))
 * [Dr. Martin Rudolph](https://www.iom-leipzig.de/en/martin-rudolph.html)
 * [Matthias Täschner](https://dbs.uni-leipzig.de/person/matthias_taeschner)
 * [Dr. Robert Haase](https://haesleinhuepf.github.io/)
