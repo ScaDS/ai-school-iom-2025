@@ -61,7 +61,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'day0_setup/readme';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python code in Jupyter notebooks" href="../day1.1_juypter_notebooks/01_our_first_juptyer_notebook.html" />
+    <link rel="next" title="Prepare your Jupyter Lab environment" href="HPC-setup.html" />
     <link rel="prev" title="Leibniz MMS AI School 2025" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -836,7 +836,11 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setting up your computer</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Setting up your computer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="HPC-setup.html">Prepare your Jupyter Lab environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai-assistant.html">AI Assitant in Jupyter</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Jupyter Notebooks</span></p>
 <ul class="nav bd-sidenav">
@@ -1061,45 +1065,41 @@ title="Print to PDF"
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#access-to-the-hpc-cluster">
-   Access to the HPC cluster
+  <a class="reference internal nav-link" href="#vpn-and-access-to-the-hpc-cluster">
+   VPN and access to the HPC cluster
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#setting-up-your-workspace">
    Setting-up your workspace
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-vpn">
-     Installing VPN
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setting-up-python-and-conda-environments-optional-for-local-execution">
-   Setting up Python and Conda environments (optional for local execution)
+  <a class="reference internal nav-link" href="#registration-at-helmholtz-blablador">
+   Registration at Helmholtz Blablador
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-for-local-execution">
+   Optional for local execution
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-install-mini-forge">
-     Step 1: Install Mini-forge
+    <a class="reference internal nav-link" href="#setting-up-python-and-virtual-environments">
+     Setting up Python and virtual environments
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-install-dependencies">
-     Step 2: Install dependencies
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-testing-the-installation">
-     Step 3: Testing the installation
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1-install-conda-forge-miniforge">
+       Step 1: Install Conda-forge / Miniforge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-create-a-virtual-environment-with-all-packages">
+       Step 2: Create a virtual environment with all packages
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1114,86 +1114,118 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="setting-up-your-computer">
 <h1>Setting up your computer<a class="headerlink" href="#setting-up-your-computer" title="Permalink to this heading">#</a></h1>
-<p>This chapter provides instructions for setting up your computer on the first day of the training. It is recommended to install VPN as described below <strong>days before</strong> the training. In case of issues, please reach out to the training organizers.</p>
-<section id="access-to-the-hpc-cluster">
-<h2>Access to the HPC cluster<a class="headerlink" href="#access-to-the-hpc-cluster" title="Permalink to this heading">#</a></h2>
-<p>During the training school, you will have access to the HPC infrastructure of TU Dresden to run the tutorial notebooks. To connect, you will need to set-up the TU Dresden <a class="reference external" href="https://tu-dresden.de/zih/dienste/service-katalog/arbeitsumgebung/zugang_datennetz/vpn?set_language=en">VPN connection</a>. It is recommended to install the <a class="reference external" href="https://tu-dresden.de/zih/dienste/service-katalog/arbeitsumgebung/zugang_datennetz/vpn?set_language=en">eduVPN</a> client, which is available for all major operating systems.</p>
-<p>To set-up eduVPN, <a class="reference external" href="https://www.eduvpn.org/client-apps/">download the client</a> for your operating system and follow the instructions provided. After the installation completes, open eduVPN, enter “Dresden” in the search bar, and click “TUD Dresden University of Technology”. A browser window will open that prompts you for a username and password. These are the credentials that have been given to you on the first day of the school. After successful login, you will be asked to confirm access for the eduVPN client (click the red button).</p>
-<p>Once this is done, you can return to the eduVPN client and select “TUD VPN full” to route all traffic through the VPN. It may take a few seconds to establish the connection.</p>
-<p>The HPC cluster is now accessible from: <a class="reference external" href="https://jupyterhub.hpc.tu-dresden.de">https://jupyterhub.hpc.tu-dresden.de</a> (provide the same login credentials as for the VPN)</p>
+<p>This chapter provides instructions for preparing your computer for the training school. It is recommended to install a VPN client as described below <strong>days before</strong> the training. In case of issues, please reach out to the training organizers.</p>
+<section id="vpn-and-access-to-the-hpc-cluster">
+<h2>VPN and access to the HPC cluster<a class="headerlink" href="#vpn-and-access-to-the-hpc-cluster" title="Permalink to this heading">#</a></h2>
+<p>During the training school, you will have access to the <a class="reference external" href="https://compendium.hpc.tu-dresden.de/">High Performance Computing (HPC) infrastructure</a> of TU Dresden to run the tutorial notebooks. To connect to HPC, you need to set-up a connection to TU Dresden <a class="reference external" href="https://tu-dresden.de/zih/dienste/service-katalog/arbeitsumgebung/zugang_datennetz/vpn?set_language=en">VPN</a>.</p>
+<p>It is recommended to install the <a class="reference external" href="https://www.eduvpn.org/">eduVPN</a> client, which is available for all major operating systems. To install eduVPN, <a class="reference external" href="https://www.eduvpn.org/client-apps/">download the client</a> for your operating system and follow the instructions provided.</p>
+<p>To set-up the VPN connection via eduVPN, a TUD guest account will be provided on the first day of the training. With this available, follow the <a class="reference external" href="https://faq.tickets.tu-dresden.de/otrs/public.pl?Action=PublicFAQZoom;ItemID=1284">instructions provided</a>.</p>
+<p>The HPC cluster / Jupyter Hub is then accessible via <a class="reference external" href="https://jupyterhub.hpc.tu-dresden.de">https://jupyterhub.hpc.tu-dresden.de</a> (provide the same TUD guest account credentials as for the VPN).</p>
 </section>
 <section id="setting-up-your-workspace">
 <h2>Setting-up your workspace<a class="headerlink" href="#setting-up-your-workspace" title="Permalink to this heading">#</a></h2>
+<p>This will be done together on the first day of the training school.</p>
 <ol class="arabic simple">
-<li><p>Go to <a class="reference external" href="https://jupyterhub.hpc.tu-dresden.de">https://jupyterhub.hpc.tu-dresden.de</a> and log in</p></li>
-<li><p>Click the “Advanced” button</p></li>
-<li><p>Select the cluster “barnard” and set “CPUs per task”, “Memory per CPU”, and “Runtime” according to the tutorial instructions</p></li>
-<li><p>After being assigned a spot on the cluster, you will be greeted by a Jupyter Lab environment. Open a terminal and copy the tutorial environment into your home directory: <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">/data/horse/ws/s4122485-ai4seismology</span> <span class="pre">.</span></code></p></li>
-<li><p>Close the terminal. In the file browser on the left side, click the refresh icon and open <code class="docutils literal notranslate"><span class="pre">s4122485-ai4seismology/HPCSetup.ipynb</span></code></p></li>
-<li><p>When asked to “Select Kernel”, leave the default Python 3 kernel and click “Select”.</p></li>
-<li><p>Run the first cell in the notebook to install the <code class="docutils literal notranslate"><span class="pre">ai4seis_kernel</span></code>, which contains the Python environment needed to run the tutorial notebooks. If everything went well (no errors), you can close the <code class="docutils literal notranslate"><span class="pre">HPCSetup.ipynb</span></code> notebook.</p></li>
+<li><p>Connect to TUD VPN and go to <a class="reference external" href="https://jupyterhub.hpc.tu-dresden.de">https://jupyterhub.hpc.tu-dresden.de</a> to log in with your training account</p></li>
+<li><p>Use the provided spawn links to allocate HPC resources and spawn a Jupyter Lab server</p></li>
+<li><p>After being assigned a spot on the HPC cluster, you will be greeted by a Jupyter Lab environment.</p></li>
+<li><p>Open a terminal and copy a Juypter notebook for HPC setup to your home dir:</p></li>
 </ol>
-<p>Steps 4+ are only required once. For subsequent tutorials, you follow steps 1-3 and continue where you left off.</p>
-<section id="installing-vpn">
-<h3>Installing VPN<a class="headerlink" href="#installing-vpn" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">/data/horse/ws/mats024c-iom-ai/HPC-setup.ipynb</span> <span class="pre">.</span></code></p></li>
+</ul>
+<ol class="arabic simple" start="5">
+<li><p>Close the terminal. In the file browser on the left side, click the refresh icon and open <code class="docutils literal notranslate"><span class="pre">HPC-setup.ipynb</span></code></p></li>
+<li><p>When asked to “Select Kernel”, leave the default Python 3 kernel and click “Select”.</p></li>
+<li><p>Do the steps explained in the notebook.</p></li>
+</ol>
+<p>This setup is only required once.</p>
+<p>For subsequent sessions, you just follow steps 1 &amp; 2 to start Jupyter Lab.</p>
 </section>
-<section id="id1">
-<h3><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="registration-at-helmholtz-blablador">
+<h2>Registration at Helmholtz Blablador<a class="headerlink" href="#registration-at-helmholtz-blablador" title="Permalink to this heading">#</a></h2>
+<p>In the  training school, we also want to take a short look at how Large Language Models (LLM) and AI chatbots based on them can support us in coding and data analysis. Helmholtz-Jülich provides a free LLM service for researchers called “<a class="reference external" href="https://helmholtz-blablador.fz-juelich.de/">Blablador</a>”. In order to use this service, prior registration and creation of an API key are necessary.</p>
+<p>Please follow the steps on <a class="reference external" href="https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/">this website</a> as described:</p>
+<ol class="arabic simple">
+<li><p><strong>Register at Helmholtz Gitlab (Codebase)</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Open the <a class="reference external" href="https://codebase.helmholtz.cloud/users/sign_in">Helmholtz Codebase</a></p></li>
+<li><p>Log in via “Sign in with Helmholtz ID” and select your university to authenticate with your university account</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Create an API Key (Token)</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><em>ATTENTION: this API key should be treated like a personal password and should not be made available to anyone else!</em></p></li>
+<li><p>Open your <a class="reference external" href="https://codebase.helmholtz.cloud/-/profile/preferences">profile page</a></p></li>
+<li><p>Select “Access Token” on the left side</p></li>
+<li><p>Under “Personal access tokens”, create a new token via “Add new token”</p></li>
+<li><p>Name it best “Blablador API key”</p></li>
+<li><p>Select “api” as scope</p></li>
+<li><p>Copy the displayed key and save it securely (e.g. password manager) - it will not be displayed again after confirmation</p></li>
+</ul>
+<p><img alt="img.png" src="../_images/helmholtz_api.png" /></p>
 </section>
-</section>
-<section id="setting-up-python-and-conda-environments-optional-for-local-execution">
-<h2>Setting up Python and Conda environments (optional for local execution)<a class="headerlink" href="#setting-up-python-and-conda-environments-optional-for-local-execution" title="Permalink to this heading">#</a></h2>
-<p><strong>NOTE:</strong> As preparation of the course you do not need to install conda and Python on your computer because everything will be installed on a HPC environment you get access to. However, <em>in case</em> you want to play with the tools on your own computer, just follow the installation instructions below.</p>
-<p>When working with Python, we will make use of software libraries which need to be organized.
-One way of doing this, is by managing <em>Conda</em> environments.
-A conda environment can be seen as a virtual desktop, or virtual computer, accessible via the terminal.
-If you install some software into one Conda environment, it may not be accessible from another environment.
-If a Conda environment breaks, e.g. incompatible software was installed, you can just make a new one and start over.</p>
+<section id="optional-for-local-execution">
+<h2>Optional for local execution<a class="headerlink" href="#optional-for-local-execution" title="Permalink to this heading">#</a></h2>
+<section id="setting-up-python-and-virtual-environments">
+<h3>Setting up Python and virtual environments<a class="headerlink" href="#setting-up-python-and-virtual-environments" title="Permalink to this heading">#</a></h3>
+<p><strong>NOTE:</strong> As preparation of the course you do not need to install Python or Conda on your computer because we will work in a remote HPC environment where you get access to. However, <em>in case</em> you want to play with the notebooks and tools on your own computer, follow the instructions below.</p>
+<p><strong>Background</strong>: When working with Python, we will make use of software libraries (packages) for additional functionalities like Machine Learning, which need to be organized. One way of doing this is by managing virtual Python environments, and one tool to do this is <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html"><em>Conda</em></a>. A virtual environment can be considered a virtual desktop or virtual computer and is accessible via the terminal and other software once it has been activated. If you install packages into one virtual environment, it may not be accessible from another environment. If a virtual environment breaks, e.g. incompatible packages were installed, you can just remove it and start over.</p>
 <p>See also</p>
 <ul class="simple">
+<li><p><a class="reference external" href="https://docs.conda.io/projects/conda/en/stable/user-guide/cheatsheet.html">Conda CheatSheet</a></p></li>
 <li><p><a class="reference external" href="https://biapol.github.io/blog/mara_lampert/getting_started_with_mambaforge_and_python/readme.html">Getting started with Mambaforge and Python</a></p></li>
 <li><p><a class="reference external" href="https://focalplane.biologists.com/2022/12/08/managing-scientific-python-environments-using-conda-mamba-and-friends/">Managing Scientific Python environments using Conda, Mamba and friends</a></p></li>
 <li><p><a class="reference external" href="https://youtu.be/MOEPe9TGBK0">Scientific Data Analysis with Python</a></p></li>
 </ul>
-<section id="step-1-install-mini-forge">
-<h3>Step 1: Install Mini-forge<a class="headerlink" href="#step-1-install-mini-forge" title="Permalink to this heading">#</a></h3>
-<p>Download and install Conda. We recommend the Conda distribution <a class="reference external" href="https://conda-forge.org/download/">mini-forge</a>.</p>
-<p>For ease-of-use, it is recommended to install it for your use only and to add Conda to the PATH variable during installation.</p>
+<section id="step-1-install-conda-forge-miniforge">
+<h4>Step 1: Install Conda-forge / Miniforge<a class="headerlink" href="#step-1-install-conda-forge-miniforge" title="Permalink to this heading">#</a></h4>
+<p>We recommend the small-footprint Conda distribution <a class="reference external" href="https://conda-forge.org/download/">miniforge</a>. For ease-of-use, it is recommended to install it for your user only and to <strong>add Conda to the PATH variable</strong> during installation.</p>
+<p>Please refer to the <a class="reference external" href="https://github.com/conda-forge/miniforge">official installation instructions</a>!</p>
 <p><img alt="img.png" src="../_images/miniforge1.png" /></p>
 <p><img alt="img.png" src="../_images/miniforge2.png" /></p>
+<p>Check whether conda is available in your terminal via <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code></p>
 </section>
-<section id="step-2-install-dependencies">
-<h3>Step 2: Install dependencies<a class="headerlink" href="#step-2-install-dependencies" title="Permalink to this heading">#</a></h3>
-<p>We recommend installing <a class="reference external" href="https://github.com/haesleinhuepf/devbio-napari">devbio-napari</a>, a distribution of napari with a set of plugins for bioimage analysis.</p>
-<p>Use this command from the terminal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">iom25</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.11</span> <span class="n">pyqt</span> <span class="n">scipy</span> <span class="n">numpy</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span> <span class="n">seaborn</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
-</pre></div>
-</div>
-<p>Afterwards, activate the environment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">iom25</span>
-</pre></div>
-</div>
-<p><strong>Tip</strong>: It is recommended to create one environment for every project you are executing.
-In that way installed software libraries and tools cannot harm each other.</p>
+<section id="step-2-create-a-virtual-environment-with-all-packages">
+<h4>Step 2: Create a virtual environment with all packages<a class="headerlink" href="#step-2-create-a-virtual-environment-with-all-packages" title="Permalink to this heading">#</a></h4>
+<p><strong>Download File</strong></p>
+<ul class="simple">
+<li><p>Download this Conda configuration file, which defines the environment: <a class="reference download internal" download="" href="../_downloads/d8ba237f76f4d78b008fa895b41a030c/conda-iom-env.yml"><span class="xref download myst">conda-iom-env.yml</span></a></p></li>
+</ul>
+<p><strong>Create Virtual Environment</strong></p>
+<ul class="simple">
+<li><p>Open a terminal or command prompt</p></li>
+<li><p>Navigate to the file’s location</p></li>
+<li><p>Execute this command: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">-f</span> <span class="pre">conda-iom-env.yml</span> <span class="pre">--prune</span></code></p></li>
+<li><p>With this command:</p>
+<ul>
+<li><p>Conda creates a new environment with the name iom-env” or updates an already existing one with the same name</p></li>
+<li><p>Conda downloads and installs all defined software packages in the environment</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Troubleshooting</strong></p>
+<ul class="simple">
+<li><p>If problems occur, e.g. with an already existing environment “iom-env”, you can remove it completely and start from scratch</p></li>
+<li><p>Execute this command: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">--name</span> <span class="pre">iom-env</span> <span class="pre">--all</span></code></p></li>
+<li><p>Then, perform the above steps for a fresh installation of the environment</p></li>
+</ul>
+<p><strong>Test the Virtual Environment</strong></p>
+<ul class="simple">
+<li><p>Open a terminal or command prompt</p></li>
+<li><p>Execute the following command: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">iom-env</span></code> - the environment is activated</p></li>
+<li><p>Start Jupyter Lab for testing: <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> - your browser should open with Jupyter Lab</p></li>
+<li><p>You can now execute the training notebooks locally</p></li>
+<li><p>Then, Jupyter Lab can be shut down or terminated (e.g., <code class="docutils literal notranslate"><span class="pre">ctrl-C</span></code> in the terminal)</p></li>
+<li><p>To deactivate the environment run: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code></p></li>
+</ul>
 </section>
-<section id="step-3-testing-the-installation">
-<h3>Step 3: Testing the installation<a class="headerlink" href="#step-3-testing-the-installation" title="Permalink to this heading">#</a></h3>
-<p>Whenever you want to work on the same project, you should start a command line and enter this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">embo25</span>
-</pre></div>
-</div>
-<p>Start <a class="reference external" href="https://jupyter.org/">Jupyter lab</a> from the terminal like this</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">lab</span>
-</pre></div>
-</div>
-<p>A browser will open and show you the following web page. In the section <code class="docutils literal notranslate"><span class="pre">Notebook</span></code> click on “Python 3 (ipykernel)” to create a new notebook:</p>
-<p><img alt="img.png" src="../_images/start_jupyter_lab.png" /></p>
-<p>In the new notebook, click in the first code cell, enter <code class="docutils literal notranslate"><span class="pre">print(&quot;Hello</span> <span class="pre">world&quot;)</span></code> and hit SHIFT+ENTER on your keyboard.
-If everything is installed properly, it should look like this:</p>
-<p><img alt="img.png" src="../_images/hello_world.png" /></p>
-<p><a class="reference external" href="https://github.com/conda/conda/issues/11503">Source</a></p>
 </section>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1231,10 +1263,10 @@ If everything is installed properly, it should look like this:</p>
           <p class="prev-next-title">Leibniz MMS AI School 2025</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="../day1.1_juypter_notebooks/01_our_first_juptyer_notebook.html" title="next page">
+  <a class='right-next' id="next-link" href="HPC-setup.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Python code in Jupyter notebooks</p>
+      <p class="prev-next-title">Prepare your Jupyter Lab environment</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
@@ -1255,45 +1287,41 @@ If everything is installed properly, it should look like this:</p>
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#access-to-the-hpc-cluster">
-   Access to the HPC cluster
+  <a class="reference internal nav-link" href="#vpn-and-access-to-the-hpc-cluster">
+   VPN and access to the HPC cluster
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#setting-up-your-workspace">
    Setting-up your workspace
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#installing-vpn">
-     Installing VPN
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setting-up-python-and-conda-environments-optional-for-local-execution">
-   Setting up Python and Conda environments (optional for local execution)
+  <a class="reference internal nav-link" href="#registration-at-helmholtz-blablador">
+   Registration at Helmholtz Blablador
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-for-local-execution">
+   Optional for local execution
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-install-mini-forge">
-     Step 1: Install Mini-forge
+    <a class="reference internal nav-link" href="#setting-up-python-and-virtual-environments">
+     Setting up Python and virtual environments
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-install-dependencies">
-     Step 2: Install dependencies
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-testing-the-installation">
-     Step 3: Testing the installation
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1-install-conda-forge-miniforge">
+       Step 1: Install Conda-forge / Miniforge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-create-a-virtual-environment-with-all-packages">
+       Step 2: Create a virtual environment with all packages
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1325,7 +1353,7 @@ By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-09-26.<br>
+Last updated on 2025-09-27.<br>
 </p>
   </div>
   

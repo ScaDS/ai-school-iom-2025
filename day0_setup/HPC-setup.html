@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Test GPU / OpenCL &#8212; AI School at Leibniz IOM 2025</title>
+    <title>Prepare your Jupyter Lab environment &#8212; AI School at Leibniz IOM 2025</title>
   
   
   
@@ -58,9 +58,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'day0_setup/test_opencl';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day0_setup/HPC-setup';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="AI Assitant in Jupyter" href="ai-assistant.html" />
+    <link rel="prev" title="Setting up your computer" href="readme.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -134,7 +136,7 @@ const thebe_selector_output = ".output, .cell_output"
     </p>
     <ul id="navbar-main-elements" class="navbar-nav">
         
-                    <li class="nav-item">
+                    <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="readme.html">
                         Setting up your computer
                       </a>
@@ -457,6 +459,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -480,7 +486,7 @@ const thebe_selector_output = ".output, .cell_output"
     </p>
     <ul id="navbar-main-elements" class="navbar-nav">
         
-                    <li class="nav-item">
+                    <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="readme.html">
                         Setting up your computer
                       </a>
@@ -829,8 +835,12 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Setting up your computer</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="readme.html">Setting up your computer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Prepare your Jupyter Lab environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai-assistant.html">AI Assitant in Jupyter</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Jupyter Notebooks</span></p>
 <ul class="nav bd-sidenav">
@@ -940,16 +950,6 @@ const thebe_selector_output = ".output, .cell_output"
         </label>
     </div>
     <div class="header-article__right">
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-  </ul>
-</div>
-
 <button onclick="toggleFullScreen()"
   class="btn btn-sm"
   data-toggle="tooltip"
@@ -986,7 +986,7 @@ title="Source repository"
 </a>
 </a>
       
-      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday0_setup/test_opencl.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday0_setup/HPC-setup.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -1011,7 +1011,7 @@ title="Open an issue"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="../_sources/day0_setup/test_opencl.ipynb" target="_blank"
+      <li><a href="../_sources/day0_setup/HPC-setup.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -1044,7 +1044,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -1052,60 +1054,81 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Test GPU / OpenCL</h1>
+    <h1>Prepare your Jupyter Lab environment</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-the-python-kernel-iom-env">
+   1. Install the Python Kernel “iom-env”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#copy-notebooks-and-data">
+   2. Copy notebooks and data
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="test-gpu-opencl">
-<h1>Test GPU / OpenCL<a class="headerlink" href="#test-gpu-opencl" title="Permalink to this heading">#</a></h1>
-<p>First, we see if a GPU is detected and used.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="prepare-your-jupyter-lab-environment">
+<h1>Prepare your Jupyter Lab environment<a class="headerlink" href="#prepare-your-jupyter-lab-environment" title="Permalink to this heading">#</a></h1>
+<p><strong>This notebook <code class="docutils literal notranslate"><span class="pre">HPC-setup.ipynb</span></code> is used to prepare your HPC Jupyter Lab environment on the first day of the training.</strong></p>
+<p>Execute he following cells to:</p>
+<ul class="simple">
+<li><p>Install a custom Python kernel with all packages used in the training</p></li>
+<li><p>Copy all notebooks and data used for training to your home directory</p></li>
+</ul>
+<section id="install-the-python-kernel-iom-env">
+<h2>1. Install the Python Kernel “iom-env”<a class="headerlink" href="#install-the-python-kernel-iom-env" title="Permalink to this heading">#</a></h2>
+<p>The following command installs a Python kernel “iom-env”.</p>
+<p>This only needs to be done once, after which the Python kernel will be available for your user account for rest of the training school.</p>
+<ol class="arabic simple">
+<li><p>Execute the cell with <code class="docutils literal notranslate"><span class="pre">ctrl-enter</span></code> or <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code></p></li>
+<li><p>When prompted to “Select Kernel”, leave the default Python 3 kernel and click “Select”.</p></li>
+<li><p>Wait until <code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">iom-env</span> <span class="pre">in</span> <span class="pre">[...]</span></code> is displayed</p></li>
+<li><p>Reload the page</p></li>
+<li><p>You can now select the Python kernel <code class="docutils literal notranslate"><span class="pre">iom-env</span></code> from the available kernels</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyclesperanto_prototype</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cle</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;gfx1103 on Platform: AMD Accelerated Parallel Processing (2 refs)&gt;
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /data/horse/ws/mats024c-iom-ai/install_python_kernel.sh
 </pre></div>
 </div>
 </div>
 </div>
-<p>Second, we can list all available devices.</p>
+</section>
+<section id="copy-notebooks-and-data">
+<h2>2. Copy notebooks and data<a class="headerlink" href="#copy-notebooks-and-data" title="Permalink to this heading">#</a></h2>
+<p>The following command copies the Jupyter notebooks and data used in the sessions to your home directory.</p>
+<p>It will create a directory <code class="docutils literal notranslate"><span class="pre">~/iom_notebooks</span></code> with subdirectories for the sessions.</p>
+<ol class="arabic simple">
+<li><p>Execute the cell with <code class="docutils literal notranslate"><span class="pre">ctrl-enter</span></code> or <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code></p></li>
+<li><p>When prompted to “Select Kernel”, leave the default Python 3 kernel and click “Select”.</p></li>
+<li><p>Wait until the copy process has finished</p></li>
+<li><p>In the file browser on the left side, click the refresh icon</p></li>
+<li><p>A directory <code class="docutils literal notranslate"><span class="pre">iom_notebooks</span></code> should appear</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cle</span><span class="o">.</span><span class="n">available_device_names</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;NVIDIA GeForce RTX 4070 Laptop GPU&#39;, &#39;gfx1103&#39;]
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /data/horse/ws/mats024c-iom-ai/copy_data.sh
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can then select a different one.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cle</span><span class="o">.</span><span class="n">select_device</span><span class="p">(</span><span class="s2">&quot;RTX&quot;</span><span class="p">)</span>
-<span class="n">cle</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;NVIDIA GeForce RTX 4070 Laptop GPU on Platform: NVIDIA CUDA (1 refs)&gt;
-</pre></div>
-</div>
-</div>
-</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1136,12 +1159,52 @@ title="Print to PDF"
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="readme.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Setting up your computer</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="ai-assistant.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">AI Assitant in Jupyter</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
             
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-the-python-kernel-iom-env">
+   1. Install the Python Kernel “iom-env”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#copy-notebooks-and-data">
+   2. Copy notebooks and data
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>
@@ -1164,7 +1227,7 @@ By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-09-26.<br>
+Last updated on 2025-09-27.<br>
 </p>
   </div>
   
