@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Pitfalls when working with Jupyter notebooks &#8212; AI School at Leibniz IOM 2025</title>
+    <title>AI Assitant in Jupyter &#8212; AI School at Leibniz IOM 2025</title>
   
   
   
@@ -58,11 +58,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'day1.1_juypter_notebooks/02_Dont_try_this_at_home';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day1.1_juypter_notebooks/03_ai-assistant';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bioimage Analysis in Jupyter Notebooks" href="03_image_processing.html" />
-    <link rel="prev" title="Python code in Jupyter notebooks" href="01_our_first_juptyer_notebook.html" />
+    <link rel="next" title="Overview central steps" href="../day1.2_intro_ml/readme.html" />
+    <link rel="prev" title="Pitfalls when working with Jupyter notebooks" href="02_notebook_pitfalls.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -143,23 +143,9 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01_our_first_juptyer_notebook.html">
-                        Python code in Jupyter notebooks
-                      </a>
-                    </li>
-                
-
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        Pitfalls when working with Jupyter notebooks
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="03_image_processing.html">
-                        Bioimage Analysis in Jupyter Notebooks
+                      <a class="nav-link nav-internal" href="readme.html">
+                        How to handle Jupyter Notebooks
                       </a>
                     </li>
                 
@@ -170,12 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../day1.2_intro_ml/01-bigpicture.html">
                         Look at the big picture
@@ -189,7 +170,12 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
-
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../day1.2_intro_ml/03-data-split.html">
                         Create a test data set
@@ -459,6 +445,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -489,23 +479,9 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="01_our_first_juptyer_notebook.html">
-                        Python code in Jupyter notebooks
-                      </a>
-                    </li>
-                
-
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        Pitfalls when working with Jupyter notebooks
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="03_image_processing.html">
-                        Bioimage Analysis in Jupyter Notebooks
+                      <a class="nav-link nav-internal" href="readme.html">
+                        How to handle Jupyter Notebooks
                       </a>
                     </li>
                 
@@ -516,12 +492,7 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../day1.2_intro_ml/01-bigpicture.html">
                         Look at the big picture
@@ -535,7 +506,12 @@ const thebe_selector_output = ".output, .cell_output"
                       </a>
                     </li>
                 
-
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../day1.2_intro_ml/03-data-split.html">
                         Create a test data set
@@ -834,16 +810,18 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day0_setup/readme.html">Setting up your computer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day0_setup/HPC-setup.html">Prepare your Jupyter Lab environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../day0_setup/ai-assistant.html">AI Assitant in Jupyter</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Jupyter Notebooks</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01_our_first_juptyer_notebook.html">Python code in Jupyter notebooks</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="readme.html">How to handle Jupyter Notebooks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_juptyer_notebook.html">Python code in Jupyter notebooks</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pitfalls when working with Jupyter notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_image_processing.html">Bioimage Analysis in Jupyter Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_notebook_pitfalls.html">Pitfalls when working with Jupyter notebooks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">AI Assitant in Jupyter</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Machine Learning / Regression</span></p>
 <ul class="nav bd-sidenav">
@@ -992,7 +970,7 @@ title="Source repository"
 </a>
 </a>
       
-      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday1.1_juypter_notebooks/02_Dont_try_this_at_home.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday1.1_juypter_notebooks/03_ai-assistant.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -1017,7 +995,7 @@ title="Open an issue"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="../_sources/day1.1_juypter_notebooks/02_Dont_try_this_at_home.ipynb" target="_blank"
+      <li><a href="../_sources/day1.1_juypter_notebooks/03_ai-assistant.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -1050,7 +1028,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -1058,77 +1038,206 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Pitfalls when working with Jupyter notebooks</h1>
+    <h1>AI Assitant in Jupyter</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#note-on-the-llms-used">
+   Note on the LLMs used
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-of-the-ai-assistant">
+   Control of the AI assistant
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#providing-the-api-key">
+   Providing the API key
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#custom-endpoints-providers">
+   Custom Endpoints (Providers)
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="pitfalls-when-working-with-jupyter-notebooks">
-<h1>Pitfalls when working with Jupyter notebooks<a class="headerlink" href="#pitfalls-when-working-with-jupyter-notebooks" title="Permalink to this heading">#</a></h1>
-<p>You can execute the same cell in Jupyter notebooks multiple times. This may lead to notebooks which make no sense to the reader.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ai-assitant-in-jupyter">
+<h1>AI Assitant in Jupyter<a class="headerlink" href="#ai-assitant-in-jupyter" title="Permalink to this heading">#</a></h1>
+<p>Jupyter Notebook offers ways to integrate and use AI assistants that can support us in programming and data analysis tasks. There are several packages and plugins available, e.g. <a class="reference external" href="https://github.com/jupyterlab/jupyter-ai">jupyter-ai</a>, or <a class="reference external" href="https://github.com/haesleinhuepf/bia-bob">bia-bob</a>.</p>
+<p>For our training school we want to make use of the AI assistant <a class="reference external" href="https://github.com/haesleinhuepf/bia-bob">bia-bob</a>.</p>
+<p>In this notebook, we will look at the general use of the AI assistant - from importing and initialization to assistance with difficult tasks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># Import bia-bob as bob</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bia_bob</span><span class="w"> </span><span class="kn">import</span> <span class="n">bob</span>
+<span class="c1"># Import library to prompt for a password</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">getpass</span>
+<span class="c1"># Never store API keys as plain text in a notebook</span>
+<span class="c1"># Better: Enter the API key via getpass and store it as an environment variable (env) via os.environ</span>
+<span class="c1"># When this cell is executed, a field appears for entering the API key for Blablador</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="s1">&#39;Enter your Blablador API Key: &#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;BLABLADOR_API_KEY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">api_key</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
-</pre></div>
-</div>
-</div>
-</div>
-<p>You can execute them in the wrong order which leads to the same effect.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">5</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Enter your Blablador API Key:  ········
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">10</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize bia-bob with Blablador and API key from environment variable</span>
+<span class="n">bob</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;blablador&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;alias-fast&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+<div class="output text_html">
+            <div style="font-size:7pt">
+            This notebook may contain text, code and images generated by artificial intelligence.
+            Used model: alias-fast, vision model: None, endpoint: https://helmholtz-blablador.fz-juelich.de:8000/v1, bia-bob version: 0.34.3.. Do not enter sensitive or private information and verify generated contents according to good scientific practice. Read more: <a href="https://github.com/haesleinhuepf/bia-bob#disclaimer">https://github.com/haesleinhuepf/bia-bob#disclaimer</a>
+            </div>
+            </div></div>
+</div>
+<section id="note-on-the-llms-used">
+<h2>Note on the LLMs used<a class="headerlink" href="#note-on-the-llms-used" title="Permalink to this heading">#</a></h2>
+<p>Blablador provides various LLMs – an overview of these is provided after registering with the <a class="reference external" href="https://helmholtz-blablador.fz-juelich.de/">chat service</a>, and a complete list can be requested via the <a class="reference external" href="https://api.helmholtz-blablador.fz-juelich.de/docs">API</a>.</p>
+<p>We specify which provider and which specific LLM we use for the AI assistant during initialization via <code class="docutils literal notranslate"><span class="pre">endpoint</span></code> and <code class="docutils literal notranslate"><span class="pre">model</span></code>:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>bob.initialize(endpoint=‘blablador’, model=‘alias-fast’)
+</pre></div>
+</div>
+<p>In this case, we use an alias instead of the full model name – a list of aliases available at Blablador and their capabilities is provided <a class="reference external" href="https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/#model-aliases">here</a>.</p>
+<p>Most other providers, e.g. OpenAI, Mistral, Github Models, work similar - you also need to provide the correctly named according API key.</p>
+</section>
+<section id="control-of-the-ai-assistant">
+<h2>Control of the AI assistant<a class="headerlink" href="#control-of-the-ai-assistant" title="Permalink to this heading">#</a></h2>
+<p>The AI assistant can then be accessed in a code cell via IPython’s so-called <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">Magic Commands</a> (<code class="docutils literal notranslate"><span class="pre">%</span></code>, <code class="docutils literal notranslate"><span class="pre">%%</span></code>). Either via</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">bob</span> <span class="n">Single</span><span class="o">-</span><span class="n">line</span> <span class="n">prompt</span>
+</pre></div>
+</div>
+<p>…or via</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bob</span>
+<span class="n">Multi</span><span class="o">-</span><span class="n">line</span> <span class="n">prompt</span><span class="o">.</span>
+<span class="n">With</span> <span class="n">more</span> <span class="n">details</span><span class="o">.</span>
+<span class="n">And</span> <span class="n">more</span> <span class="n">context</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">bob</span> Hello. Are you familiar with Machine Learning? Please explain briefly what it is about.
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Machine Learning (ML) is a subset of Artificial Intelligence (AI) that involves training algorithms to make predictions or decisions based on data, without being explicitly programmed. It leverages statistical techniques, mathematical models, and computational algorithms to enable systems to learn from and make inferences on data. The goal of ML is to develop models that can automatically improve their performance over time as they are exposed to more data. There are three main types of ML: supervised learning, unsupervised learning, and reinforcement learning.</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bob</span>
+Hello. Are you familiar with Gaussian processes and Bayesian Optimization ? 
+Briefly explain how they work and what they are used for.
+Do not provide any code.
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Yes, I am familiar with Gaussian processes and Bayesian Optimization.</p>
+<p>Gaussian processes (GPs) are a type of stochastic process that are defined by a mean function and a covariance function. They are used for various tasks, such as regression, classification, and function approximation. The mean function determines the average value of the process, while the covariance function determines how the values in different parts of the input space are related to each other.</p>
+<p>Bayesian Optimization is a sequential design method for global optimization of black-box functions that do not have a standard optimization algorithm that is guaranteed to find the global optimum. It is used to find the minimum or maximum of a function that may be noisy and has no closed-form solution. Bayesian Optimization works by modeling the function using a GP and using this model to select the next point to evaluate. The goal is to find the optimal point that minimizes the expected loss of the function.</p>
+<p>Gaussian processes and Bayesian Optimization are often used in machine learning and optimization tasks to efficiently and effectively find the optimal solution to a problem.</p>
+</div>
+</div>
+</section>
+<section id="providing-the-api-key">
+<h2>Providing the API key<a class="headerlink" href="#providing-the-api-key" title="Permalink to this heading">#</a></h2>
+<p>In this notebook, we provide the API key for Blablador via an interactive input in the first code cell. However, it is more convenient to provide the API key as a permanent environment variable.</p>
+<p>In a conda environment, this can be done via the conda configuration file <code class="docutils literal notranslate"><span class="pre">conda-iom-env.yml</span></code>:</p>
+<ul class="simple">
+<li><p>Enter your API key in the file in the line <code class="docutils literal notranslate"><span class="pre">BLABLADOR_API_KEY:</span> <span class="pre">“my_api_key”</span></code> - replacing <em>my_api_key</em></p></li>
+<li><p>Exit Juyper Lab and deactivate the conda environment</p></li>
+<li><p>Update the conda environment via <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">-f</span> <span class="pre">conda-iom-env.yml</span> <span class="pre">--prune</span></code></p></li>
+<li><p>Restart the conda environment and restart Jupyter Lab</p></li>
+</ul>
+<p>If you now execute only the following code cell of this notebook, <code class="docutils literal notranslate"><span class="pre">BLABLADOR_API_KEY</span></code> with your API key should also appear among the listed environment variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>env
 </pre></div>
 </div>
 </div>
 </div>
-<p>You can see that cells were executed in wrong order, repeatedly or not subsequently, by reading the number <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">[?]</span></code> on the left.</p>
-<p><img alt=" " src="../_images/cell_execution_number.png" /></p>
-<p>Tip: When your notebook is ready, click on menu <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">&gt;</span> <span class="pre">Restart</span> <span class="pre">&amp;</span> <span class="pre">Run</span> <span class="pre">all</span></code> to make sure all cells in the notebook are executed in the right order.</p>
+<p>The initialization and use of the AI assistant in the following notebooks of the training now also works without the separate entry of the API key like in the first cell. Let’s try:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import bia-bob as bob</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bia_bob</span><span class="w"> </span><span class="kn">import</span> <span class="n">bob</span>
+<span class="c1"># Initialize bia-bob with Blablador and API key from environment variable</span>
+<span class="n">bob</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;blablador&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;alias-fast&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <div style="font-size:7pt">
+            This notebook may contain text, code and images generated by artificial intelligence.
+            Used model: alias-fast, vision model: None, endpoint: https://helmholtz-blablador.fz-juelich.de:8000/v1, bia-bob version: 0.32.0.. Do not enter sensitive or private information and verify generated contents according to good scientific practice. Read more: <a href="https://github.com/haesleinhuepf/bia-bob#disclaimer">https://github.com/haesleinhuepf/bia-bob#disclaimer</a>
+            </div>
+            </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">bob</span> Hi - who are you ?
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Hello! I’m an AI assistant designed to help with a variety of tasks and answer questions to the best of my ability. I’m here to assist you with information, explanations, suggestions, and more. How can I assist you today?</p>
+</div>
+</div>
+</section>
+<section id="custom-endpoints-providers">
+<h2>Custom Endpoints (Providers)<a class="headerlink" href="#custom-endpoints-providers" title="Permalink to this heading">#</a></h2>
+<p>Beside keyword-based endpoints like <code class="docutils literal notranslate"><span class="pre">blablador</span></code>, <code class="docutils literal notranslate"><span class="pre">ollama</span></code>, etc., bia-bob also allows to define custom endpoints (providers).</p>
+<p>Just provide the providers URL to the API, the name of the model you want to use, and the API key.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">bia_bob</span><span class="w"> </span><span class="kn">import</span> <span class="n">bob</span>
+<span class="n">bob</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span>
+    <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;https://url-to-llm-provider/api&#39;</span><span class="p">,</span> 
+    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;model-name&#39;</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;api-key-for-provider&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+            <div style="font-size:7pt">
+            This notebook may contain text, code and images generated by artificial intelligence.
+            Used model: vllm-meta-llama-llama-3-3-70b-instruct, vision model: None, endpoint: https://kiara.sc.uni-leipzig.de/api, bia-bob version: 0.34.3.. Do not enter sensitive or private information and verify generated contents according to good scientific practice. Read more: <a href="https://github.com/haesleinhuepf/bia-bob#disclaimer">https://github.com/haesleinhuepf/bia-bob#disclaimer</a>
+            </div>
+            </div></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1159,17 +1268,17 @@ title="Print to PDF"
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="01_our_first_juptyer_notebook.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="02_notebook_pitfalls.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Python code in Jupyter notebooks</p>
+          <p class="prev-next-title">Pitfalls when working with Jupyter notebooks</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="03_image_processing.html" title="next page">
+  <a class='right-next' id="next-link" href="../day1.2_intro_ml/readme.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Bioimage Analysis in Jupyter Notebooks</p>
+      <p class="prev-next-title">Overview central steps</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
@@ -1179,6 +1288,42 @@ title="Print to PDF"
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#note-on-the-llms-used">
+   Note on the LLMs used
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-of-the-ai-assistant">
+   Control of the AI assistant
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#providing-the-api-key">
+   Providing the API key
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#custom-endpoints-providers">
+   Custom Endpoints (Providers)
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>
