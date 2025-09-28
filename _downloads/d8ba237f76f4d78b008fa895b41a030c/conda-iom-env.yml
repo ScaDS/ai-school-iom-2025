@@ -18,6 +18,8 @@ dependencies:
   - scipy
   - scikit-learn
   - scikit-optimize
+  - stackview
+  - polars
   - pip:
     - bia-bob
     - torch
