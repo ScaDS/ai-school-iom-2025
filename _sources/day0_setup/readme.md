@@ -38,6 +38,9 @@ Please follow the steps on [this website](https://sdlaml.pages.jsc.fz-juelich.de
 1. **Register at Helmholtz Gitlab (Codebase)**
 * Open the [Helmholtz Codebase](https://codebase.helmholtz.cloud/users/sign_in)
 * Log in via "Sign in with Helmholtz ID" and select your university to authenticate with your university account
+
+**ATTENTION:** if you experience "OIDC error" or "authentication failed", your institute does not seem to provide a working OIDC configuration to authenticate at Helmholtz Codebase. You may try to authenticate using Github instead, given you have a Github account.
+
 2. **Create an API Key (Token)**
 * _ATTENTION: this API key should be treated like a personal password and should not be made available to anyone else!_
 * Open your [profile page](https://codebase.helmholtz.cloud/-/profile/preferences)
