@@ -12,6 +12,7 @@ dependencies:
   - tqdm
   - numpy
   - pandas
+  - dask
   - matplotlib
   - seaborn
   - plotly
@@ -20,6 +21,8 @@ dependencies:
   - scikit-optimize
   - stackview
   - polars
+  - zarr
+  - numcodecs
   - pip:
     - bia-bob
     - torch
