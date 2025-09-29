@@ -318,7 +318,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
-                        Plotting Basics
+                        Plotting
                       </a>
                     </li>
                 
@@ -689,7 +689,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
-                        Plotting Basics
+                        Plotting
                       </a>
                     </li>
                 
@@ -944,7 +944,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Visualization</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Plotting Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Plotting Distributions with Seaborn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_Multivariate_views.html">Multivariate views</a></li>
@@ -1178,11 +1178,87 @@ title="Print to PDF"
 <h2>Load the dataframe<a class="headerlink" href="#load-the-dataframe" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/BBBC007_analysis.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/BBBC007_analysis.csv&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>intensity_mean</th>
+      <th>major_axis_length</th>
+      <th>minor_axis_length</th>
+      <th>aspect_ratio</th>
+      <th>file_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>139</td>
+      <td>96.546763</td>
+      <td>17.504104</td>
+      <td>10.292770</td>
+      <td>1.700621</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>360</td>
+      <td>86.613889</td>
+      <td>35.746808</td>
+      <td>14.983124</td>
+      <td>2.385805</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>43</td>
+      <td>91.488372</td>
+      <td>12.967884</td>
+      <td>4.351573</td>
+      <td>2.980045</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>140</td>
+      <td>73.742857</td>
+      <td>18.940508</td>
+      <td>10.314404</td>
+      <td>1.836316</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>144</td>
+      <td>89.375000</td>
+      <td>13.639308</td>
+      <td>13.458532</td>
+      <td>1.013432</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="distribution-plots">
@@ -1195,6 +1271,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/e99214da08de580bed64320762de44a4d3f1d325e5609913045f8571ec7c5a38.png" src="../_images/e99214da08de580bed64320762de44a4d3f1d325e5609913045f8571ec7c5a38.png" />
+</div>
 </div>
 <p>Again, we have the option to either display the distributions of the individual files in a single diagram with different colors or split them into two sub-diagrams. The choice depends on the argument to which we pass the <code class="docutils literal notranslate"><span class="pre">file_name</span></code> parameter: either <code class="docutils literal notranslate"><span class="pre">hue</span></code> for coloring within a single diagram or <code class="docutils literal notranslate"><span class="pre">col</span></code> for creating separate sub-diagrams. Let’s try both.</p>
 <div class="cell docutils container">
@@ -1205,6 +1284,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/100b54ae9256039e1733caf0ad318ddf4df589c4165a3746c04ced048dd9b1ba.png" src="../_images/100b54ae9256039e1733caf0ad318ddf4df589c4165a3746c04ced048dd9b1ba.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1213,6 +1295,9 @@ title="Print to PDF"
             <span class="n">col</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">);</span>       <span class="c1"># Display a different subplot for each file</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6bfb44b705d5f1d2e07f53634c987a96a89f06533d4d028427c357ac0aa4f2f8.png" src="../_images/6bfb44b705d5f1d2e07f53634c987a96a89f06533d4d028427c357ac0aa4f2f8.png" />
 </div>
 </div>
 <p>We can also add the kernel density estimation (kde) by passing <code class="docutils literal notranslate"><span class="pre">kde=True</span></code>. Just be careful while interpreting these plots (check some pitfalls <a class="reference external" href="https://seaborn.pydata.org/tutorial/distributions.html#kernel-density-estimation-pitfalls">here</a>).</p>
@@ -1224,6 +1309,9 @@ title="Print to PDF"
             <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5527fa2a41a15f832047b663878e2e2f6f8ba9fe5c483a17049741feb8164d92.png" src="../_images/5527fa2a41a15f832047b663878e2e2f6f8ba9fe5c483a17049741feb8164d92.png" />
 </div>
 </div>
 </section>
@@ -1239,6 +1327,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/1ca53b2a58cc259177e38437addaac2617e49016403400d00bb1023d9e0605ac.png" src="../_images/1ca53b2a58cc259177e38437addaac2617e49016403400d00bb1023d9e0605ac.png" />
+</div>
 </div>
 <p>Seaborn automatically identifies <code class="docutils literal notranslate"><span class="pre">file_name</span></code> as a categorical variable and <code class="docutils literal notranslate"><span class="pre">intensity_mean</span></code> as a numerical value. Thus, it plots boxplots for the intensity variable. If we invert x and y, we still get the same graph, but as horizontal boxplots.</p>
 <div class="cell docutils container">
@@ -1250,6 +1341,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/f2b16ee72dce48ca0cf8569183b7df15eb5b0dee74349c07c4b9c10071275e49.png" src="../_images/f2b16ee72dce48ca0cf8569183b7df15eb5b0dee74349c07c4b9c10071275e49.png" />
+</div>
 </div>
 <p>We can display advanced visualizations, such as side-by-side boxplots, which are particularly useful for comparing pairs of categorical data.</p>
 <p>First, we need to create a second categorical variable by splitting the observations into two categories depending on the size of their areas.</p>
@@ -1260,6 +1354,88 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>intensity_mean</th>
+      <th>major_axis_length</th>
+      <th>minor_axis_length</th>
+      <th>aspect_ratio</th>
+      <th>file_name</th>
+      <th>area_cat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>139</td>
+      <td>96.546763</td>
+      <td>17.504104</td>
+      <td>10.292770</td>
+      <td>1.700621</td>
+      <td>20P1_POS0010_D_1UL</td>
+      <td>small</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>360</td>
+      <td>86.613889</td>
+      <td>35.746808</td>
+      <td>14.983124</td>
+      <td>2.385805</td>
+      <td>20P1_POS0010_D_1UL</td>
+      <td>big</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>43</td>
+      <td>91.488372</td>
+      <td>12.967884</td>
+      <td>4.351573</td>
+      <td>2.980045</td>
+      <td>20P1_POS0010_D_1UL</td>
+      <td>small</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>140</td>
+      <td>73.742857</td>
+      <td>18.940508</td>
+      <td>10.314404</td>
+      <td>1.836316</td>
+      <td>20P1_POS0010_D_1UL</td>
+      <td>small</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>144</td>
+      <td>89.375000</td>
+      <td>13.639308</td>
+      <td>13.458532</td>
+      <td>1.013432</td>
+      <td>20P1_POS0010_D_1UL</td>
+      <td>small</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1270,6 +1446,9 @@ title="Print to PDF"
             <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;area_cat&#39;</span><span class="p">);</span>   <span class="c1"># Display side-by-side boxplots for each file_name and area_cat</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/52f786b8adccdea907dd6cf51d2a4bf8f80368d444505c5ba35f22420596f5f5.png" src="../_images/52f786b8adccdea907dd6cf51d2a4bf8f80368d444505c5ba35f22420596f5f5.png" />
 </div>
 </div>
 <p>If you only change the parameter <code class="docutils literal notranslate"><span class="pre">kind</span></code> from <code class="docutils literal notranslate"><span class="pre">box</span></code> to <code class="docutils literal notranslate"><span class="pre">violin</span></code>, we get a violin plot. By providing <code class="docutils literal notranslate"><span class="pre">split=True</span></code>, we can further customize the plot.</p>
@@ -1284,6 +1463,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/3f9d965f23606fa704d9e0d71ac379d8f31c2ae228a95780da99f566fe2c71a9.png" src="../_images/3f9d965f23606fa704d9e0d71ac379d8f31c2ae228a95780da99f566fe2c71a9.png" />
+</div>
 </div>
 <p>In a similar way, we get the count for categorical variables with the parameter <code class="docutils literal notranslate"><span class="pre">count</span></code>.</p>
 <div class="cell docutils container">
@@ -1294,6 +1476,9 @@ title="Print to PDF"
             <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">);</span>   <span class="c1"># Count plot: &quot;histogram&quot; across a categorical, instead of quantitative, variable</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3e547b457419d14e14df768cb6c8034f183f27ed82e497a49247b3725f1e1f43.png" src="../_images/3e547b457419d14e14df768cb6c8034f183f27ed82e497a49247b3725f1e1f43.png" />
 </div>
 </div>
 </section>

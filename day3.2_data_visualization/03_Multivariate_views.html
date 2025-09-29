@@ -318,7 +318,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
-                        Plotting Basics
+                        Plotting
                       </a>
                     </li>
                 
@@ -689,7 +689,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
-                        Plotting Basics
+                        Plotting
                       </a>
                     </li>
                 
@@ -944,7 +944,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Visualization</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Plotting Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Plotting_distributions.html">Plotting Distributions with Seaborn</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Multivariate views</a></li>
@@ -1133,6 +1133,11 @@ title="Print to PDF"
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scatter-plot">
+   Scatter plot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plotting-joint-and-marginal-distributions">
    Plotting joint and marginal distributions
   </a>
@@ -1143,8 +1148,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-4">
-   Exercise 4
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
@@ -1163,7 +1168,6 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1171,22 +1175,168 @@ title="Print to PDF"
 <p>Let’s load the same dataframe.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/BBBC007_analysis.csv&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/BBBC007_analysis.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>intensity_mean</th>
+      <th>major_axis_length</th>
+      <th>minor_axis_length</th>
+      <th>aspect_ratio</th>
+      <th>file_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>139</td>
+      <td>96.546763</td>
+      <td>17.504104</td>
+      <td>10.292770</td>
+      <td>1.700621</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>360</td>
+      <td>86.613889</td>
+      <td>35.746808</td>
+      <td>14.983124</td>
+      <td>2.385805</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>43</td>
+      <td>91.488372</td>
+      <td>12.967884</td>
+      <td>4.351573</td>
+      <td>2.980045</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>140</td>
+      <td>73.742857</td>
+      <td>18.940508</td>
+      <td>10.314404</td>
+      <td>1.836316</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>144</td>
+      <td>89.375000</td>
+      <td>13.639308</td>
+      <td>13.458532</td>
+      <td>1.013432</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>305</td>
+      <td>88.252459</td>
+      <td>20.226532</td>
+      <td>19.244210</td>
+      <td>1.051045</td>
+      <td>20P1_POS0007_D_1UL</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>593</td>
+      <td>89.905565</td>
+      <td>36.508370</td>
+      <td>21.365394</td>
+      <td>1.708762</td>
+      <td>20P1_POS0007_D_1UL</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>289</td>
+      <td>106.851211</td>
+      <td>20.427809</td>
+      <td>18.221452</td>
+      <td>1.121086</td>
+      <td>20P1_POS0007_D_1UL</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>277</td>
+      <td>100.664260</td>
+      <td>20.307965</td>
+      <td>17.432920</td>
+      <td>1.164920</td>
+      <td>20P1_POS0007_D_1UL</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>46</td>
+      <td>70.869565</td>
+      <td>11.648895</td>
+      <td>5.298003</td>
+      <td>2.198733</td>
+      <td>20P1_POS0007_D_1UL</td>
+    </tr>
+  </tbody>
+</table>
+<p>111 rows × 6 columns</p>
+</div></div></div>
 </div>
-<section id="plotting-joint-and-marginal-distributions">
-<h2>Plotting joint and marginal distributions<a class="headerlink" href="#plotting-joint-and-marginal-distributions" title="Permalink to this heading">#</a></h2>
-<p>To have a joint distribution of two variables with the marginal distributions on the sides, we can use <code class="docutils literal notranslate"><span class="pre">jointplot</span></code>.</p>
+<section id="scatter-plot">
+<h2>Scatter plot<a class="headerlink" href="#scatter-plot" title="Permalink to this heading">#</a></h2>
+<p>A very basic visualization of such datasets is the scatter plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-              <span class="n">x</span><span class="o">=</span><span class="s2">&quot;aspect_ratio&quot;</span><span class="p">,</span>
-              <span class="n">y</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;aspect_ratio&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b591fe372a068a4b56da639b97813e421bb12f3540c61ba0f640ef10eb296131.png" src="../_images/b591fe372a068a4b56da639b97813e421bb12f3540c61ba0f640ef10eb296131.png" />
+</div>
+</div>
+</section>
+<section id="plotting-joint-and-marginal-distributions">
+<h2>Plotting joint and marginal distributions<a class="headerlink" href="#plotting-joint-and-marginal-distributions" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">jointplot</span></code> gives us more insights into the data, and has the same parameters though.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;aspect_ratio&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7c6a94f683f0a9f38b5c03b8708f28f9947519fc537560af40c2f112570102a2.png" src="../_images/7c6a94f683f0a9f38b5c03b8708f28f9947519fc537560af40c2f112570102a2.png" />
 </div>
 </div>
 <p>As expected, it is possible to separate groups by passing a categorical property to the <code class="docutils literal notranslate"><span class="pre">hue</span></code> argument. This has an effect on the marginal distribution, turning them from histogram to kde plots.</p>
@@ -1199,6 +1349,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/30037c128ee5a0deafaf7efb5b051b021406d2c0801d8052bb6d23737313086c.png" src="../_images/30037c128ee5a0deafaf7efb5b051b021406d2c0801d8052bb6d23737313086c.png" />
+</div>
 </div>
 </section>
 <section id="plotting-many-distributions-at-once">
@@ -1210,40 +1363,17 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-</div>
-<p>As in the former examples, we can separate the groups by passing a categorical property to the <code class="docutils literal notranslate"><span class="pre">hue</span></code> argument.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-             <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>If you have too many points, displaying every single point may yield graphs too poluted. An alternative visualization in this case could be a 2D histogram plot. We can do that by changing the <code class="docutils literal notranslate"><span class="pre">kind</span></code> argument to “hist”. With this, each subplot describes the bivariate relationships between different pairs of variables. Essentially, it offers a heat-map-like view, where the intersection of intervals between two variables shows the density of data points.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-             <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">,</span>
-             <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">);</span>
-</pre></div>
-</div>
+<div class="cell_output docutils container">
+<img alt="../_images/995eb8a5d8aa5a98b26e2a91e9316aa37946ee25f6e390b54d925c80d866bfc5.png" src="../_images/995eb8a5d8aa5a98b26e2a91e9316aa37946ee25f6e390b54d925c80d866bfc5.png" />
 </div>
 </div>
 </section>
 <hr class="docutils" />
-<section id="exercise-4">
-<h2>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this heading">#</a></h2>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
 <p>You may have noticed that the <code class="docutils literal notranslate"><span class="pre">pairplot</span></code> is redundant in some plots because the upper diagonal displays the same relationships rotated.</p>
 <p>Redraw the <code class="docutils literal notranslate"><span class="pre">pairplot</span></code> to display only the lower diagonal of the plots.</p>
 <p><em>Hint: explore the properties of the <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.pairplot.html#seaborn.pairplot"><code class="docutils literal notranslate"><span class="pre">pairplot</span></code></a>.</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 
@@ -1306,6 +1436,11 @@ title="Print to PDF"
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scatter-plot">
+   Scatter plot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plotting-joint-and-marginal-distributions">
    Plotting joint and marginal distributions
   </a>
@@ -1316,8 +1451,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-4">
-   Exercise 4
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>

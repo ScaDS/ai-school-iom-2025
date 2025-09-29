@@ -62,7 +62,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Plotting Distributions with Seaborn" href="02_Plotting_distributions.html" />
-    <link rel="prev" title="Plotting Basics" href="readme.html" />
+    <link rel="prev" title="Plotting" href="readme.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -318,7 +318,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
-                        Plotting Basics
+                        Plotting
                       </a>
                     </li>
                 
@@ -689,7 +689,7 @@ const thebe_selector_output = ".output, .cell_output"
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
-                        Plotting Basics
+                        Plotting
                       </a>
                     </li>
                 
@@ -944,7 +944,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Visualization</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Plotting Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Plotting</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Seaborn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_Plotting_distributions.html">Plotting Distributions with Seaborn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_Multivariate_views.html">Multivariate views</a></li>
@@ -1194,11 +1194,87 @@ title="Print to PDF"
 <p>Let’s first load a dataframe. The table contains continuous data from two images, identified by the last categorical column <code class="docutils literal notranslate"><span class="pre">file_name</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/BBBC007_analysis.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/BBBC007_analysis.csv&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>intensity_mean</th>
+      <th>major_axis_length</th>
+      <th>minor_axis_length</th>
+      <th>aspect_ratio</th>
+      <th>file_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>139</td>
+      <td>96.546763</td>
+      <td>17.504104</td>
+      <td>10.292770</td>
+      <td>1.700621</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>360</td>
+      <td>86.613889</td>
+      <td>35.746808</td>
+      <td>14.983124</td>
+      <td>2.385805</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>43</td>
+      <td>91.488372</td>
+      <td>12.967884</td>
+      <td>4.351573</td>
+      <td>2.980045</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>140</td>
+      <td>73.742857</td>
+      <td>18.940508</td>
+      <td>10.314404</td>
+      <td>1.836316</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>144</td>
+      <td>89.375000</td>
+      <td>13.639308</td>
+      <td>13.458532</td>
+      <td>1.013432</td>
+      <td>20P1_POS0010_D_1UL</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>The two images originate from <a class="reference external" href="https://bbbc.broadinstitute.org"><em>The Broad Bioimage Benchmark Collection</em></a> and show fluroescent microscopy images of Drosophila Kc167 cells.</p>
 <table class="table">
@@ -1234,6 +1310,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/2e6046a48e5fa8239cb0a47c17cc4007a2900de62057c2e452c247868189bf2c.png" src="../_images/2e6046a48e5fa8239cb0a47c17cc4007a2900de62057c2e452c247868189bf2c.png" />
+</div>
 </div>
 <p>We can already embbed and visualize another feature by providing an extra argument: we want the size of the dots to be proportional to the variable <code class="docutils literal notranslate"><span class="pre">area</span></code>.</p>
 <p><em>Note: Seaborn automatically adds a legend.</em></p>
@@ -1246,6 +1325,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/4ba246458c8bab087807c83fdcfe99d4ab9b27cc6865ec30d024678244e4f3d7.png" src="../_images/4ba246458c8bab087807c83fdcfe99d4ab9b27cc6865ec30d024678244e4f3d7.png" />
+</div>
 </div>
 <p>We can embbed and visualize one more feature by providing another argument. Now the variable <code class="docutils literal notranslate"><span class="pre">major_axis_length</span></code> will be represented by a continuous color gradient.</p>
 <div class="cell docutils container">
@@ -1257,6 +1339,9 @@ title="Print to PDF"
             <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;major_axis_length&quot;</span><span class="p">);</span>   <span class="c1"># Use the values in &quot;major_axis_length&quot; to set the dots&#39; color</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/212fc7b6b0d30599e4e6fc1ef1f63a6e1832f9def605f856a67f06c0758d4dce.png" src="../_images/212fc7b6b0d30599e4e6fc1ef1f63a6e1832f9def605f856a67f06c0758d4dce.png" />
 </div>
 </div>
 <p>We can even visualize an additional feature by encoding the marker type—using a dot or a triangle—depending on the <code class="docutils literal notranslate"><span class="pre">file_name</span></code> variable. This allows us to represent five variables in a single 2D diagram! However, while it is possible to include this many visual distinctions, the result might not look very clear or aesthetically pleasing.</p>
@@ -1272,6 +1357,9 @@ title="Print to PDF"
             <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;^&quot;</span><span class="p">]);</span>     <span class="c1"># Define which markers are to be used for the style variable</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/af5d39fbc823c731cd67aa06f1d4183f674aae5a87f08e1c94db2fe124e4d2bc.png" src="../_images/af5d39fbc823c731cd67aa06f1d4183f674aae5a87f08e1c94db2fe124e4d2bc.png" />
 </div>
 </div>
 </section>
@@ -1289,6 +1377,9 @@ title="Print to PDF"
             <span class="n">col</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">);</span>          <span class="c1"># Variable to define subsets to plot on different sublots</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7a43aa01f88cc3a8ef4f5c383045a2a8740b121f37d677625bebfd9cc61e8f8c.png" src="../_images/7a43aa01f88cc3a8ef4f5c383045a2a8740b121f37d677625bebfd9cc61e8f8c.png" />
 </div>
 </div>
 </section>
@@ -1308,6 +1399,9 @@ title="Print to PDF"
             <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;magma&quot;</span><span class="p">);</span>   <span class="c1"># Change the default color palette to &quot;magma&quot;</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/954a8955cacda3d7afbae4442a4aca5f90e226c390c176756d3f351b2595c957.png" src="../_images/954a8955cacda3d7afbae4442a4aca5f90e226c390c176756d3f351b2595c957.png" />
 </div>
 </div>
 <p>Further, we want to change the labels of the x and y axes, and give a title to the whole graph. To accomplish this, we will have Seaborn return a FacetGrid object, which we will refer to as <code class="docutils literal notranslate"><span class="pre">g</span></code>. This object allows us to control the appearance and layout of the plot.</p>
@@ -1333,6 +1427,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/8145fff65cd888da266cae9982285180ec8133ca707cce4346628505e9007275.png" src="../_images/8145fff65cd888da266cae9982285180ec8133ca707cce4346628505e9007275.png" />
+</div>
 </div>
 </section>
 <section id="plotting-a-line-regression-model">
@@ -1347,6 +1444,9 @@ title="Print to PDF"
            <span class="n">col</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/34d227c50c043ca717eac6fd06faa4a4db159b8e69d086d0f707d3668988697c.png" src="../_images/34d227c50c043ca717eac6fd06faa4a4db159b8e69d086d0f707d3668988697c.png" />
 </div>
 </div>
 </section>
@@ -1419,7 +1519,7 @@ title="Print to PDF"
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Plotting Basics</p>
+          <p class="prev-next-title">Plotting</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="02_Plotting_distributions.html" title="next page">
