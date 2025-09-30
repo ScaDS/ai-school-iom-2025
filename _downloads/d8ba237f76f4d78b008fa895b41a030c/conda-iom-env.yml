@@ -4,25 +4,26 @@ channels:
 dependencies:
   - python=3.10.4
   - pip
-  - joblib
-  - python-dotenv
-  - notebook
-  - jupyterlab
+  - dask
   - ipywidgets
-  - tqdm
+  - joblib
+  - jupyterlab
+  - matplotlib
+  - notebook
+  - numcodecs
   - numpy
   - pandas
-  - dask
-  - matplotlib
-  - seaborn
   - plotly
+  - polars
+  - python-dotenv
+  - tabulate
+  - tqdm
   - scipy
   - scikit-learn
   - scikit-optimize
+  - seaborn
   - stackview
-  - polars
   - zarr
-  - numcodecs
   - pip:
     - bia-bob
     - torch
