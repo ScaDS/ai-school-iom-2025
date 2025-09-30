@@ -26,6 +26,7 @@ dependencies:
   - zarr
   - pip:
     - bia-bob
+    - ray[train,tune]
     - torch
     - torchvision
 
