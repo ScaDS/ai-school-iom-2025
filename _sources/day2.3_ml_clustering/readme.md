@@ -14,7 +14,7 @@ Clustering is an unsupervised machine learning technique for grouping of similar
 This section will introduce into following cluster approaches which are available in scikit-learn:
 1. K-Means
 2. Gaussian Mixtures
-3. DBScan and HDBScan
+3. DBSCAN and HDBSCAN
 
 An exercise will close this section.
 
