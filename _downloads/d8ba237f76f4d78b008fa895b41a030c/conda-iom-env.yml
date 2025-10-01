@@ -4,6 +4,7 @@ channels:
 dependencies:
   - python=3.10.4
   - pip
+  - czifile
   - dask
   - ipywidgets
   - joblib
@@ -16,18 +17,24 @@ dependencies:
   - plotly
   - polars
   - python-dotenv
-  - tabulate
-  - tqdm
   - scipy
+  - scikit-image
   - scikit-learn
   - scikit-optimize
   - seaborn
+  - sphinx
   - stackview
+  - tabulate
+  - tqdm
   - zarr
   - pip:
     - bia-bob
+    - keras
+    - pyocclient
     - ray
     - ray[tune]
+    - tensorflow
+    - tensorflow[and-cuda]
     - torch
     - torchvision
 
