@@ -501,6 +501,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -1055,6 +1059,16 @@ const thebe_selector_output = ".output, .cell_output"
         </label>
     </div>
     <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="btn btn-sm"
   data-toggle="tooltip"
@@ -1149,7 +1163,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -1162,6 +1178,58 @@ title="Print to PDF"
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-preprocessing">
+   Data preprocessing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-and-inspect-data">
+     Load and inspect data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-train-and-test-data">
+     Prepare train and test data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-and-train-model-with-pytorch">
+   Build and train model with PyTorch
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-objects-for-model-and-training-process">
+     Define objects for model and training process
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-hyperparameter-optimization-with-ray-tune">
+     Define hyperparameter optimization with Ray Tune
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-training-with-hyperparameter-optimization">
+     Run training with hyperparameter optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate-model">
+   Evaluate model
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -1170,6 +1238,785 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="train-a-neural-network-for-regression">
 <h1>Train a Neural Network for Regression<a class="headerlink" href="#train-a-neural-network-for-regression" title="Permalink to this heading">#</a></h1>
+<p>This practical session will cover the building and training of a neural network with <a class="reference external" href="https://docs.pytorch.org/tutorials/intro.html">pytorch</a> and <a class="reference external" href="https://docs.ray.io/en/latest/index.html">ray</a>.</p>
+<p>We want to work on the regression problem with the “HB energy” data to be able to compare the training process and prediction results.</p>
+<section id="data-preprocessing">
+<h2>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="load-and-inspect-data">
+<h3>Load and inspect data<a class="headerlink" href="#load-and-inspect-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/HB_data.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Missing values:&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>energy</th>
+      <th>bo-acc</th>
+      <th>bo-donor</th>
+      <th>q-acc</th>
+      <th>q-donor</th>
+      <th>q-hatom</th>
+      <th>dist-dh</th>
+      <th>dist-ah</th>
+      <th>atomtype-acc</th>
+      <th>atomtype-don</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1628</th>
+      <td>-16.2384</td>
+      <td>0.0392</td>
+      <td>0.9798</td>
+      <td>-0.171865</td>
+      <td>-0.027486</td>
+      <td>0.064607</td>
+      <td>1.008853</td>
+      <td>2.491147</td>
+      <td>O</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>1629</th>
+      <td>-24.9033</td>
+      <td>0.1690</td>
+      <td>1.0993</td>
+      <td>-0.191174</td>
+      <td>-0.183888</td>
+      <td>0.029836</td>
+      <td>0.973936</td>
+      <td>1.726064</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1630</th>
+      <td>-26.4679</td>
+      <td>0.1395</td>
+      <td>1.1069</td>
+      <td>-0.198331</td>
+      <td>-0.180041</td>
+      <td>0.039182</td>
+      <td>0.973682</td>
+      <td>1.826318</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1631</th>
+      <td>-26.5155</td>
+      <td>0.1166</td>
+      <td>1.1137</td>
+      <td>-0.203101</td>
+      <td>-0.176368</td>
+      <td>0.045722</td>
+      <td>0.973062</td>
+      <td>1.926938</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1632</th>
+      <td>-25.5760</td>
+      <td>0.0982</td>
+      <td>1.1196</td>
+      <td>-0.206464</td>
+      <td>-0.172994</td>
+      <td>0.050628</td>
+      <td>0.972319</td>
+      <td>2.027681</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1633</th>
+      <td>-24.1264</td>
+      <td>0.0832</td>
+      <td>1.1248</td>
+      <td>-0.208975</td>
+      <td>-0.169954</td>
+      <td>0.054530</td>
+      <td>0.971506</td>
+      <td>2.128494</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1634</th>
+      <td>-22.4911</td>
+      <td>0.0707</td>
+      <td>1.1291</td>
+      <td>-0.210940</td>
+      <td>-0.167299</td>
+      <td>0.057801</td>
+      <td>0.970708</td>
+      <td>2.229292</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1635</th>
+      <td>-20.7796</td>
+      <td>0.0599</td>
+      <td>1.1329</td>
+      <td>-0.212591</td>
+      <td>-0.164774</td>
+      <td>0.060660</td>
+      <td>0.969920</td>
+      <td>2.330080</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1636</th>
+      <td>-18.6559</td>
+      <td>0.0506</td>
+      <td>1.1361</td>
+      <td>-0.213856</td>
+      <td>-0.162590</td>
+      <td>0.063149</td>
+      <td>0.969171</td>
+      <td>2.430829</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1637</th>
+      <td>-17.0634</td>
+      <td>0.0433</td>
+      <td>1.1385</td>
+      <td>-0.214541</td>
+      <td>-0.160926</td>
+      <td>0.065275</td>
+      <td>0.968484</td>
+      <td>2.531516</td>
+      <td>O</td>
+      <td>O</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 1638 entries, 0 to 1637
+Data columns (total 10 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   energy        1638 non-null   float64
+ 1   bo-acc        1638 non-null   float64
+ 2   bo-donor      1638 non-null   float64
+ 3   q-acc         1638 non-null   float64
+ 4   q-donor       1638 non-null   float64
+ 5   q-hatom       1638 non-null   float64
+ 6   dist-dh       1638 non-null   float64
+ 7   dist-ah       1638 non-null   float64
+ 8   atomtype-acc  1638 non-null   object 
+ 9   atomtype-don  1638 non-null   object 
+dtypes: float64(8), object(2)
+memory usage: 128.1+ KB
+None
+Missing values: 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="prepare-train-and-test-data">
+<h3>Prepare train and test data<a class="headerlink" href="#prepare-train-and-test-data" title="Permalink to this heading">#</a></h3>
+<p>We will apply nearly the same preprocessing steps we’ve alreday seen in the regression session in day 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separate features and target</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;energy&quot;</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="c1"># We need y to be a 2-D array (n_samples x n_features)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get train and test splits</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preprocess and transform features</span>
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1"># Define scaling and encoding for X</span>
+<span class="n">x_preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">categorical_features</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Define scaling for y</span>
+<span class="n">y_scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="c1"># Fit scaling for X on train data only, apply (transform) scaling to both train and test</span>
+<span class="n">X_train_t</span> <span class="o">=</span> <span class="n">x_preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_t</span> <span class="o">=</span> <span class="n">x_preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Fit scaling for y on train data only, apply (transform) scaling to both train and test</span>
+<span class="n">y_train_t</span> <span class="o">=</span> <span class="n">y_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_test_t</span> <span class="o">=</span> <span class="n">y_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1"># Get transformed feature names (handy for inspection)</span>
+<span class="n">feat_names</span> <span class="o">=</span> <span class="n">x_preprocessor</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+    
+<span class="c1"># Inspect transformed data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X_train: &quot;</span><span class="p">,</span> <span class="n">X_train_t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X_test:  &quot;</span><span class="p">,</span> <span class="n">X_test_t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y_train: &quot;</span><span class="p">,</span> <span class="n">y_train_t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y_test:  &quot;</span><span class="p">,</span> <span class="n">y_test_t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_t</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">feat_names</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train:  (1310, 16)
+X_test:   (328, 16)
+y_train:  (1310, 1)
+y_test:   (328, 1)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>num__bo-acc</th>
+      <th>num__bo-donor</th>
+      <th>num__q-acc</th>
+      <th>num__q-donor</th>
+      <th>num__q-hatom</th>
+      <th>num__dist-dh</th>
+      <th>num__dist-ah</th>
+      <th>cat__atomtype-acc_Cl</th>
+      <th>cat__atomtype-acc_F</th>
+      <th>cat__atomtype-acc_N</th>
+      <th>cat__atomtype-acc_O</th>
+      <th>cat__atomtype-acc_S</th>
+      <th>cat__atomtype-don_F</th>
+      <th>cat__atomtype-don_N</th>
+      <th>cat__atomtype-don_O</th>
+      <th>cat__atomtype-don_S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.528941</td>
+      <td>1.085590</td>
+      <td>1.302776</td>
+      <td>-1.044430</td>
+      <td>-1.755071</td>
+      <td>-0.695289</td>
+      <td>-0.405888</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.440623</td>
+      <td>-1.342533</td>
+      <td>-0.432635</td>
+      <td>1.960155</td>
+      <td>1.517928</td>
+      <td>0.116373</td>
+      <td>-1.061508</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.949121</td>
+      <td>0.945702</td>
+      <td>1.456768</td>
+      <td>-1.074853</td>
+      <td>-1.244247</td>
+      <td>-0.649960</td>
+      <td>-0.078786</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.517228</td>
+      <td>0.568121</td>
+      <td>-0.897550</td>
+      <td>-1.268309</td>
+      <td>0.114001</td>
+      <td>-0.418482</td>
+      <td>-0.856478</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.014869</td>
+      <td>0.803541</td>
+      <td>-0.243681</td>
+      <td>-0.295638</td>
+      <td>0.791833</td>
+      <td>-0.634377</td>
+      <td>0.604197</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="build-and-train-model-with-pytorch">
+<h2>Build and train model with PyTorch<a class="headerlink" href="#build-and-train-model-with-pytorch" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">TensorDataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">ray</span>
+<span class="n">ray</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">ignore_reinit_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="s2">&quot;WARNING&quot;</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ray</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ray.tune.schedulers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ASHAScheduler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ray.air</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if GPU is available to be used with pytorch</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using device: </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using device: cpu
+</pre></div>
+</div>
+</div>
+</div>
+<section id="define-objects-for-model-and-training-process">
+<h3>Define objects for model and training process<a class="headerlink" href="#define-objects-for-model-and-training-process" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the model with a parameterizable architecture</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLPRegressorTorch</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_dim</span><span class="p">,</span> <span class="n">hidden</span><span class="o">=</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">prev</span> <span class="o">=</span> <span class="n">in_dim</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hidden</span><span class="p">:</span>
+            <span class="n">layers</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> <span class="c1"># fully connected layer from prev inputs to h outputs</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="c1"># non-linear activation with rectified linear unit</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span> <span class="c1"># regularization: randomly zeroes activations with probability dropout</span>
+                <span class="p">]</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">h</span>
+        <span class="n">layers</span> <span class="o">+=</span> <span class="p">[</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="c1"># Regression output with a single neuron for continuous value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">layers</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> 
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define function to create pytorch data loaders</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_loaders</span><span class="p">(</span><span class="n">X_train_t</span><span class="p">,</span> <span class="n">y_train_t</span><span class="p">,</span> <span class="n">X_test_t</span><span class="p">,</span> <span class="n">y_test_t</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+    <span class="c1"># Convert data (numpy arrays) to torch tensors</span>
+    <span class="n">X_train_ts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_train_t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">y_train_ts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y_train_t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">X_test_ts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_test_t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">y_test_ts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y_test_t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="c1"># Build torch dataset and dataloader for batches</span>
+    <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">TensorDataset</span><span class="p">(</span><span class="n">X_train_ts</span><span class="p">,</span> <span class="n">y_train_ts</span><span class="p">),</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">TensorDataset</span><span class="p">(</span><span class="n">X_test_ts</span><span class="p">,</span> <span class="n">y_test_ts</span><span class="p">),</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">test_loader</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define function for training loop with hyperparameter configuration</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">train_loop</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">X_train_t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_train_t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">X_test_t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_test_t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_scaler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    config keys:</span>
+<span class="sd">      hidden_layers: list of ints</span>
+<span class="sd">      dropout: float</span>
+<span class="sd">      lr: float</span>
+<span class="sd">      weight_decay: float</span>
+<span class="sd">      batch_size: int</span>
+<span class="sd">      epochs: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get data loaders for train and test data</span>
+    <span class="n">train_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">make_loaders</span><span class="p">(</span><span class="n">X_train_t</span><span class="p">,</span> <span class="n">y_train_t</span><span class="p">,</span> <span class="n">X_test_t</span><span class="p">,</span> <span class="n">y_test_t</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;batch_size&quot;</span><span class="p">])</span>
+
+    <span class="c1"># Initialise model and put to device (CPU or GPU)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">MLPRegressorTorch</span><span class="p">(</span><span class="n">in_dim</span><span class="o">=</span><span class="n">X_train_t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                              <span class="n">hidden</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;hidden_layers&quot;</span><span class="p">],</span>
+                              <span class="n">dropout</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;dropout&quot;</span><span class="p">]</span>
+                              <span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="c1"># Define optimizer: Adam with weight decay (L2 regularization)</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">],</span> <span class="n">weight_decay</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;weight_decay&quot;</span><span class="p">])</span>
+    <span class="c1"># Define loss function: Mean Squared Error</span>
+    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+    
+    <span class="c1"># Run epochs for training with validation at the end of each epoch</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;epochs&quot;</span><span class="p">]),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Epochs&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># Train with model updates</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="n">train_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
+            <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="o">=</span> <span class="n">x_batch</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">y_batch</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_batch</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">y_batch</span><span class="p">)</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+            <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">x_batch</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">train_loss</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+
+        <span class="c1"># Validate for test data without model updates</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="n">val_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">preds</span><span class="p">,</span> <span class="n">trues</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+                <span class="n">x_batch</span> <span class="o">=</span> <span class="n">x_batch</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x_batch</span><span class="p">)</span>
+                <span class="n">val_loss</span> <span class="o">+=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">y_batch</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">x_batch</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">preds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+                <span class="n">trues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_batch</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+        <span class="n">val_loss</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+
+        <span class="c1"># Get MSE in original units (invert scaling for y)</span>
+        <span class="n">y_pred_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+        <span class="n">y_true_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">trues</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_pred_s</span><span class="p">)</span>
+        <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_true_s</span><span class="p">)</span>
+        <span class="n">val_rmse_orig</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)))</span>
+
+        <span class="c1"># Report with Ray Tune</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">report</span><span class="p">({</span>
+            <span class="s2">&quot;epoch&quot;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
+            <span class="s2">&quot;train_loss&quot;</span><span class="p">:</span> <span class="n">train_loss</span><span class="p">,</span> <span class="c1"># how well the model fits the training data</span>
+            <span class="s2">&quot;val_loss&quot;</span><span class="p">:</span> <span class="n">val_loss</span><span class="p">,</span> <span class="c1"># how well the model generalizes to unseen data</span>
+            <span class="s2">&quot;val_rmse_orig&quot;</span><span class="p">:</span> <span class="n">val_rmse_orig</span> <span class="c1"># RMSE val_loss in original target scale for interpretability</span>
+        <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-hyperparameter-optimization-with-ray-tune">
+<h3>Define hyperparameter optimization with Ray Tune<a class="headerlink" href="#define-hyperparameter-optimization-with-ray-tune" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define hyperparameter search space</span>
+<span class="n">param_space</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;hidden_layers&quot;</span><span class="p">:</span> <span class="n">tune</span><span class="o">.</span><span class="n">choice</span><span class="p">([(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> <span class="p">(</span><span class="mi">64</span><span class="p">,)]),</span>
+    <span class="s2">&quot;dropout&quot;</span><span class="p">:</span> <span class="n">tune</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="n">tune</span><span class="o">.</span><span class="n">loguniform</span><span class="p">(</span><span class="mf">5e-4</span><span class="p">,</span> <span class="mf">3e-3</span><span class="p">),</span>
+    <span class="s2">&quot;weight_decay&quot;</span><span class="p">:</span> <span class="n">tune</span><span class="o">.</span><span class="n">loguniform</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">),</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="n">tune</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">]),</span>
+    <span class="s2">&quot;epochs&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="c1"># Define ray tune scheduler - how to manage and stop trials</span>
+<span class="n">scheduler</span> <span class="o">=</span> <span class="n">ASHAScheduler</span><span class="p">(</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;val_rmse_orig&quot;</span><span class="p">,</span> 
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">,</span>
+    <span class="n">time_attr</span><span class="o">=</span><span class="s2">&quot;epoch&quot;</span><span class="p">,</span> 
+    <span class="n">max_t</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> 
+    <span class="n">grace_period</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+    <span class="n">reduction_factor</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="c1"># Wrap train loop with parameters</span>
+<span class="n">trainable</span> <span class="o">=</span> <span class="n">tune</span><span class="o">.</span><span class="n">with_parameters</span><span class="p">(</span>
+    <span class="n">train_loop</span><span class="p">,</span>
+    <span class="n">X_train_t</span><span class="o">=</span><span class="n">X_train_t</span><span class="p">,</span>
+    <span class="n">y_train_t</span><span class="o">=</span><span class="n">y_train_t</span><span class="p">,</span>
+    <span class="n">X_test_t</span><span class="o">=</span><span class="n">X_test_t</span><span class="p">,</span>
+    <span class="n">y_test_t</span><span class="o">=</span><span class="n">y_test_t</span><span class="p">,</span>
+    <span class="n">y_scaler</span><span class="o">=</span><span class="n">y_scaler</span>
+<span class="p">)</span>
+<span class="n">tuner</span> <span class="o">=</span> <span class="n">tune</span><span class="o">.</span><span class="n">Tuner</span><span class="p">(</span>
+    <span class="n">trainable</span><span class="p">,</span>
+    <span class="n">param_space</span><span class="o">=</span><span class="n">param_space</span><span class="p">,</span>
+    <span class="n">tune_config</span><span class="o">=</span><span class="n">tune</span><span class="o">.</span><span class="n">TuneConfig</span><span class="p">(</span><span class="n">num_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">scheduler</span><span class="o">=</span><span class="n">scheduler</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-training-with-hyperparameter-optimization">
+<h3>Run training with hyperparameter optimization<a class="headerlink" href="#run-training-with-hyperparameter-optimization" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run model training and hyperparameter optimization</span>
+<span class="c1"># Ray will display comprehensive information about system and memory usage, and trial performance</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">tuner</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="tuneStatus">
+  <div style="display: flex;flex-direction: row">
+    <div style="display: flex;flex-direction: column;">
+      <h3>Tune Status</h3>
+      <table>
+<tbody>
+<tr><td>Current time:</td><td>2025-10-01 15:59:45</td></tr>
+<tr><td>Running for: </td><td>00:00:16.98        </td></tr>
+<tr><td>Memory:      </td><td>17.1/32.0 GiB      </td></tr>
+</tbody>
+</table>
+    </div>
+    <div class="vDivider"></div>
+    <div class="systemInfo">
+      <h3>System Info</h3>
+      Using AsyncHyperBand: num_stopped=12<br>Bracket: Iter 270.000: None | Iter 90.000: None | Iter 30.000: -3.815356321995461 | Iter 10.000: -4.721504866722226<br>Logical resource usage: 1.0/12 CPUs, 0/0 GPUs
+    </div>
+    
+  </div>
+  <div class="hDivider"></div>
+  <div class="trialStatus">
+    <h3>Trial Status</h3>
+    <table>
+<thead>
+<tr><th>Trial name            </th><th>status    </th><th>loc            </th><th style="text-align: right;">  batch_size</th><th style="text-align: right;">  dropout</th><th>hidden_layers  </th><th style="text-align: right;">         lr</th><th style="text-align: right;">  weight_decay</th><th style="text-align: right;">  iter</th><th style="text-align: right;">  total time (s)</th><th style="text-align: right;">  epoch</th><th style="text-align: right;">  train_loss</th><th style="text-align: right;">  val_loss</th></tr>
+</thead>
+<tbody>
+<tr><td>train_loop_d8850_00000</td><td>TERMINATED</td><td>127.0.0.1:51672</td><td style="text-align: right;">          64</td><td style="text-align: right;">0.152595 </td><td>(128, 64)      </td><td style="text-align: right;">0.000861234</td><td style="text-align: right;">   1.66736e-05</td><td style="text-align: right;">    50</td><td style="text-align: right;">         3.48979</td><td style="text-align: right;">     49</td><td style="text-align: right;">   0.0317259</td><td style="text-align: right;">0.0121763 </td></tr>
+<tr><td>train_loop_d8850_00001</td><td>TERMINATED</td><td>127.0.0.1:51671</td><td style="text-align: right;">          32</td><td style="text-align: right;">0.176445 </td><td>(256, 128, 64) </td><td style="text-align: right;">0.00267147 </td><td style="text-align: right;">   8.12239e-06</td><td style="text-align: right;">    31</td><td style="text-align: right;">         3.807  </td><td style="text-align: right;">     30</td><td style="text-align: right;">   0.050748 </td><td style="text-align: right;">0.0266005 </td></tr>
+<tr><td>train_loop_d8850_00002</td><td>TERMINATED</td><td>127.0.0.1:51675</td><td style="text-align: right;">          16</td><td style="text-align: right;">0.251655 </td><td>(64, 32)       </td><td style="text-align: right;">0.001024   </td><td style="text-align: right;">   8.508e-05  </td><td style="text-align: right;">    31</td><td style="text-align: right;">         4.0761 </td><td style="text-align: right;">     30</td><td style="text-align: right;">   0.0655962</td><td style="text-align: right;">0.0264468 </td></tr>
+<tr><td>train_loop_d8850_00003</td><td>TERMINATED</td><td>127.0.0.1:51668</td><td style="text-align: right;">          32</td><td style="text-align: right;">0.298563 </td><td>(64,)          </td><td style="text-align: right;">0.000620982</td><td style="text-align: right;">   1.30467e-05</td><td style="text-align: right;">    11</td><td style="text-align: right;">         2.41086</td><td style="text-align: right;">     10</td><td style="text-align: right;">   0.117714 </td><td style="text-align: right;">0.0634158 </td></tr>
+<tr><td>train_loop_d8850_00004</td><td>TERMINATED</td><td>127.0.0.1:51666</td><td style="text-align: right;">          64</td><td style="text-align: right;">0.0240313</td><td>(64, 32)       </td><td style="text-align: right;">0.000561581</td><td style="text-align: right;">   0.000113882</td><td style="text-align: right;">    31</td><td style="text-align: right;">         2.77608</td><td style="text-align: right;">     30</td><td style="text-align: right;">   0.0276054</td><td style="text-align: right;">0.019773  </td></tr>
+<tr><td>train_loop_d8850_00005</td><td>TERMINATED</td><td>127.0.0.1:51669</td><td style="text-align: right;">          64</td><td style="text-align: right;">0.0984388</td><td>(64, 32)       </td><td style="text-align: right;">0.00128825 </td><td style="text-align: right;">   2.02267e-05</td><td style="text-align: right;">    50</td><td style="text-align: right;">         3.38145</td><td style="text-align: right;">     49</td><td style="text-align: right;">   0.0327159</td><td style="text-align: right;">0.0146864 </td></tr>
+<tr><td>train_loop_d8850_00006</td><td>TERMINATED</td><td>127.0.0.1:51676</td><td style="text-align: right;">         128</td><td style="text-align: right;">0.0859428</td><td>(64,)          </td><td style="text-align: right;">0.00258309 </td><td style="text-align: right;">   2.45343e-05</td><td style="text-align: right;">    50</td><td style="text-align: right;">         2.4425 </td><td style="text-align: right;">     49</td><td style="text-align: right;">   0.0292112</td><td style="text-align: right;">0.0168726 </td></tr>
+<tr><td>train_loop_d8850_00007</td><td>TERMINATED</td><td>127.0.0.1:51670</td><td style="text-align: right;">         256</td><td style="text-align: right;">0.0128081</td><td>(128, 64)      </td><td style="text-align: right;">0.000769391</td><td style="text-align: right;">   3.62676e-05</td><td style="text-align: right;">    11</td><td style="text-align: right;">         2.14276</td><td style="text-align: right;">     10</td><td style="text-align: right;">   0.0995533</td><td style="text-align: right;">0.0805271 </td></tr>
+<tr><td>train_loop_d8850_00008</td><td>TERMINATED</td><td>127.0.0.1:51677</td><td style="text-align: right;">          32</td><td style="text-align: right;">0.162494 </td><td>(64, 32)       </td><td style="text-align: right;">0.000546631</td><td style="text-align: right;">   9.99007e-05</td><td style="text-align: right;">    31</td><td style="text-align: right;">         3.34305</td><td style="text-align: right;">     30</td><td style="text-align: right;">   0.0602931</td><td style="text-align: right;">0.0210695 </td></tr>
+<tr><td>train_loop_d8850_00009</td><td>TERMINATED</td><td>127.0.0.1:51673</td><td style="text-align: right;">          16</td><td style="text-align: right;">0.174049 </td><td>(64, 32)       </td><td style="text-align: right;">0.000827098</td><td style="text-align: right;">   1.92854e-05</td><td style="text-align: right;">    50</td><td style="text-align: right;">         4.9518 </td><td style="text-align: right;">     49</td><td style="text-align: right;">   0.0375123</td><td style="text-align: right;">0.00991268</td></tr>
+<tr><td>train_loop_d8850_00010</td><td>TERMINATED</td><td>127.0.0.1:51667</td><td style="text-align: right;">          16</td><td style="text-align: right;">0.0301038</td><td>(256, 128, 64) </td><td style="text-align: right;">0.00167213 </td><td style="text-align: right;">   3.45269e-05</td><td style="text-align: right;">    50</td><td style="text-align: right;">         6.04193</td><td style="text-align: right;">     49</td><td style="text-align: right;">   0.0129882</td><td style="text-align: right;">0.0093144 </td></tr>
+<tr><td>train_loop_d8850_00011</td><td>TERMINATED</td><td>127.0.0.1:51674</td><td style="text-align: right;">         256</td><td style="text-align: right;">0.276435 </td><td>(128, 64)      </td><td style="text-align: right;">0.0015373  </td><td style="text-align: right;">   5.69795e-06</td><td style="text-align: right;">    11</td><td style="text-align: right;">         1.90328</td><td style="text-align: right;">     10</td><td style="text-align: right;">   0.115915 </td><td style="text-align: right;">0.0545392 </td></tr>
+<tr><td>train_loop_d8850_00012</td><td>TERMINATED</td><td>127.0.0.1:51730</td><td style="text-align: right;">         128</td><td style="text-align: right;">0.209976 </td><td>(256, 128, 64) </td><td style="text-align: right;">0.00274266 </td><td style="text-align: right;">   3.34327e-06</td><td style="text-align: right;">    31</td><td style="text-align: right;">         1.9206 </td><td style="text-align: right;">     30</td><td style="text-align: right;">   0.0383032</td><td style="text-align: right;">0.0169784 </td></tr>
+<tr><td>train_loop_d8850_00013</td><td>TERMINATED</td><td>127.0.0.1:51733</td><td style="text-align: right;">         128</td><td style="text-align: right;">0.0377846</td><td>(256, 128, 64) </td><td style="text-align: right;">0.00131051 </td><td style="text-align: right;">   0.000502645</td><td style="text-align: right;">    50</td><td style="text-align: right;">         2.197  </td><td style="text-align: right;">     49</td><td style="text-align: right;">   0.0154365</td><td style="text-align: right;">0.0098726 </td></tr>
+<tr><td>train_loop_d8850_00014</td><td>TERMINATED</td><td>127.0.0.1:51735</td><td style="text-align: right;">          64</td><td style="text-align: right;">0.15239  </td><td>(256, 128, 64) </td><td style="text-align: right;">0.00109604 </td><td style="text-align: right;">   3.04239e-06</td><td style="text-align: right;">    31</td><td style="text-align: right;">         2.1036 </td><td style="text-align: right;">     30</td><td style="text-align: right;">   0.0367196</td><td style="text-align: right;">0.0206241 </td></tr>
+<tr><td>train_loop_d8850_00015</td><td>TERMINATED</td><td>127.0.0.1:51729</td><td style="text-align: right;">          32</td><td style="text-align: right;">0.0959583</td><td>(128, 64)      </td><td style="text-align: right;">0.000928201</td><td style="text-align: right;">   9.29827e-06</td><td style="text-align: right;">    50</td><td style="text-align: right;">         2.54502</td><td style="text-align: right;">     49</td><td style="text-align: right;">   0.0245118</td><td style="text-align: right;">0.00864682</td></tr>
+<tr><td>train_loop_d8850_00016</td><td>TERMINATED</td><td>127.0.0.1:51732</td><td style="text-align: right;">         128</td><td style="text-align: right;">0.232499 </td><td>(64,)          </td><td style="text-align: right;">0.000570059</td><td style="text-align: right;">   7.51196e-06</td><td style="text-align: right;">    11</td><td style="text-align: right;">         1.41826</td><td style="text-align: right;">     10</td><td style="text-align: right;">   0.327505 </td><td style="text-align: right;">0.258494  </td></tr>
+<tr><td>train_loop_d8850_00017</td><td>TERMINATED</td><td>127.0.0.1:51736</td><td style="text-align: right;">          32</td><td style="text-align: right;">0.270498 </td><td>(256, 128, 64) </td><td style="text-align: right;">0.00134893 </td><td style="text-align: right;">   0.000151116</td><td style="text-align: right;">    50</td><td style="text-align: right;">         2.85816</td><td style="text-align: right;">     49</td><td style="text-align: right;">   0.0488178</td><td style="text-align: right;">0.0115752 </td></tr>
+<tr><td>train_loop_d8850_00018</td><td>TERMINATED</td><td>127.0.0.1:51734</td><td style="text-align: right;">          32</td><td style="text-align: right;">0.112175 </td><td>(64,)          </td><td style="text-align: right;">0.0010838  </td><td style="text-align: right;">   0.000159347</td><td style="text-align: right;">    11</td><td style="text-align: right;">         1.65831</td><td style="text-align: right;">     10</td><td style="text-align: right;">   0.0637885</td><td style="text-align: right;">0.0337154 </td></tr>
+<tr><td>train_loop_d8850_00019</td><td>TERMINATED</td><td>127.0.0.1:51731</td><td style="text-align: right;">         256</td><td style="text-align: right;">0.130004 </td><td>(128, 64)      </td><td style="text-align: right;">0.00143411 </td><td style="text-align: right;">   0.000138435</td><td style="text-align: right;">    11</td><td style="text-align: right;">         1.46831</td><td style="text-align: right;">     10</td><td style="text-align: right;">   0.0848488</td><td style="text-align: right;">0.0435844 </td></tr>
+</tbody>
+</table>
+  </div>
+</div>
+<style>
+.tuneStatus {
+  color: var(--jp-ui-font-color1);
+}
+.tuneStatus .systemInfo {
+  display: flex;
+  flex-direction: column;
+}
+.tuneStatus td {
+  white-space: nowrap;
+}
+.tuneStatus .trialStatus {
+  display: flex;
+  flex-direction: column;
+}
+.tuneStatus h3 {
+  font-weight: bold;
+}
+.tuneStatus .hDivider {
+  border-bottom-width: var(--jp-border-width);
+  border-bottom-color: var(--jp-border-color0);
+  border-bottom-style: solid;
+}
+.tuneStatus .vDivider {
+  border-left-width: var(--jp-border-width);
+  border-left-color: var(--jp-border-color0);
+  border-left-style: solid;
+  margin: 0.5em 1em 0.5em 1em;
+}
+</style>
+</div></div>
+</div>
+</section>
+</section>
+<section id="evaluate-model">
+<h2>Evaluate model<a class="headerlink" href="#evaluate-model" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets get the config for the best trial and inspect it further</span>
+<span class="n">best_config</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_best_result</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="s2">&quot;val_rmse_orig&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">best_config</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best val_rmse:&quot;</span><span class="p">,</span> <span class="n">best_config</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;val_rmse_orig&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;hidden_layers&#39;: (128, 64),
+ &#39;dropout&#39;: 0.09595833234941503,
+ &#39;lr&#39;: 0.0009282007124221207,
+ &#39;weight_decay&#39;: 9.298271177107607e-06,
+ &#39;batch_size&#39;: 32,
+ &#39;epochs&#39;: 50}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best val_rmse: 2.8118851731407366
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inspect and plot training history for best trial</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">best_config</span><span class="o">.</span><span class="n">metrics_dataframe</span><span class="p">[[</span><span class="s1">&#39;epoch&#39;</span><span class="p">,</span> <span class="s1">&#39;train_loss&#39;</span><span class="p">,</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="s1">&#39;val_rmse_orig&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;train_loss&#39;</span><span class="p">,</span> <span class="s1">&#39;val_loss&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 50 entries, 0 to 49
+Data columns (total 3 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   train_loss     50 non-null     float64
+ 1   val_loss       50 non-null     float64
+ 2   val_rmse_orig  50 non-null     float64
+dtypes: float64(3)
+memory usage: 1.6 KB
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
+</pre></div>
+</div>
+<img alt="../_images/556ce65ab0c68746d87475d435d6efda1c947fae85c0ff25b10b59a04a5c856c.png" src="../_images/556ce65ab0c68746d87475d435d6efda1c947fae85c0ff25b10b59a04a5c856c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">val_rmse_orig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best RMSE: &quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">val_rmse_orig</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/145991d895323fb4aa09374149315a5f0baa03403d5fe86701ca8b746a06adc4.png" src="../_images/145991d895323fb4aa09374149315a5f0baa03403d5fe86701ca8b746a06adc4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best RMSE:  2.7335465402334145
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1220,6 +2067,66 @@ title="Print to PDF"
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-preprocessing">
+   Data preprocessing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-and-inspect-data">
+     Load and inspect data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-train-and-test-data">
+     Prepare train and test data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-and-train-model-with-pytorch">
+   Build and train model with PyTorch
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-objects-for-model-and-training-process">
+     Define objects for model and training process
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-hyperparameter-optimization-with-ray-tune">
+     Define hyperparameter optimization with Ray Tune
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-training-with-hyperparameter-optimization">
+     Run training with hyperparameter optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate-model">
+   Evaluate model
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>
