@@ -5,41 +5,42 @@ format: jb-book
 root: intro
 
 parts:
-  - caption: Setup
+  - caption: Day 0 - Setup
     chapters:
     - file: day0_setup/readme.md
       sections:
       - file: day0_setup/HPC-setup.ipynb
  
-  - caption: Python Jupyter Notebooks
+  - caption: Day 1 - Monday
     chapters:
-    - file: day1.1_juypter_notebooks/readme.md 
+    - file: day1.1_juypter_notebooks/readme.md
+      title: Python Jupyter Notebooks
       sections:
       - file: day1.1_juypter_notebooks/01_juptyer_notebook.ipynb
       - file: day1.1_juypter_notebooks/02_notebook_pitfalls.ipynb
       - file: day1.1_juypter_notebooks/03_ai-assistant.ipynb
+    - file: day1.2_intro_ml/readme
+      title: Introduction to Machine Learning / Regression
+      sections:
+      - file: day1.2_intro_ml/01-bigpicture.ipynb
+      - file: day1.2_intro_ml/02-getdata.ipynb
+      - file: day1.2_intro_ml/03-data-split.ipynb
+      - file: day1.2_intro_ml/04-exploredata.ipynb
+      - file: day1.2_intro_ml/05-prepare-data.ipynb
+      - file: day1.2_intro_ml/06-reg-overview.ipynb
+      - file: day1.2_intro_ml/07-reg-linear.ipynb
+      - file: day1.2_intro_ml/08-reg-polynom.ipynb
+      - file: day1.2_intro_ml/09-reg-regularized.ipynb
+      - file: day1.2_intro_ml/10-reg-RF.ipynb
+      - file: day1.2_intro_ml/11-reg-SVR.ipynb
+      - file: day1.2_intro_ml/12-reg-boosting.ipynb
+      - file: day1.2_intro_ml/13-reg-exercise.ipynb
+      - file: day1.2_intro_ml/14-present.ipynb
   
-  - caption: Introduction to Machine Learning / Regression
-    chapters:
-    - file: day1.2_intro_ml/readme 
-    - file: day1.2_intro_ml/01-bigpicture.ipynb
-    - file: day1.2_intro_ml/02-getdata.ipynb
-    - file: day1.2_intro_ml/03-data-split.ipynb
-    - file: day1.2_intro_ml/04-exploredata.ipynb
-    - file: day1.2_intro_ml/05-prepare-data.ipynb
-    - file: day1.2_intro_ml/06-reg-overview.ipynb
-    - file: day1.2_intro_ml/07-reg-linear.ipynb
-    - file: day1.2_intro_ml/08-reg-polynom.ipynb
-    - file: day1.2_intro_ml/09-reg-regularized.ipynb
-    - file: day1.2_intro_ml/10-reg-RF.ipynb
-    - file: day1.2_intro_ml/11-reg-SVR.ipynb
-    - file: day1.2_intro_ml/12-reg-boosting.ipynb
-    - file: day1.2_intro_ml/13-reg-exercise.ipynb
-    - file: day1.2_intro_ml/14-present.ipynb
-  
-  - caption: Data Wrangling
+  - caption: Day 2 - Tuesday
     chapters:
     - file: day2.1_data_wrangling/readme
+      title: Data Wrangling
       sections:
       - file: day2.1_data_wrangling/01_pandas_introduction.ipynb
       - file: day2.1_data_wrangling/02_pandas_select_df.ipynb
@@ -53,46 +54,46 @@ parts:
       - file: day2.1_data_wrangling/22_tiling_images_with_overlap.ipynb
       - file: day2.1_data_wrangling/23_tiled_image_file_formats_zarr.ipynb
       - file: day2.1_data_wrangling/24_tiled_nuclei_counting_quick.ipynb
+    - file: day2.2_ml_classification/readme
+      title: Machine Learning Techniques / Classification
+    - file: day2.3_ml_clustering/readme
+      title: Machine Learning Techniques / Clustering
+      sections:
+      - file: day2.3_ml_clustering/01_kmeans.ipynb
+      - file: day2.3_ml_clustering/02_gaussian_mixtures.ipynb
+      - file: day2.3_ml_clustering/03_DBScan.ipynb
+      - file: day2.3_ml_clustering/04_clustering_exercise.ipynb
   
-  - caption: Machine Learning Techniques / Classification
-    chapters:
-    - file: day2.2_ml_classification/readme  
-  - caption: Machine Learning Techniques / Clustering
-    chapters:
-    - file: day2.3_ml_clustering/readme  
-    - file: day2.3_ml_clustering/01_kmeans.ipynb
-    - file: day2.3_ml_clustering/02_gaussian_mixtures.ipynb
-    - file: day2.3_ml_clustering/03_DBScan.ipynb
-    - file: day2.3_ml_clustering/04_clustering_exercise.ipynb
-  
-  - caption: Deep Learning
+  - caption: Day 3 - Wednesday
     chapters:
     - file: day3.1_deep_learning/readme.md
-    - file: day3.1_deep_learning/01_torch_regression.ipynb
-  
-  - caption: Data Visualization
-    chapters:
+      title: Deep Learning
+      sections:
+      - file: day3.1_deep_learning/01_torch_regression.ipynb
     - file: day3.2_data_visualization/readme
-    - file: day3.2_data_visualization/01_Introduction_to_Seaborn.ipynb
-    - file: day3.2_data_visualization/02_Plotting_distributions.ipynb
-    - file: day3.2_data_visualization/03_Multivariate_views.ipynb
-    - file: day3.2_data_visualization/10_plotly_basic.ipynb
-    - file: day3.2_data_visualization/12_plotly_3d.ipynb
-    
-    - file: day3.2_data_visualization/20_stackview.ipynb
+      title: Data Visualization
+      sections:
+      - file: day3.2_data_visualization/01_Introduction_to_Seaborn.ipynb
+      - file: day3.2_data_visualization/02_Plotting_distributions.ipynb
+      - file: day3.2_data_visualization/03_Multivariate_views.ipynb
+      - file: day3.2_data_visualization/10_plotly_basic.ipynb
+      - file: day3.2_data_visualization/12_plotly_3d.ipynb
+      - file: day3.2_data_visualization/20_stackview.ipynb
 
-  - caption: Large Language Models
+  - caption: Day 4 - Thursday
     chapters:
-    - url: https://github.com/ScaDS/ai-school-iom-2025/raw/refs/heads/main/docs/day4.1_llms/LLMs.pdf
-      title: Slides  
     - file: day4.1_llms/bia-bob-demo.ipynb
-    - file: day4.1_llms/generate_notebook.ipynb
-    - file: day4.1_llms/translating_notebooks.ipynb
-    - file: day4.1_llms/documenting_code.ipynb
-    - file: day4.1_llms/bia_bob-statistical_testing.ipynb
-    - file: day4.1_llms/gui_plots.ipynb
-    - file: day4.1_llms/under_the_hood.ipynb
-    - file: day4.1_llms/synthetic_customer_data_llms.ipynb
+      title: Large Language Models
+      sections:
+      - url: https://github.com/ScaDS/ai-school-iom-2025/raw/refs/heads/main/docs/day4.1_llms/LLMs.pdf
+        title: Slides  
+      - file: day4.1_llms/generate_notebook.ipynb
+      - file: day4.1_llms/translating_notebooks.ipynb
+      - file: day4.1_llms/documenting_code.ipynb
+      - file: day4.1_llms/bia_bob-statistical_testing.ipynb
+      - file: day4.1_llms/gui_plots.ipynb
+      - file: day4.1_llms/under_the_hood.ipynb
+      - file: day4.1_llms/synthetic_customer_data_llms.ipynb
     
   - caption: Links
     chapters:
