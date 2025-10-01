@@ -34,7 +34,6 @@ dependencies:
     - ray
     - ray[tune]
     - tensorflow
-    - tensorflow[and-cuda]
     - torch
     - torchvision
 
