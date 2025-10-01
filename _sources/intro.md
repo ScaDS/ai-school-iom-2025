@@ -15,6 +15,7 @@ The notebooks are written for scientists with basic knowledge of Python programm
 * [Matthias Täschner](https://dbs.uni-leipzig.de/person/matthias_taeschner) (Leipzig University, ScaDS.AI)
 * [Dr. Robert Haase](https://haesleinhuepf.github.io/) (Leipzig University, ScaDS.AI)
 * Dr. Rodrigo Escobar Díaz Guerrero (IPHT)
+* Dr. Jamile Mohammad Jafari (IPHT)
 * [Dr. Omid Shayestehpour](https://www.uni-paderborn.de/en/person/114187) (Paderborn University)
 
 ## Preliminary Program
