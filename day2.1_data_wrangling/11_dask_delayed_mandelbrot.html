@@ -1234,7 +1234,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8e2af52fc030ce6c487804f81a0d5fc80fd337936dff7c8956cd40fc4eecfadb.png" src="../_images/8e2af52fc030ce6c487804f81a0d5fc80fd337936dff7c8956cd40fc4eecfadb.png" />
+<img alt="../_images/b47e9b9dfd4488b03eb678e9603955c566a4b4ce0a7fd370aca4cadf81bf34e2.png" src="../_images/b47e9b9dfd4488b03eb678e9603955c566a4b4ce0a7fd370aca4cadf81bf34e2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1273,7 +1273,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230 ms ± 4.43 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>215 ms ± 7.73 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -1325,7 +1325,7 @@ title="Print to PDF"
     <span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_images</span><span class="p">)</span>
 <span class="p">]</span>
-<span class="n">stack</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">rechunk</span><span class="p">(</span><span class="n">CHUNKS</span><span class="p">)</span>
+<span class="n">stack</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1354,17 +1354,17 @@ title="Print to PDF"
                     <tr>
                         <th> Bytes </th>
                         <td> 97.66 GiB </td>
-                        <td> 128.00 kiB </td>
+                        <td> 512.00 kiB </td>
                     </tr>
                     
                     <tr>
                         <th> Shape </th>
                         <td> (200000, 512, 512) </td>
-                        <td> (1, 256, 256) </td>
+                        <td> (1, 512, 512) </td>
                     </tr>
                     <tr>
                         <th> Dask graph </th>
-                        <td colspan="2"> 800000 chunks in 400002 graph layers </td>
+                        <td colspan="2"> 200000 chunks in 400001 graph layers </td>
                     </tr>
                     <tr>
                         <th> Data type </th>
@@ -1378,7 +1378,6 @@ title="Print to PDF"
 
   <!-- Horizontal lines -->
   <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
-  <line x1="10" y1="12" x2="80" y2="83" />
   <line x1="10" y1="25" x2="80" y2="96" style="stroke-width:2" />
 
   <!-- Vertical lines -->
@@ -1430,7 +1429,6 @@ title="Print to PDF"
 
   <!-- Vertical lines -->
   <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
-  <line x1="22" y1="0" x2="93" y2="70" />
   <line x1="35" y1="0" x2="106" y2="70" style="stroke-width:2" />
 
   <!-- Colored Rectangle -->
@@ -1438,12 +1436,10 @@ title="Print to PDF"
 
   <!-- Horizontal lines -->
   <line x1="80" y1="70" x2="106" y2="70" style="stroke-width:2" />
-  <line x1="80" y1="83" x2="106" y2="83" />
   <line x1="80" y1="96" x2="106" y2="96" style="stroke-width:2" />
 
   <!-- Vertical lines -->
   <line x1="80" y1="70" x2="80" y2="96" style="stroke-width:2" />
-  <line x1="93" y1="70" x2="93" y2="96" />
   <line x1="106" y1="70" x2="106" y2="96" style="stroke-width:2" />
 
   <!-- Colored Rectangle -->
