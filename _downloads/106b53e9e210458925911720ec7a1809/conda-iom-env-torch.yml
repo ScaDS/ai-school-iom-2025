@@ -15,13 +15,13 @@ dependencies:
   - notebook
   - numcodecs
   - numpy
+  - optuna
   - pandas
   - plotly
   - polars
   - pyocclient
   - python-dotenv
   - pytorch
-  - ray-all
   - scipy
   - scikit-image
   - scikit-learn
