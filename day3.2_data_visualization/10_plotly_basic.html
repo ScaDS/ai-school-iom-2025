@@ -1181,77 +1181,178 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="plotly-basic-usage">
 <h1>Plotly basic usage<a class="headerlink" href="#plotly-basic-usage" title="Permalink to this heading">#</a></h1>
 <p>This notebook demonstrates basic Plotly usage step-by-step. We install dependencies, create a small dataset, make a few plots, and save everything to disk for later inspection.</p>
+<p><a class="reference external" href="https://plotly.com/python-api-reference/">plotly’s API</a> is similar but not identical to seaborn. For example, both are based on DataFrames, but what seaborn calls <code class="docutils literal notranslate"><span class="pre">hue</span></code> is <code class="docutils literal notranslate"><span class="pre">color</span></code> in plotly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Generate a small demo DataFrame with time series data and some categories. Save it to CSV so we can inspect it later outside the notebook.</p>
+<p>Generate a small demo DataFrame with time series data and some categories.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">day</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
-<span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-<span class="n">category</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
-<span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/blobs_measurements.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">&quot;day&quot;</span><span class="p">:</span> <span class="n">day</span><span class="p">,</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
-    <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">category</span><span class="p">,</span>
-    <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span>
-<span class="p">})</span>
-</pre></div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>label</th>
+      <th>area</th>
+      <th>mean_intensity</th>
+      <th>max_intensity</th>
+      <th>min_intensity</th>
+      <th>centroid-0</th>
+      <th>centroid-1</th>
+      <th>eccentricity</th>
+      <th>solidity</th>
+      <th>perimeter</th>
+      <th>centroid_x</th>
+      <th>centroid_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>27.0</td>
+      <td>149.333333</td>
+      <td>168.0</td>
+      <td>128.0</td>
+      <td>26.259259</td>
+      <td>0.666667</td>
+      <td>0.973991</td>
+      <td>0.900000</td>
+      <td>20.621320</td>
+      <td>0.666667</td>
+      <td>26.259259</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>203.0</td>
+      <td>199.960591</td>
+      <td>240.0</td>
+      <td>128.0</td>
+      <td>225.876847</td>
+      <td>3.955665</td>
+      <td>0.892348</td>
+      <td>0.966667</td>
+      <td>59.591883</td>
+      <td>3.955665</td>
+      <td>225.876847</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>3</td>
+      <td>503.0</td>
+      <td>198.695825</td>
+      <td>248.0</td>
+      <td>128.0</td>
+      <td>97.487078</td>
+      <td>7.836978</td>
+      <td>0.801503</td>
+      <td>0.971042</td>
+      <td>86.870058</td>
+      <td>7.836978</td>
+      <td>97.487078</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>4</td>
+      <td>264.0</td>
+      <td>189.939394</td>
+      <td>232.0</td>
+      <td>120.0</td>
+      <td>139.545455</td>
+      <td>7.159091</td>
+      <td>0.605384</td>
+      <td>0.977778</td>
+      <td>58.041631</td>
+      <td>7.159091</td>
+      <td>139.545455</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>5</td>
+      <td>96.0</td>
+      <td>166.416667</td>
+      <td>200.0</td>
+      <td>128.0</td>
+      <td>44.812500</td>
+      <td>7.833333</td>
+      <td>0.628475</td>
+      <td>0.960000</td>
+      <td>34.142136</td>
+      <td>7.833333</td>
+      <td>44.812500</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-</div>
-</div>
-<p>Create a simple line plot of the time series and save it as an interactive HTML file. We do not display it here; open the saved HTML to inspect the plot.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Basic Line Plot: value over time&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/07f9738d6ef6e8caff8e9f7017096095ce4cf1b3e314e12e23adf9b6e20cf032.png" src="../_images/07f9738d6ef6e8caff8e9f7017096095ce4cf1b3e314e12e23adf9b6e20cf032.png" />
-</div>
-</div>
-<p>Create a scatter plot colored by category and sized by the “size” column. Save it to HTML for interactive exploration (hover to see details).</p>
+<p>Create a scatter plot colored by category and sized by the “size” column.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span>
-    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">,</span>
-    <span class="n">size</span><span class="o">=</span><span class="s2">&quot;size&quot;</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Basic Scatter Plot: value by day (color=category, size=size)&quot;</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;eccentricity&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;perimeter&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="../_images/c40e73f9d1e9193b080f92c1a018bbed067a8e5ba90b59d79b850d4978432f12.png" src="../_images/c40e73f9d1e9193b080f92c1a018bbed067a8e5ba90b59d79b850d4978432f12.png" />
+</div>
+</div>
+<p>Violin plots allow us to split the data into groups and visualize their distribution. For example, we can split objects into small and large groups and then visualize their perimeter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;large&quot;</span> <span class="k">if</span> <span class="n">s</span> <span class="k">else</span> <span class="s2">&quot;small&quot;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()]</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">px</span><span class="o">.</span><span class="n">violin</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span>
-    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;size&quot;</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;size&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;perimeter&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="../_images/8a471b183f8de0ca5fe4c762af0133aa31b25aefbfd89f39a70b610d6bd7aeb9.png" src="../_images/8a471b183f8de0ca5fe4c762af0133aa31b25aefbfd89f39a70b610d6bd7aeb9.png" />
 </div>
 </div>
 </section>
@@ -1326,7 +1427,7 @@ By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-10-01.<br>
+Last updated on 2025-10-02.<br>
 </p>
   </div>
   

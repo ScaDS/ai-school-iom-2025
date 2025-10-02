@@ -501,6 +501,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -1159,7 +1163,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -1172,6 +1178,19 @@ title="Print to PDF"
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -1180,6 +1199,7 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="plotting-in-3d-with-plotly">
 <h1>Plotting in 3D with plotly<a class="headerlink" href="#plotting-in-3d-with-plotly" title="Permalink to this heading">#</a></h1>
+<p>As plotly offers interactive plots, it becomes feasible to create a 3D plot and rotate it using mouse-interaction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
@@ -1192,7 +1212,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/blobs_measurements.csv&quot;</span><span class="p">)</span>
-<span class="n">df</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1311,114 +1331,17 @@ title="Print to PDF"
       <td>7.833333</td>
       <td>44.812500</td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>61</th>
-      <td>61</td>
-      <td>62</td>
-      <td>472.0</td>
-      <td>213.033898</td>
-      <td>248.0</td>
-      <td>128.0</td>
-      <td>13.474576</td>
-      <td>246.868644</td>
-      <td>0.774033</td>
-      <td>0.971193</td>
-      <td>83.798990</td>
-      <td>246.868644</td>
-      <td>13.474576</td>
-    </tr>
-    <tr>
-      <th>62</th>
-      <td>62</td>
-      <td>63</td>
-      <td>176.0</td>
-      <td>195.318182</td>
-      <td>232.0</td>
-      <td>120.0</td>
-      <td>105.147727</td>
-      <td>250.812500</td>
-      <td>0.828291</td>
-      <td>0.972376</td>
-      <td>51.556349</td>
-      <td>250.812500</td>
-      <td>105.147727</td>
-    </tr>
-    <tr>
-      <th>63</th>
-      <td>63</td>
-      <td>64</td>
-      <td>19.0</td>
-      <td>150.315789</td>
-      <td>176.0</td>
-      <td>136.0</td>
-      <td>125.368421</td>
-      <td>252.684211</td>
-      <td>0.762065</td>
-      <td>0.904762</td>
-      <td>14.242641</td>
-      <td>252.684211</td>
-      <td>125.368421</td>
-    </tr>
-    <tr>
-      <th>64</th>
-      <td>64</td>
-      <td>65</td>
-      <td>473.0</td>
-      <td>205.513742</td>
-      <td>248.0</td>
-      <td>112.0</td>
-      <td>153.120507</td>
-      <td>245.545455</td>
-      <td>0.816814</td>
-      <td>0.969262</td>
-      <td>86.183766</td>
-      <td>245.545455</td>
-      <td>153.120507</td>
-    </tr>
-    <tr>
-      <th>65</th>
-      <td>65</td>
-      <td>66</td>
-      <td>66.0</td>
-      <td>188.363636</td>
-      <td>232.0</td>
-      <td>128.0</td>
-      <td>200.575758</td>
-      <td>253.348485</td>
-      <td>0.947284</td>
-      <td>0.970588</td>
-      <td>35.899495</td>
-      <td>253.348485</td>
-      <td>200.575758</td>
-    </tr>
   </tbody>
 </table>
-<p>66 rows × 13 columns</p>
 </div></div></div>
 </div>
+<p>The <a class="reference external" href="https://plotly.com/python-api-reference/generated/plotly.express.scatter_3d.html">scatter_3d</a> function offers interactive 3D plots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter_3d</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> 
                     <span class="n">x</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">,</span> 
                     <span class="n">y</span><span class="o">=</span><span class="s2">&quot;perimeter&quot;</span><span class="p">,</span> 
-                    <span class="n">z</span><span class="o">=</span><span class="s2">&quot;solidity&quot;</span><span class="p">,</span>
-                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;eccentricity&quot;</span><span class="p">)</span> 
+                    <span class="n">z</span><span class="o">=</span><span class="s2">&quot;solidity&quot;</span><span class="p">)</span> 
 <span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">marker_size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Make dots smaller</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># Reduce figure margins</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1426,9 +1349,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7548168a6e779346803626b851f618869a742d59a7fbf49b21de100ebd28cf1b.png" src="../_images/7548168a6e779346803626b851f618869a742d59a7fbf49b21de100ebd28cf1b.png" />
+<img alt="../_images/72125da966e2f876510f007ae33e82bc96e51b59f47f17ad6deae83601b4d7aa.png" src="../_images/72125da966e2f876510f007ae33e82bc96e51b59f47f17ad6deae83601b4d7aa.png" />
 </div>
 </div>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>Configure the plot above so that <code class="docutils literal notranslate"><span class="pre">eccentricity</span></code> is colour-coded in the plot.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1480,6 +1407,27 @@ title="Print to PDF"
           
           
           
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
           
         </div>
         <footer class="bd-footer-content">
@@ -1501,7 +1449,7 @@ By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-10-01.<br>
+Last updated on 2025-10-02.<br>
 </p>
   </div>
   
