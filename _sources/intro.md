@@ -34,10 +34,10 @@ Tuesday:
 11:00-11:15: Coffee break
 11:15-12:00: Data Wrangling Part 2
 12:00–12:50: Machine Learning Techniques: Classification
-12:50-13:00: Group Foto
+12:50-13:00: Group photo
 13:00–14:00: Lunch break
 14:00–16:00: Machine Learning Techniques: Clustering
-19:00–22:00: Conference dinner ([Shady](https://www.shady-leipzig.de/), Körnerstraße 2)
+19:00–22:00: Conference dinner (Shady, Körnerstraße 2)
 
 Wednesday:
 09:00–11:00: Deep Learning
