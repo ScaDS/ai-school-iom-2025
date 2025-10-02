@@ -33,7 +33,8 @@ Tuesday:
 09:00–11:00: Data Wrangling Part 1
 11:00-11:15: Coffee break
 11:15-12:00: Data Wrangling Part 2
-12:00–13:00: Machine Learning Techniques: Classification
+12:00–12:50: Machine Learning Techniques: Classification
+12:50-13:00: Group Foto
 13:00–14:00: Lunch break
 14:00–16:00: Machine Learning Techniques: Clustering
 19:00–22:00: Conference dinner
