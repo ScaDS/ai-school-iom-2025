@@ -37,7 +37,7 @@ Tuesday:
 12:50-13:00: Group Foto
 13:00–14:00: Lunch break
 14:00–16:00: Machine Learning Techniques: Clustering
-19:00–22:00: Conference dinner (Shady Restaurant, Körnerstraße 2)
+19:00–22:00: Conference dinner ([Shady](https://www.shady-leipzig.de/), Körnerstraße 2)
 
 Wednesday:
 09:00–11:00: Deep Learning
