@@ -1,11 +1,13 @@
-name: iom-env
+name: iom-env-torch
 channels:
   - conda-forge
+  - pytorch
 dependencies:
   - python=3.10.4
   - pip
   - czifile
   - dask
+  - ipykernel
   - ipywidgets
   - joblib
   - jupyterlab
@@ -16,7 +18,10 @@ dependencies:
   - pandas
   - plotly
   - polars
+  - pyocclient
   - python-dotenv
+  - pytorch
+  - ray-all
   - scipy
   - scikit-image
   - scikit-learn
@@ -25,17 +30,11 @@ dependencies:
   - sphinx
   - stackview
   - tabulate
+  - torchvision
   - tqdm
   - zarr
   - pip:
     - bia-bob
-    - keras
-    - pyocclient
-    - ray
-    - ray[tune]
-    - tensorflow
-    - torch
-    - torchvision
 
 variables:
   BLABLADOR_API_KEY: "my_api_key"

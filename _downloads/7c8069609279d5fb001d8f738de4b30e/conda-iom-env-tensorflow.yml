@@ -1,0 +1,38 @@
+name: iom-env-tensorflow
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.4
+  - pip
+  - czifile
+  - dask
+  - keras
+  - ipykernel
+  - ipywidgets
+  - joblib
+  - jupyterlab
+  - matplotlib
+  - notebook
+  - numcodecs
+  - numpy
+  - pandas
+  - plotly
+  - polars
+  - pyocclient 
+  - python-dotenv
+  - scipy
+  - scikit-image
+  - scikit-learn
+  - scikit-optimize
+  - seaborn
+  - sphinx
+  - stackview
+  - tabulate
+  - tensorflow
+  - tqdm
+  - zarr
+  - pip:
+    - bia-bob
+
+variables:
+  BLABLADOR_API_KEY: "my_api_key"

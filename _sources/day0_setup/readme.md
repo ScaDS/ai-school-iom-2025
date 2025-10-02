@@ -77,27 +77,33 @@ Please refer to the [official installation instructions](https://github.com/cond
 
 Check whether conda is available in your terminal via `conda --version`
 
-#### Step 2: Create a virtual environment with all packages
+#### Step 2: Create virtual environment with all packages
 
-**Download File**
-* Download this Conda configuration file, which defines the environment: [conda-iom-env.yml](conda-iom-env.yml)
+Since we are going to use the deep learning frameworks [pytorch](https://pytorch.org/) and [tensorflow](https://www.tensorflow.org/) for the sessions, and both do cause problems when installed in the same environment, you should prepare separate environments for both.
 
-**Create Virtual Environment**
+**Download Files**
+* Download both Conda configuration files, which defines the according environment: 
+  * [conda-iom-env-torch.yml](conda-iom-env-torch.yml)
+  * [conda-iom-env-tensorflow.yml](conda-iom-env-tensorflow.yml)
+
+**Create Virtual Environments**
 * Open a terminal or command prompt
 * Navigate to the file’s location
-* Execute this command: `conda env update -f conda-iom-env.yml --prune`
+* Execute this commands to install both environments: 
+  * `conda env update -f conda-iom-env-torch.yml --prune`
+  * `conda env update -f conda-iom-env-tensorflow.yml --prune`
 * With this command:
-  * Conda creates a new environment with the name iom-env” or updates an already existing one with the same name
-  * Conda downloads and installs all defined software packages in the environment
+  * Conda creates a new environment with the name "iom-env-torch" /  "iom-env-tensorflow" or updates already existing ones with the same name
+  * Conda downloads and installs all defined software packages in the environments
 
 **Troubleshooting**
-* If problems occur, e.g. with an already existing environment "iom-env", you can remove it completely and start from scratch
-* Execute this command: `conda remove --name iom-env --all`
+* If problems occur, e.g. with an already existing environment "iom-env-torch", you can remove it completely and start from scratch
+* Execute this command: `conda remove --name iom-env-torch --all`
 * Then, perform the above steps for a fresh installation of the environment
 
 **Test the Virtual Environment**
 * Open a terminal or command prompt
-* Execute the following command: `conda activate iom-env` - the environment is activated
+* Execute the following command: `conda activate iom-env-torch` - the environment is activated
 * Start Jupyter Lab for testing: `jupyter lab` - your browser should open with Jupyter Lab
 * You can now execute the training notebooks locally
 * Then, Jupyter Lab can be shut down or terminated (e.g., `ctrl-C` in the terminal)

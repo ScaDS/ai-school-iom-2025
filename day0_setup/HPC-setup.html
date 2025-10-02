@@ -1232,18 +1232,35 @@ title="Print to PDF"
 </ul>
 <section id="install-the-python-kernel-iom-env">
 <h2>1. Install the Python Kernel “iom-env”<a class="headerlink" href="#install-the-python-kernel-iom-env" title="Permalink to this heading">#</a></h2>
-<p>The following command installs a Python kernel “iom-env”.</p>
-<p>This only needs to be done once, after which the Python kernel will be available for your user account for rest of the training school.</p>
+<p>The following two commands install two Python kernels:</p>
+<ul class="simple">
+<li><p>“iom-env-torch”</p></li>
+<li><p>“iom-env-tensorflow”</p></li>
+</ul>
+<p>This only needs to be done once, after which the Python kernels will be available for your user account for the rest of the training school.</p>
 <ol class="arabic simple">
-<li><p>Execute the cell with <code class="docutils literal notranslate"><span class="pre">ctrl-enter</span></code> or <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code></p></li>
+<li><p>Execute the following cells with <code class="docutils literal notranslate"><span class="pre">ctrl-enter</span></code> or <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code></p></li>
 <li><p>When prompted to “Select Kernel”, leave the default Python 3 kernel and click “Select”.</p></li>
-<li><p>Wait until <code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">iom-env</span> <span class="pre">in</span> <span class="pre">[...]</span></code> is displayed</p></li>
+<li><p>Wait until both outputs are shown:</p></li>
+</ol>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">iom-env-torch</span> <span class="pre">in</span> <span class="pre">[...]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">iom-env-tensorflow</span> <span class="pre">in</span> <span class="pre">[...]</span></code></p></li>
+</ul>
+<ol class="arabic simple" start="4">
 <li><p>Reload the page</p></li>
-<li><p>You can now select the Python kernel <code class="docutils literal notranslate"><span class="pre">iom-env</span></code> from the available kernels</p></li>
+<li><p>You can now select the Python kernels <code class="docutils literal notranslate"><span class="pre">iom-env-torch</span></code> and <code class="docutils literal notranslate"><span class="pre">iom-env-tensorflow</span></code> from the available kernels</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /data/horse/ws/mats024c-iom-ai/install_python_kernel.sh
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /data/horse/ws/mats024c-iom-ai/install_python_kernel_torch.sh
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /data/horse/ws/mats024c-iom-ai/install_python_kernel_tensorflow.sh
 </pre></div>
 </div>
 </div>

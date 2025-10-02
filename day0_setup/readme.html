@@ -1234,8 +1234,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#step-2-create-a-virtual-environment-with-all-packages">
-       Step 2: Create a virtual environment with all packages
+      <a class="reference internal nav-link" href="#step-2-create-virtual-environment-with-all-packages">
+       Step 2: Create virtual environment with all packages
       </a>
      </li>
     </ul>
@@ -1328,34 +1328,45 @@ title="Print to PDF"
 <p><img alt="img.png" src="../_images/miniforge2.png" /></p>
 <p>Check whether conda is available in your terminal via <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code></p>
 </section>
-<section id="step-2-create-a-virtual-environment-with-all-packages">
-<h4>Step 2: Create a virtual environment with all packages<a class="headerlink" href="#step-2-create-a-virtual-environment-with-all-packages" title="Permalink to this heading">#</a></h4>
-<p><strong>Download File</strong></p>
+<section id="step-2-create-virtual-environment-with-all-packages">
+<h4>Step 2: Create virtual environment with all packages<a class="headerlink" href="#step-2-create-virtual-environment-with-all-packages" title="Permalink to this heading">#</a></h4>
+<p>Since we are going to use the deep learning frameworks <a class="reference external" href="https://pytorch.org/">pytorch</a> and <a class="reference external" href="https://www.tensorflow.org/">tensorflow</a> for the sessions, and both do cause problems when installed in the same environment, you should prepare separate environments for both.</p>
+<p><strong>Download Files</strong></p>
 <ul class="simple">
-<li><p>Download this Conda configuration file, which defines the environment: <a class="reference download internal" download="" href="../_downloads/d8ba237f76f4d78b008fa895b41a030c/conda-iom-env.yml"><span class="xref download myst">conda-iom-env.yml</span></a></p></li>
+<li><p>Download both Conda configuration files, which defines the according environment:</p>
+<ul>
+<li><p><a class="reference download internal" download="" href="../_downloads/106b53e9e210458925911720ec7a1809/conda-iom-env-torch.yml"><span class="xref download myst">conda-iom-env-torch.yml</span></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/7c8069609279d5fb001d8f738de4b30e/conda-iom-env-tensorflow.yml"><span class="xref download myst">conda-iom-env-tensorflow.yml</span></a></p></li>
 </ul>
-<p><strong>Create Virtual Environment</strong></p>
+</li>
+</ul>
+<p><strong>Create Virtual Environments</strong></p>
 <ul class="simple">
 <li><p>Open a terminal or command prompt</p></li>
 <li><p>Navigate to the file’s location</p></li>
-<li><p>Execute this command: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">-f</span> <span class="pre">conda-iom-env.yml</span> <span class="pre">--prune</span></code></p></li>
+<li><p>Execute this commands to install both environments:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">-f</span> <span class="pre">conda-iom-env-torch.yml</span> <span class="pre">--prune</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">-f</span> <span class="pre">conda-iom-env-tensorflow.yml</span> <span class="pre">--prune</span></code></p></li>
+</ul>
+</li>
 <li><p>With this command:</p>
 <ul>
-<li><p>Conda creates a new environment with the name iom-env” or updates an already existing one with the same name</p></li>
-<li><p>Conda downloads and installs all defined software packages in the environment</p></li>
+<li><p>Conda creates a new environment with the name “iom-env-torch” /  “iom-env-tensorflow” or updates already existing ones with the same name</p></li>
+<li><p>Conda downloads and installs all defined software packages in the environments</p></li>
 </ul>
 </li>
 </ul>
 <p><strong>Troubleshooting</strong></p>
 <ul class="simple">
-<li><p>If problems occur, e.g. with an already existing environment “iom-env”, you can remove it completely and start from scratch</p></li>
-<li><p>Execute this command: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">--name</span> <span class="pre">iom-env</span> <span class="pre">--all</span></code></p></li>
+<li><p>If problems occur, e.g. with an already existing environment “iom-env-torch”, you can remove it completely and start from scratch</p></li>
+<li><p>Execute this command: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">--name</span> <span class="pre">iom-env-torch</span> <span class="pre">--all</span></code></p></li>
 <li><p>Then, perform the above steps for a fresh installation of the environment</p></li>
 </ul>
 <p><strong>Test the Virtual Environment</strong></p>
 <ul class="simple">
 <li><p>Open a terminal or command prompt</p></li>
-<li><p>Execute the following command: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">iom-env</span></code> - the environment is activated</p></li>
+<li><p>Execute the following command: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">iom-env-torch</span></code> - the environment is activated</p></li>
 <li><p>Start Jupyter Lab for testing: <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> - your browser should open with Jupyter Lab</p></li>
 <li><p>You can now execute the training notebooks locally</p></li>
 <li><p>Then, Jupyter Lab can be shut down or terminated (e.g., <code class="docutils literal notranslate"><span class="pre">ctrl-C</span></code> in the terminal)</p></li>
@@ -1457,8 +1468,8 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#step-2-create-a-virtual-environment-with-all-packages">
-       Step 2: Create a virtual environment with all packages
+      <a class="reference internal nav-link" href="#step-2-create-virtual-environment-with-all-packages">
+       Step 2: Create virtual environment with all packages
       </a>
      </li>
     </ul>
