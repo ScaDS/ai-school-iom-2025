@@ -37,14 +37,14 @@ Tuesday:
 12:50-13:00: Group Foto
 13:00–14:00: Lunch break
 14:00–16:00: Machine Learning Techniques: Clustering
-19:00–22:00: Conference dinner
+19:00–22:00: Conference dinner (Shady Restaurant, Körnerstraße 2)
 
 Wednesday:
 09:00–11:00: Deep Learning
 11:00-11:15: Coffee break
 11:15–13:00: Data Visualization in a JupyterLab Environment
 13:00–14:00: Lunch break
-15:00–17:00: City tour
+15:00–17:00: City tour (meeting point: Mendebrunnen on Augustusplatz)
 
 Thursday:
 09:00–11:00: Language Models
@@ -54,7 +54,7 @@ Thursday:
 14:00–16:00: Breakout sessions on specialized topics
 16:00-16:15: Coffee break
 16:15–18:00: Breakout sessions on specialized topics
-From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peaceful revolution of 1989
+From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peaceful revolution of 1989 (meeting point: Mendebrunnen on Augustusplatz)
 
 ```
 
