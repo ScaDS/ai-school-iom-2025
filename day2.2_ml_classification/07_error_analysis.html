@@ -1,0 +1,1517 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Error analysis in multiclass classification &#8212; AI School at Leibniz IOM 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day2.2_ml_classification/07_error_analysis';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo-all.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo-all.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day0_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.1_juypter_notebooks/readme.html">
+                        How to handle Jupyter Notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/readme.html">
+                        Overview central steps
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/01-bigpicture.html">
+                        Look at the big picture
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/02-getdata.html">
+                        Get the data
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/03-data-split.html">
+                        Create a test data set
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/04-exploredata.html">
+                        Explore and Visualize
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/05-prepare-data.html">
+                        Prepare the data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/06-reg-overview.html">
+                        Overview Training and Tuning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/07-reg-linear.html">
+                        Linear Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/08-reg-polynom.html">
+                        Polynomial Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/09-reg-regularized.html">
+                        Regularized Linear Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/10-reg-RF.html">
+                        Random Forests Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/11-reg-SVR.html">
+                        Support Vector Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/12-reg-boosting.html">
+                        Boosting (Regression)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/13-reg-exercise.html">
+                        Exercise on regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/14-present.html">
+                        Present and store your model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.1_data_wrangling/readme.html">
+                        Data Wrangling
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="readme.html">
+                        Introduction
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/readme.html">
+                        Introduction
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/01_kmeans.html">
+                        K-Means
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/02_gaussian_mixtures.html">
+                        Gaussian Mixtures
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/03_DBScan.html">
+                        DBSCAN and HDBSCAN
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/04_clustering_exercise.html">
+                        Exercise
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.1_deep_learning/readme.html">
+                        Deep Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.1_deep_learning/01_torch_regression.html">
+                        Train a Neural Network for Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/readme.html">
+                        Plotting
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/01_Introduction_to_Seaborn.html">
+                        Introduction to Seaborn
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/02_Plotting_distributions.html">
+                        Plotting Distributions with Seaborn
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/03_Multivariate_views.html">
+                        Multivariate views
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/10_plotly_basic.html">
+                        Plotly basic usage
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/12_plotly_3d.html">
+                        Plotting in 3D with plotly
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/20_stackview.html">
+                        Interactive Image Visualization with Stackview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/ScaDS/ai-school-iom-2025/raw/refs/heads/main/docs/day4.1_llms/LLMs.pdf">
+                        Slides
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/01_bia-bob-demo.html">
+                        BiA-Bob
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/02_generate_notebook.html">
+                        AI-assisted Notebook generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/03_translating_notebooks.html">
+                        Translating notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/04_documenting_code.html">
+                        Documenting code
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/10_bia_bob-statistical_testing.html">
+                        Statistical testing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/20_gui_plots.html">
+                        Graphical user interfaces
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/40_generating_images.html">
+                        Generating image data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/50_synthetic_customer_data_llms.html">
+                        Generating synthetic customer data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/51_synthetic_customer_data_rnd_generators.html">
+                        Combining LLMs with Random number generators for data generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/90_under_the_hood.html">
+                        Under the hood: Configure bia-bob’s behaviour through system messages
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://aischool.iom-leipzig.de/">
+                        AI School Website
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://creativecommons.org/licenses/by/4.0/">
+                        License CC-BY 4.0
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day0_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.1_juypter_notebooks/readme.html">
+                        How to handle Jupyter Notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/readme.html">
+                        Overview central steps
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/01-bigpicture.html">
+                        Look at the big picture
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/02-getdata.html">
+                        Get the data
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/03-data-split.html">
+                        Create a test data set
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/04-exploredata.html">
+                        Explore and Visualize
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/05-prepare-data.html">
+                        Prepare the data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/06-reg-overview.html">
+                        Overview Training and Tuning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/07-reg-linear.html">
+                        Linear Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/08-reg-polynom.html">
+                        Polynomial Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/09-reg-regularized.html">
+                        Regularized Linear Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/10-reg-RF.html">
+                        Random Forests Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/11-reg-SVR.html">
+                        Support Vector Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/12-reg-boosting.html">
+                        Boosting (Regression)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/13-reg-exercise.html">
+                        Exercise on regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day1.2_intro_ml/14-present.html">
+                        Present and store your model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.1_data_wrangling/readme.html">
+                        Data Wrangling
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="readme.html">
+                        Introduction
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/readme.html">
+                        Introduction
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/01_kmeans.html">
+                        K-Means
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/02_gaussian_mixtures.html">
+                        Gaussian Mixtures
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/03_DBScan.html">
+                        DBSCAN and HDBSCAN
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day2.3_ml_clustering/04_clustering_exercise.html">
+                        Exercise
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.1_deep_learning/readme.html">
+                        Deep Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.1_deep_learning/01_torch_regression.html">
+                        Train a Neural Network for Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/readme.html">
+                        Plotting
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/01_Introduction_to_Seaborn.html">
+                        Introduction to Seaborn
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/02_Plotting_distributions.html">
+                        Plotting Distributions with Seaborn
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/03_Multivariate_views.html">
+                        Multivariate views
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/10_plotly_basic.html">
+                        Plotly basic usage
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/12_plotly_3d.html">
+                        Plotting in 3D with plotly
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day3.2_data_visualization/20_stackview.html">
+                        Interactive Image Visualization with Stackview
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/ScaDS/ai-school-iom-2025/raw/refs/heads/main/docs/day4.1_llms/LLMs.pdf">
+                        Slides
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/01_bia-bob-demo.html">
+                        BiA-Bob
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/02_generate_notebook.html">
+                        AI-assisted Notebook generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/03_translating_notebooks.html">
+                        Translating notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/04_documenting_code.html">
+                        Documenting code
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/10_bia_bob-statistical_testing.html">
+                        Statistical testing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/20_gui_plots.html">
+                        Graphical user interfaces
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/40_generating_images.html">
+                        Generating image data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/50_synthetic_customer_data_llms.html">
+                        Generating synthetic customer data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/51_synthetic_customer_data_rnd_generators.html">
+                        Combining LLMs with Random number generators for data generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../day4.1_llms/90_under_the_hood.html">
+                        Under the hood: Configure bia-bob’s behaviour through system messages
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://aischool.iom-leipzig.de/">
+                        AI School Website
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://creativecommons.org/licenses/by/4.0/">
+                        License CC-BY 4.0
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo-all.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo-all.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Leibniz MMS AI School 2025
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day0_setup/readme.html">Setting up your computer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../day0_setup/HPC-setup.html">Prepare your Jupyter Lab environment</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Jupyter Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day1.1_juypter_notebooks/readme.html">How to handle Jupyter Notebooks</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../day1.1_juypter_notebooks/01_juptyer_notebook.html">Python code in Jupyter notebooks</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../day1.1_juypter_notebooks/02_notebook_pitfalls.html">Pitfalls when working with Jupyter notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day1.1_juypter_notebooks/03_ai-assistant.html">AI Assitant in Jupyter</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Machine Learning / Regression</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/readme.html">Overview central steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/01-bigpicture.html">Look at the big picture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/02-getdata.html">Get the data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/03-data-split.html">Create a test data set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/04-exploredata.html">Explore and Visualize</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/05-prepare-data.html">Prepare the data</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/06-reg-overview.html">Overview Training and Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/07-reg-linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/08-reg-polynom.html">Polynomial Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/09-reg-regularized.html">Regularized Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/10-reg-RF.html">Random Forests Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/11-reg-SVR.html">Support Vector Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/12-reg-boosting.html">Boosting (Regression)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/13-reg-exercise.html">Exercise on regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day1.2_intro_ml/14-present.html">Present and store your model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Wrangling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day2.1_data_wrangling/readme.html">Data Wrangling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/01_pandas_introduction.html">Introduction to Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/02_pandas_select_df.html">Selecting data from DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/03_pandas_appending_df.html">Appending and extending DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/04_pandas_datatypes.html">Datatypes and Conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/05_pandas_missing_data.html">Handling missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/06_pandas_group_by.html">Group by: split-apply-combine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/07_tidy_data.html">Tidy-Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/11_dask_delayed_mandelbrot.html">Delayed processing with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/21_tiling_images_naive_approach.html">Tiling images - the naive approach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/22_tiling_images_with_overlap.html">Tiling images with overlap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/23_tiled_image_file_formats_zarr.html">Tiled image file formats: zarr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day2.1_data_wrangling/24_tiled_nuclei_counting_quick.html">Tiled image processing</a></li>
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning Techniques / Classification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning Techniques / Clustering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day2.3_ml_clustering/readme.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day2.3_ml_clustering/01_kmeans.html">K-Means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day2.3_ml_clustering/02_gaussian_mixtures.html">Gaussian Mixtures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day2.3_ml_clustering/03_DBScan.html">DBSCAN and HDBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day2.3_ml_clustering/04_clustering_exercise.html">Exercise</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day3.1_deep_learning/readme.html">Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.1_deep_learning/01_torch_regression.html">Train a Neural Network for Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/readme.html">Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/02_Plotting_distributions.html">Plotting Distributions with Seaborn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/03_Multivariate_views.html">Multivariate views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/10_plotly_basic.html">Plotly basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/12_plotly_3d.html">Plotting in 3D with plotly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day3.2_data_visualization/20_stackview.html">Interactive Image Visualization with Stackview</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ScaDS/ai-school-iom-2025/raw/refs/heads/main/docs/day4.1_llms/LLMs.pdf">Slides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/01_bia-bob-demo.html">BiA-Bob</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/02_generate_notebook.html">AI-assisted Notebook generation</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/03_translating_notebooks.html">Translating notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/04_documenting_code.html">Documenting code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/10_bia_bob-statistical_testing.html">Statistical testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/20_gui_plots.html">Graphical user interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/40_generating_images.html">Generating image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/50_synthetic_customer_data_llms.html">Generating synthetic customer data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/51_synthetic_customer_data_rnd_generators.html">Combining LLMs with Random number generators for data generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../day4.1_llms/90_under_the_hood.html">Under the hood: Configure bia-bob’s <em>behaviour</em> through system messages</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://aischool.iom-leipzig.de/">AI School Website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">License CC-BY 4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../imprint.html">Imprint</a></li>
+
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday2.2_ml_classification/07_error_analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/day2.2_ml_classification/07_error_analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Error analysis in multiclass classification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="error-analysis-in-multiclass-classification">
+<h1>Error analysis in multiclass classification<a class="headerlink" href="#error-analysis-in-multiclass-classification" title="Permalink to this heading">#</a></h1>
+<p>We can run a grid search to tune hyperparameters in a multiclass classification:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># code from previous notebook of this section</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_column_selector</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;cl2_data.csv&#39;</span><span class="p">)</span>
+
+<span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_set</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">num_pipeline</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">())</span> 
+
+<span class="n">preprocessing</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span><span class="n">num_pipeline</span><span class="p">,</span> <span class="n">make_column_selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">))])</span>
+
+<span class="n">model_svc</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessing</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+<span class="c1"># end of code from previous notebook of this section</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;svc__C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">1000</span><span class="p">],</span>
+              <span class="p">}]</span>
+
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model_svc</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;f1_weighted&quot;</span><span class="p">)</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">cv_hyperpara</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
+<span class="n">cv_hyperpara</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cv_hyperpara</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean_fit_time</th>
+      <th>std_fit_time</th>
+      <th>mean_score_time</th>
+      <th>std_score_time</th>
+      <th>param_svc__C</th>
+      <th>params</th>
+      <th>split0_test_score</th>
+      <th>split1_test_score</th>
+      <th>split2_test_score</th>
+      <th>split3_test_score</th>
+      <th>split4_test_score</th>
+      <th>mean_test_score</th>
+      <th>std_test_score</th>
+      <th>rank_test_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>0.029948</td>
+      <td>0.001811</td>
+      <td>0.009540</td>
+      <td>0.000129</td>
+      <td>500.0</td>
+      <td>{'svc__C': 500}</td>
+      <td>0.930226</td>
+      <td>0.944843</td>
+      <td>0.942431</td>
+      <td>0.947741</td>
+      <td>0.934796</td>
+      <td>0.940007</td>
+      <td>0.006510</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.051154</td>
+      <td>0.013746</td>
+      <td>0.013101</td>
+      <td>0.004296</td>
+      <td>1000.0</td>
+      <td>{'svc__C': 1000}</td>
+      <td>0.930226</td>
+      <td>0.947387</td>
+      <td>0.939946</td>
+      <td>0.945193</td>
+      <td>0.934796</td>
+      <td>0.939510</td>
+      <td>0.006371</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.021430</td>
+      <td>0.000632</td>
+      <td>0.009857</td>
+      <td>0.000110</td>
+      <td>100.0</td>
+      <td>{'svc__C': 100}</td>
+      <td>0.932677</td>
+      <td>0.942372</td>
+      <td>0.942431</td>
+      <td>0.945134</td>
+      <td>0.929804</td>
+      <td>0.938484</td>
+      <td>0.006066</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.016629</td>
+      <td>0.000684</td>
+      <td>0.010636</td>
+      <td>0.000258</td>
+      <td>10.0</td>
+      <td>{'svc__C': 10}</td>
+      <td>0.932811</td>
+      <td>0.942438</td>
+      <td>0.935092</td>
+      <td>0.950091</td>
+      <td>0.924615</td>
+      <td>0.937009</td>
+      <td>0.008666</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.020197</td>
+      <td>0.000130</td>
+      <td>0.015032</td>
+      <td>0.000160</td>
+      <td>0.5</td>
+      <td>{'svc__C': 0.5}</td>
+      <td>0.930362</td>
+      <td>0.947614</td>
+      <td>0.940436</td>
+      <td>0.947624</td>
+      <td>0.917567</td>
+      <td>0.936720</td>
+      <td>0.011477</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Our best model has a <span class="math notranslate nohighlight">\(F_1\)</span> score of 0.94. The confusion matrix would be a good choice for a more detailed error analysis where a graphical support is desirable. This can be done by “ConfusionMatrixDisplay” with scikit-learn:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_predict</span>
+
+<span class="n">model_svc</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessing</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">500.0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
+
+<span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">model_svc</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7f4e50e66f00&gt;
+</pre></div>
+</div>
+<img alt="../_images/b889e6238945247c3d4b7824880d31fd8ff434485e7d2786a2df6f848ad9cd2c.png" src="../_images/b889e6238945247c3d4b7824880d31fd8ff434485e7d2786a2df6f848ad9cd2c.png" />
+</div>
+</div>
+<p>We see that the prediction of “group5” is most prone to false predictions. However, there is no problem to distinguish “group4” and “group5” from each other. If you plot larger confusion matrices, it might be desirable to highlight better areas with large errors. This can be done as follow:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_weight_svc</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train_pred</span> <span class="o">!=</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight_svc</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7f4e50492300&gt;
+</pre></div>
+</div>
+<img alt="../_images/fad7f1fcfd7d9f5e89a9b3fab78ac4eb720efb33779ab8a945a37448c09eba4a.png" src="../_images/fad7f1fcfd7d9f5e89a9b3fab78ac4eb720efb33779ab8a945a37448c09eba4a.png" />
+</div>
+</div>
+<p>We see that “group4” instances are always predicted as “group2” if an error occurs. We see also that “group3” is most often false predicted as “group1”. As you see, the matrix is normalized to the rows labels (true labels). We can also normalize it to the columns (predictions):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight_svc</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s2">&quot;pred&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7f4e4c581fa0&gt;
+</pre></div>
+</div>
+<img alt="../_images/54a7a06250403f83348850a76f3aec16db9bbe6765337a8b9bddf1f89cef4a09.png" src="../_images/54a7a06250403f83348850a76f3aec16db9bbe6765337a8b9bddf1f89cef4a09.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "venv-ai-school"
+        },
+        kernelOptions: {
+            name: "venv-ai-school",
+            path: "./day2.2_ml_classification"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'venv-ai-school'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on 2025-10-03.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+Copyright: Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> unless mentioned otherwise. 
+Contributions and feedback are welcome.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
