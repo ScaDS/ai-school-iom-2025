@@ -54,7 +54,7 @@ Please follow the steps on [this website](https://sdlaml.pages.jsc.fz-juelich.de
 
 ## Optional for local execution
 
-### Setting up Python and virtual environments
+### Setting up Python and virtual environments with Conda
 
 **NOTE:** As preparation of the course you do not need to install Python or Conda on your computer because we will work in a remote HPC environment where you get access to. However, _in case_ you want to play with the notebooks and tools on your own computer, follow the instructions below.
 
@@ -108,4 +108,3 @@ Since we are going to use the deep learning frameworks [pytorch](https://pytorch
 * You can now execute the training notebooks locally
 * Then, Jupyter Lab can be shut down or terminated (e.g., `ctrl-C` in the terminal)
 * To deactivate the environment run: `conda deactivate`
-

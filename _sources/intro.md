@@ -62,11 +62,13 @@ From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peacefu
 
 * [bia-bob](https://github.com/haesleinhuepf/bia-bob): AI-assisted Code Generation
 * [numpy](https://numpy.org/): Basic numeric Processing
-* scipy
+* [pandas](https://pandas.pydata.org/): Data analysis and manipulation
+* [scipy](https://scipy.org/): Fundamental algorithms for scientific computing
 * [scikit-image](https://scikit-image.org/): Scientific Image Processing
 * [scikit-learn](https://scikit-learn.org/): Machine Learning Library
-* seaborn
-* pytorch
+* [seaborn](https://seaborn.pydata.org/): Statistical data visualization
+* [pytorch](https://docs.pytorch.org/tutorials/intro.html): Deep learning framework
+* [tensorflow](https://www.tensorflow.org/) with [keras](https://keras.io/): High level deep learning frameworks
 * [stackview](https://github.com/haesleinhuepf/stackview): An interactive nD image viewer for Jupyter Notebooks
 
 ## Related materials
