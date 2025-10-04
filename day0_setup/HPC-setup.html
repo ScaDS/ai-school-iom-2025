@@ -1309,14 +1309,38 @@ title="Print to PDF"
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#install-the-python-kernel-iom-env">
-   1. Install the Python Kernel “iom-env”
+  <a class="reference internal nav-link" href="#copy-notebooks-and-data">
+   1. Copy notebooks and data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#copy-notebooks-and-data">
-   2. Copy notebooks and data
+  <a class="reference internal nav-link" href="#install-the-python-kernels">
+   2. Install the Python Kernels
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-this-cell-on-day-1-on-cluster-romeo-only">
+     Run this cell on Day 1 on cluster
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       romeo
+      </span>
+     </code>
+     only!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-this-cell-on-day-3-on-cluster-alpha-only">
+     Run this cell on Day 3 on cluster
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       alpha
+      </span>
+     </code>
+     only!
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1332,48 +1356,13 @@ title="Print to PDF"
 <p><strong>This notebook <code class="docutils literal notranslate"><span class="pre">HPC-setup.ipynb</span></code> is used to prepare your HPC Jupyter Lab environment on the first day of the training.</strong></p>
 <p>Execute he following cells to:</p>
 <ul class="simple">
-<li><p>Install a custom Python kernel with all packages used in the training</p></li>
-<li><p>Copy all notebooks and data used for training to your home directory</p></li>
+<li><p>Install custom Python kernels with all packages used in the training sessions</p></li>
+<li><p>Copy all notebooks and data used for training to your user accounts home directory</p></li>
 </ul>
-<section id="install-the-python-kernel-iom-env">
-<h2>1. Install the Python Kernel “iom-env”<a class="headerlink" href="#install-the-python-kernel-iom-env" title="Permalink to this heading">#</a></h2>
-<p>The following two commands install two Python kernels:</p>
-<ul class="simple">
-<li><p>“iom-env-torch”</p></li>
-<li><p>“iom-env-tensorflow”</p></li>
-</ul>
-<p>This only needs to be done once, after which the Python kernels will be available for your user account for the rest of the training school.</p>
-<ol class="arabic simple">
-<li><p>Execute the following cells with <code class="docutils literal notranslate"><span class="pre">ctrl-enter</span></code> or <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code></p></li>
-<li><p>When prompted to “Select Kernel”, leave the default Python 3 kernel and click “Select”.</p></li>
-<li><p>Wait until both outputs are shown:</p></li>
-</ol>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">iom-env-torch</span> <span class="pre">in</span> <span class="pre">[...]</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">iom-env-tensorflow</span> <span class="pre">in</span> <span class="pre">[...]</span></code></p></li>
-</ul>
-<ol class="arabic simple" start="4">
-<li><p>Reload the page</p></li>
-<li><p>You can now select the Python kernels <code class="docutils literal notranslate"><span class="pre">iom-env-torch</span></code> and <code class="docutils literal notranslate"><span class="pre">iom-env-tensorflow</span></code> from the available kernels</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /data/horse/ws/mats024c-iom-ai/install_python_kernel_torch.sh
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /data/horse/ws/mats024c-iom-ai/install_python_kernel_tensorflow.sh
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="copy-notebooks-and-data">
-<h2>2. Copy notebooks and data<a class="headerlink" href="#copy-notebooks-and-data" title="Permalink to this heading">#</a></h2>
-<p>The following command copies the Jupyter notebooks and data used in the sessions to your home directory.</p>
+<h2>1. Copy notebooks and data<a class="headerlink" href="#copy-notebooks-and-data" title="Permalink to this heading">#</a></h2>
+<p><strong>This only needs to be done once!</strong></p>
+<p>The following cell copies the Jupyter notebooks and data used in the training sessions to your home directory.</p>
 <p>It will create a directory <code class="docutils literal notranslate"><span class="pre">~/iom_notebooks</span></code> with subdirectories for the sessions.</p>
 <ol class="arabic simple">
 <li><p>Execute the cell with <code class="docutils literal notranslate"><span class="pre">ctrl-enter</span></code> or <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code></p></li>
@@ -1384,11 +1373,63 @@ title="Print to PDF"
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /data/horse/ws/mats024c-iom-ai/copy_data.sh
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /projects/p_scads_trainings/iom-ai/scripts/copy_data.sh
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="install-the-python-kernels">
+<h2>2. Install the Python Kernels<a class="headerlink" href="#install-the-python-kernels" title="Permalink to this heading">#</a></h2>
+<p><strong>This only needs to be done once!</strong></p>
+<p>For our practical sessions we will use different clusters on the TUD HPC resources:</p>
+<ul class="simple">
+<li><p>Cluster <code class="docutils literal notranslate"><span class="pre">romeo</span></code> (CPU only) on Day 1 and Day 2</p></li>
+<li><p>Cluster <code class="docutils literal notranslate"><span class="pre">alpha</span></code> (CPU+GPU) on Day 3 and Day 4</p></li>
+</ul>
+<p>We need to install separate Python kernels for each cluster:</p>
+<ul class="simple">
+<li><p>“iom-venv-torch-rom” with packages including pytorch for cluster <code class="docutils literal notranslate"><span class="pre">romeo</span></code></p></li>
+<li><p>“iom-venv-torch-alp” with packages including pytorch for cluster <code class="docutils literal notranslate"><span class="pre">alpha</span></code></p></li>
+<li><p>“iom-venv-tensor-alp” with packages including tensorflow for cluster <code class="docutils literal notranslate"><span class="pre">alpha</span></code></p></li>
+</ul>
+<p>Required steps:</p>
+<ol class="arabic simple">
+<li><p>Execute the following cells with <code class="docutils literal notranslate"><span class="pre">ctrl-enter</span></code> or <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code></p></li>
+<li><p>When prompted to “Select Kernel”, leave the default Python 3 kernel and click “Select”.</p></li>
+<li><p>Wait for the according outputs</p></li>
+<li><p>Reload the page</p></li>
+<li><p>You can now select the mentioned Python kernels from the available kernels</p></li>
+</ol>
+<section id="run-this-cell-on-day-1-on-cluster-romeo-only">
+<h3>Run this cell on Day 1 on cluster <code class="docutils literal notranslate"><span class="pre">romeo</span></code> only!<a class="headerlink" href="#run-this-cell-on-day-1-on-cluster-romeo-only" title="Permalink to this heading">#</a></h3>
+<p>Wait for this output:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">iom-venv-torch-rom</span> <span class="pre">in</span> <span class="pre">[...]</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /projects/p_scads_trainings/iom-ai/scripts/install_python_kernel_romeo.sh
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-this-cell-on-day-3-on-cluster-alpha-only">
+<h3>Run this cell on Day 3 on cluster <code class="docutils literal notranslate"><span class="pre">alpha</span></code> only!<a class="headerlink" href="#run-this-cell-on-day-3-on-cluster-alpha-only" title="Permalink to this heading">#</a></h3>
+<p>Wait for this outputs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">iom-venv-torch-alp</span> <span class="pre">in</span> <span class="pre">[...]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">iom-venv-tensor-alp</span> <span class="pre">in</span> <span class="pre">[...]</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!bash /projects/p_scads_trainings/iom-ai/scripts/install_python_kernel_alpha.sh
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1451,14 +1492,38 @@ title="Print to PDF"
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#install-the-python-kernel-iom-env">
-   1. Install the Python Kernel “iom-env”
+  <a class="reference internal nav-link" href="#copy-notebooks-and-data">
+   1. Copy notebooks and data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#copy-notebooks-and-data">
-   2. Copy notebooks and data
+  <a class="reference internal nav-link" href="#install-the-python-kernels">
+   2. Install the Python Kernels
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-this-cell-on-day-1-on-cluster-romeo-only">
+     Run this cell on Day 1 on cluster
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       romeo
+      </span>
+     </code>
+     only!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-this-cell-on-day-3-on-cluster-alpha-only">
+     Run this cell on Day 3 on cluster
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       alpha
+      </span>
+     </code>
+     only!
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1488,7 +1553,7 @@ By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-10-03.<br>
+Last updated on 2025-10-04.<br>
 </p>
   </div>
   

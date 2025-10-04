@@ -20,7 +20,7 @@ This will be done together on the first day of the training school.
 2. Use the provided spawn links to allocate HPC resources and spawn a Jupyter Lab server
 3. After being assigned a spot on the HPC cluster, you will be greeted by a Jupyter Lab environment.
 4. Open a terminal and copy a Juypter notebook for HPC setup to your home dir:
-  * `cp /data/horse/ws/mats024c-iom-ai/HPC-setup.ipynb .` 
+  * `cp /projects/p_scads_trainings/iom-ai/HPC-setup.ipynb .`
 5. Close the terminal. In the file browser on the left side, click the refresh icon and open `HPC-setup.ipynb` 
 6. When asked to "Select Kernel", leave the default Python 3 kernel and click "Select".
 7. Do the steps explained in the notebook.
