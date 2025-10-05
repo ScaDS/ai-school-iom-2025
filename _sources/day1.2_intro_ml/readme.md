@@ -3,7 +3,7 @@
 Following steps are typical for a machine learning project:
 1. Look at the big picture.
 2. Get the data.
-3. Create a test dataset (only for supervised techniques)
+3. Create a test data set (only for supervised techniques)
 4. Explore and visualize the data.
 5. Prepare the data for the machine learning algorithm.
 6. Select a model and train it.
