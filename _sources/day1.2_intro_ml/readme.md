@@ -3,11 +3,12 @@
 Following steps are typical for a machine learning project:
 1. Look at the big picture.
 2. Get the data.
-3. Explore and visualize the data.
-4. Prepare the data for the machine learning algorithm.
-5. Select a model and train it.
-6. Fine-tune your model.
-7. Present your model and make it ready for later usage.
+3. Create a test dataset (only for supervised techniques)
+4. Explore and visualize the data.
+5. Prepare the data for the machine learning algorithm.
+6. Select a model and train it.
+7. Fine-tune your model.
+8. Present your model and make it ready for later usage.
 
 We will go through them in the following using scikit-learn as machine learning library.
  
