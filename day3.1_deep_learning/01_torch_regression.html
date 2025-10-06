@@ -740,6 +740,13 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#load-and-inspect-data">
      Load and inspect data
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#check-for-outliers-and-missing-data">
+       Check for outliers and missing data
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#prepare-train-and-test-data">
@@ -770,6 +777,11 @@ title="Print to PDF"
    Evaluate model
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-pretrained-model-and-predict">
+   Load pretrained model and predict
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -781,26 +793,27 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="train-a-neural-network-for-regression">
 <h1>Train a Neural Network for Regression<a class="headerlink" href="#train-a-neural-network-for-regression" title="Permalink to this heading">#</a></h1>
-<p>This practical session will cover the building and training of a neural network with <a class="reference external" href="https://docs.pytorch.org/tutorials/intro.html">pytorch</a> and with <a class="reference external" href="https://optuna.readthedocs.io/en/stable/index.html">optuna</a>.</p>
+<p>This practical session will cover the building and training of a neural network. We want to work on the regression problem with the “HB energy” data to be able to compare the training process and prediction results.</p>
+<p>The model will be built with <a class="reference external" href="https://docs.pytorch.org/tutorials/intro.html">pytorch</a> and we do hyperparameter optimization with <a class="reference external" href="https://optuna.readthedocs.io/en/stable/index.html">optuna</a>.</p>
 <p>Alternative libraries for hyperparameter optimization and more:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.ray.io/en/latest/tune/index.html">Ray with Ray Tune</a></p></li>
 <li><p><a class="reference external" href="https://hyperopt.github.io/hyperopt/">Hyperopt</a></p></li>
 <li><p><a class="reference external" href="https://scikit-optimize.github.io/stable/">scikit-optimize</a></p></li>
 </ul>
-<p>We want to work on the regression problem with the “HB energy” data to be able to compare the training process and prediction results.</p>
 <section id="data-preprocessing">
 <h2>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
 </pre></div>
 </div>
 </div>
@@ -810,9 +823,8 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/HB_data.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Missing values:&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -849,134 +861,69 @@ title="Print to PDF"
   </thead>
   <tbody>
     <tr>
-      <th>1628</th>
-      <td>-16.2384</td>
-      <td>0.0392</td>
-      <td>0.9798</td>
-      <td>-0.171865</td>
-      <td>-0.027486</td>
-      <td>0.064607</td>
-      <td>1.008853</td>
-      <td>2.491147</td>
-      <td>O</td>
+      <th>0</th>
+      <td>-34.5895</td>
+      <td>0.2457</td>
+      <td>0.8981</td>
+      <td>-0.088121</td>
+      <td>0.069022</td>
+      <td>0.030216</td>
+      <td>1.029201</td>
+      <td>1.670799</td>
+      <td>N</td>
       <td>N</td>
     </tr>
     <tr>
-      <th>1629</th>
-      <td>-24.9033</td>
-      <td>0.1690</td>
-      <td>1.0993</td>
-      <td>-0.191174</td>
-      <td>-0.183888</td>
-      <td>0.029836</td>
-      <td>0.973936</td>
-      <td>1.726064</td>
-      <td>O</td>
-      <td>O</td>
+      <th>1</th>
+      <td>-39.2652</td>
+      <td>0.2061</td>
+      <td>0.9089</td>
+      <td>-0.100112</td>
+      <td>0.070940</td>
+      <td>0.042037</td>
+      <td>1.027247</td>
+      <td>1.772753</td>
+      <td>N</td>
+      <td>N</td>
     </tr>
     <tr>
-      <th>1630</th>
-      <td>-26.4679</td>
-      <td>0.1395</td>
-      <td>1.1069</td>
-      <td>-0.198331</td>
-      <td>-0.180041</td>
-      <td>0.039182</td>
-      <td>0.973682</td>
-      <td>1.826318</td>
-      <td>O</td>
-      <td>O</td>
+      <th>2</th>
+      <td>-41.0025</td>
+      <td>0.1748</td>
+      <td>0.9185</td>
+      <td>-0.108372</td>
+      <td>0.072666</td>
+      <td>0.050028</td>
+      <td>1.025135</td>
+      <td>1.874865</td>
+      <td>N</td>
+      <td>N</td>
     </tr>
     <tr>
-      <th>1631</th>
-      <td>-26.5155</td>
-      <td>0.1166</td>
-      <td>1.1137</td>
-      <td>-0.203101</td>
-      <td>-0.176368</td>
-      <td>0.045722</td>
-      <td>0.973062</td>
-      <td>1.926938</td>
-      <td>O</td>
-      <td>O</td>
+      <th>3</th>
+      <td>-40.8874</td>
+      <td>0.1496</td>
+      <td>0.9269</td>
+      <td>-0.114255</td>
+      <td>0.074115</td>
+      <td>0.055766</td>
+      <td>1.023101</td>
+      <td>1.976899</td>
+      <td>N</td>
+      <td>N</td>
     </tr>
     <tr>
-      <th>1632</th>
-      <td>-25.5760</td>
-      <td>0.0982</td>
-      <td>1.1196</td>
-      <td>-0.206464</td>
-      <td>-0.172994</td>
-      <td>0.050628</td>
-      <td>0.972319</td>
-      <td>2.027681</td>
-      <td>O</td>
-      <td>O</td>
-    </tr>
-    <tr>
-      <th>1633</th>
-      <td>-24.1264</td>
-      <td>0.0832</td>
-      <td>1.1248</td>
-      <td>-0.208975</td>
-      <td>-0.169954</td>
-      <td>0.054530</td>
-      <td>0.971506</td>
-      <td>2.128494</td>
-      <td>O</td>
-      <td>O</td>
-    </tr>
-    <tr>
-      <th>1634</th>
-      <td>-22.4911</td>
-      <td>0.0707</td>
-      <td>1.1291</td>
-      <td>-0.210940</td>
-      <td>-0.167299</td>
-      <td>0.057801</td>
-      <td>0.970708</td>
-      <td>2.229292</td>
-      <td>O</td>
-      <td>O</td>
-    </tr>
-    <tr>
-      <th>1635</th>
-      <td>-20.7796</td>
-      <td>0.0599</td>
-      <td>1.1329</td>
-      <td>-0.212591</td>
-      <td>-0.164774</td>
-      <td>0.060660</td>
-      <td>0.969920</td>
-      <td>2.330080</td>
-      <td>O</td>
-      <td>O</td>
-    </tr>
-    <tr>
-      <th>1636</th>
-      <td>-18.6559</td>
-      <td>0.0506</td>
-      <td>1.1361</td>
-      <td>-0.213856</td>
-      <td>-0.162590</td>
-      <td>0.063149</td>
-      <td>0.969171</td>
-      <td>2.430829</td>
-      <td>O</td>
-      <td>O</td>
-    </tr>
-    <tr>
-      <th>1637</th>
-      <td>-17.0634</td>
-      <td>0.0433</td>
-      <td>1.1385</td>
-      <td>-0.214541</td>
-      <td>-0.160926</td>
-      <td>0.065275</td>
-      <td>0.968484</td>
-      <td>2.531516</td>
-      <td>O</td>
-      <td>O</td>
+      <th>4</th>
+      <td>-39.6642</td>
+      <td>0.1289</td>
+      <td>0.9341</td>
+      <td>-0.118741</td>
+      <td>0.075412</td>
+      <td>0.060208</td>
+      <td>1.021107</td>
+      <td>2.078893</td>
+      <td>N</td>
+      <td>N</td>
     </tr>
   </tbody>
 </table>
@@ -998,23 +945,196 @@ Data columns (total 10 columns):
 dtypes: float64(8), object(2)
 memory usage: 128.1+ KB
 None
-Missing values: 0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="check-for-outliers-and-missing-data">
+<h4>Check for outliers and missing data<a class="headerlink" href="#check-for-outliers-and-missing-data" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Have a look at the descriptive statistics</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>energy</th>
+      <td>1638.0</td>
+      <td>-34.783759</td>
+      <td>29.955517</td>
+      <td>-200.597000</td>
+      <td>-48.226500</td>
+      <td>-24.801450</td>
+      <td>-14.991750</td>
+      <td>45.413900</td>
+    </tr>
+    <tr>
+      <th>bo-acc</th>
+      <td>1638.0</td>
+      <td>0.138418</td>
+      <td>0.075418</td>
+      <td>0.034200</td>
+      <td>0.080125</td>
+      <td>0.120600</td>
+      <td>0.181000</td>
+      <td>0.478100</td>
+    </tr>
+    <tr>
+      <th>bo-donor</th>
+      <td>1638.0</td>
+      <td>1.013692</td>
+      <td>0.087824</td>
+      <td>0.781200</td>
+      <td>0.942050</td>
+      <td>1.015000</td>
+      <td>1.073400</td>
+      <td>1.232500</td>
+    </tr>
+    <tr>
+      <th>q-acc</th>
+      <td>1638.0</td>
+      <td>-0.155270</td>
+      <td>0.249997</td>
+      <td>-0.898797</td>
+      <td>-0.186461</td>
+      <td>-0.130414</td>
+      <td>-0.090575</td>
+      <td>0.353389</td>
+    </tr>
+    <tr>
+      <th>q-donor</th>
+      <td>1638.0</td>
+      <td>-0.022809</td>
+      <td>0.151830</td>
+      <td>-0.275322</td>
+      <td>-0.159131</td>
+      <td>-0.036496</td>
+      <td>0.073683</td>
+      <td>0.354334</td>
+    </tr>
+    <tr>
+      <th>q-hatom</th>
+      <td>1638.0</td>
+      <td>0.044391</td>
+      <td>0.041812</td>
+      <td>-0.110008</td>
+      <td>0.022605</td>
+      <td>0.045868</td>
+      <td>0.067276</td>
+      <td>0.149418</td>
+    </tr>
+    <tr>
+      <th>dist-dh</th>
+      <td>1638.0</td>
+      <td>1.040342</td>
+      <td>0.108458</td>
+      <td>0.930018</td>
+      <td>0.978411</td>
+      <td>1.013607</td>
+      <td>1.038072</td>
+      <td>1.459200</td>
+    </tr>
+    <tr>
+      <th>dist-ah</th>
+      <td>1638.0</td>
+      <td>2.156605</td>
+      <td>0.290894</td>
+      <td>1.564120</td>
+      <td>1.927490</td>
+      <td>2.158575</td>
+      <td>2.383549</td>
+      <td>2.868591</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Boxplot to have a basic check for obvious outliers</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;energy&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/29730077565b3653c883c8fc435ee244d9781f5ebf5c91adb684122a14a8238b.png" src="../_images/29730077565b3653c883c8fc435ee244d9781f5ebf5c91adb684122a14a8238b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check for missing values</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Missing values:&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Missing values: 0
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+</section>
 <section id="prepare-train-and-test-data">
 <h3>Prepare train and test data<a class="headerlink" href="#prepare-train-and-test-data" title="Permalink to this heading">#</a></h3>
-<p>We will apply nearly the same preprocessing steps we’ve alreday seen in the regression session in day 1.</p>
+<p>We will apply similar preprocessing steps we’ve alreday seen in the regression session on day 1.<br />
+This time, we will also keep 5% of the data for a final validation on prediction quality after training.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get random 5% of data for validation</span>
+<span class="n">df_val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># Drop those validation data from training data</span>
+<span class="n">df_tt</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df_val</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training/Test data shape: </span><span class="si">{</span><span class="n">df_tt</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Validation data shape: </span><span class="si">{</span><span class="n">df_val</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training/Test data shape: (1556, 10), Validation data shape: (82, 10)
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separate features and target</span>
 <span class="n">target_col</span> <span class="o">=</span> <span class="s2">&quot;energy&quot;</span>
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_tt</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target_col</span><span class="p">])</span>
 <span class="c1"># We need y to be a 2-D array (n_samples x n_features)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_tt</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1030,13 +1150,13 @@ Missing values: 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preprocess and transform features</span>
-<span class="n">numeric_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">numerical_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="n">categorical_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="c1"># Define scaling and encoding for X</span>
 <span class="n">x_preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
     <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numerical_features</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">categorical_features</span><span class="p">),</span>
     <span class="p">],</span>
     <span class="n">remainder</span><span class="o">=</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span>
@@ -1065,10 +1185,10 @@ Missing values: 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train:  (1310, 16)
-X_test:   (328, 16)
-y_train:  (1310, 1)
-y_test:   (328, 1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train:  (1244, 16)
+X_test:   (312, 16)
+y_train:  (1244, 1)
+y_test:   (312, 1)
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1110,18 +1230,18 @@ y_test:   (328, 1)
   <tbody>
     <tr>
       <th>0</th>
-      <td>1.528941</td>
-      <td>1.085590</td>
-      <td>1.302776</td>
-      <td>-1.044430</td>
-      <td>-1.755071</td>
-      <td>-0.695289</td>
-      <td>-0.405888</td>
-      <td>0.0</td>
+      <td>-1.285813</td>
+      <td>0.917745</td>
+      <td>-0.115091</td>
+      <td>-0.282173</td>
+      <td>0.864921</td>
+      <td>-0.662341</td>
+      <td>1.298361</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -1129,18 +1249,18 @@ y_test:   (328, 1)
     </tr>
     <tr>
       <th>1</th>
-      <td>0.440623</td>
-      <td>-1.342533</td>
-      <td>-0.432635</td>
-      <td>1.960155</td>
-      <td>1.517928</td>
-      <td>0.116373</td>
-      <td>-1.061508</td>
+      <td>-0.647649</td>
+      <td>0.186561</td>
+      <td>0.970476</td>
+      <td>-0.771634</td>
+      <td>-0.619231</td>
+      <td>-0.258013</td>
+      <td>1.832981</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1148,14 +1268,13 @@ y_test:   (328, 1)
     </tr>
     <tr>
       <th>2</th>
-      <td>0.949121</td>
-      <td>0.945702</td>
-      <td>1.456768</td>
-      <td>-1.074853</td>
-      <td>-1.244247</td>
-      <td>-0.649960</td>
-      <td>-0.078786</td>
-      <td>0.0</td>
+      <td>-1.162635</td>
+      <td>-0.394051</td>
+      <td>0.083728</td>
+      <td>-0.078369</td>
+      <td>0.426753</td>
+      <td>-0.294188</td>
+      <td>0.813984</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1163,45 +1282,262 @@ y_test:   (328, 1)
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.517228</td>
-      <td>0.568121</td>
-      <td>-0.897550</td>
-      <td>-1.268309</td>
-      <td>0.114001</td>
-      <td>-0.418482</td>
-      <td>-0.856478</td>
+      <td>0.306321</td>
+      <td>-0.886830</td>
+      <td>0.274388</td>
+      <td>0.630579</td>
+      <td>0.169388</td>
+      <td>-0.271833</td>
+      <td>-1.260058</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.782975</td>
+      <td>0.231048</td>
+      <td>-2.398073</td>
+      <td>-1.403848</td>
+      <td>-1.551664</td>
+      <td>-0.384992</td>
+      <td>-0.519736</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_t</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">feat_names</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr>
-      <th>4</th>
-      <td>-1.014869</td>
-      <td>0.803541</td>
-      <td>-0.243681</td>
-      <td>-0.295638</td>
-      <td>0.791833</td>
-      <td>-0.634377</td>
-      <td>0.604197</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
+      <th>num__bo-acc</th>
+      <td>1244.0</td>
+      <td>-3.726922e-16</td>
+      <td>1.000402</td>
+      <td>-1.391955</td>
+      <td>-0.783930</td>
+      <td>-0.226356</td>
+      <td>0.561194</td>
+      <td>4.424904</td>
+    </tr>
+    <tr>
+      <th>num__bo-donor</th>
+      <td>1244.0</td>
+      <td>-2.077652e-16</td>
+      <td>1.000402</td>
+      <td>-2.635512</td>
+      <td>-0.825518</td>
+      <td>0.005761</td>
+      <td>0.690747</td>
+      <td>2.512432</td>
+    </tr>
+    <tr>
+      <th>num__q-acc</th>
+      <td>1244.0</td>
+      <td>3.212864e-17</td>
+      <td>1.000402</td>
+      <td>-2.898847</td>
+      <td>-0.137707</td>
+      <td>0.108404</td>
+      <td>0.269204</td>
+      <td>1.999119</td>
+    </tr>
+    <tr>
+      <th>num__q-donor</th>
+      <td>1244.0</td>
+      <td>1.427940e-18</td>
+      <td>1.000402</td>
+      <td>-1.572323</td>
+      <td>-0.879873</td>
+      <td>-0.095105</td>
+      <td>0.625609</td>
+      <td>2.481237</td>
+    </tr>
+    <tr>
+      <th>num__q-hatom</th>
+      <td>1244.0</td>
+      <td>-1.427940e-18</td>
+      <td>1.000402</td>
+      <td>-3.597710</td>
+      <td>-0.516487</td>
+      <td>0.048946</td>
+      <td>0.545109</td>
+      <td>2.483628</td>
+    </tr>
+    <tr>
+      <th>num__dist-dh</th>
+      <td>1244.0</td>
+      <td>1.115221e-15</td>
+      <td>1.000402</td>
+      <td>-1.019973</td>
+      <td>-0.572710</td>
+      <td>-0.260462</td>
+      <td>-0.034062</td>
+      <td>3.766413</td>
+    </tr>
+    <tr>
+      <th>num__dist-ah</th>
+      <td>1244.0</td>
+      <td>5.026347e-16</td>
+      <td>1.000402</td>
+      <td>-2.028257</td>
+      <td>-0.781578</td>
+      <td>0.003296</td>
+      <td>0.792599</td>
+      <td>2.457190</td>
+    </tr>
+    <tr>
+      <th>cat__atomtype-acc_Cl</th>
+      <td>1244.0</td>
+      <td>5.707395e-02</td>
+      <td>0.232077</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>cat__atomtype-acc_F</th>
+      <td>1244.0</td>
+      <td>3.617363e-02</td>
+      <td>0.186797</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>cat__atomtype-acc_N</th>
+      <td>1244.0</td>
+      <td>1.302251e-01</td>
+      <td>0.336686</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>cat__atomtype-acc_O</th>
+      <td>1244.0</td>
+      <td>5.956592e-01</td>
+      <td>0.490961</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>cat__atomtype-acc_S</th>
+      <td>1244.0</td>
+      <td>1.808682e-01</td>
+      <td>0.385064</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>cat__atomtype-don_F</th>
+      <td>1244.0</td>
+      <td>5.948553e-02</td>
+      <td>0.236626</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>cat__atomtype-don_N</th>
+      <td>1244.0</td>
+      <td>5.723473e-01</td>
+      <td>0.494937</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>cat__atomtype-don_O</th>
+      <td>1244.0</td>
+      <td>2.636656e-01</td>
+      <td>0.440797</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>cat__atomtype-don_S</th>
+      <td>1244.0</td>
+      <td>1.045016e-01</td>
+      <td>0.306033</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
     </tr>
   </tbody>
 </table>
@@ -1220,7 +1556,6 @@ y_test:   (328, 1)
 <span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">optuna</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="n">optuna</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">set_verbosity</span><span class="p">(</span><span class="n">optuna</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1252,12 +1587,16 @@ y_test:   (328, 1)
         <span class="n">prev</span> <span class="o">=</span> <span class="n">in_dim</span>
         <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hidden</span><span class="p">:</span>
             <span class="n">layers</span> <span class="o">+=</span> <span class="p">[</span>
-                <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> <span class="c1"># fully connected layer from prev inputs to h outputs</span>
-                <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> <span class="c1"># non-linear activation with rectified linear unit</span>
-                <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span> <span class="c1"># regularization: randomly zeroes activations with probability dropout</span>
+                <span class="c1"># fully connected layer from prev inputs to h outputs</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> 
+                <span class="c1"># non-linear activation with rectified linear unit</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> 
+                <span class="c1"># regularization via dropout: randomly zeroes activations with probability</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span> 
                 <span class="p">]</span>
             <span class="n">prev</span> <span class="o">=</span> <span class="n">h</span>
-        <span class="n">layers</span> <span class="o">+=</span> <span class="p">[</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="c1"># Regression output with a single neuron for continuous value</span>
+        <span class="c1"># Last layer is regression output with a single neuron for continuous value</span>
+        <span class="n">layers</span> <span class="o">+=</span> <span class="p">[</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">layers</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> 
@@ -1287,6 +1626,10 @@ y_test:   (328, 1)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define function for training loop with hyperparameter configuration</span>
+<span class="c1"># Also define a directory to store model checkpoints during training</span>
+<span class="n">CKPT_DIR</span> <span class="o">=</span> <span class="s2">&quot;optuna_ckpts&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">CKPT_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 <span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
     <span class="c1"># Define hyperparameter search space for optuna</span>
     <span class="n">hidden_layers_list</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> <span class="p">(</span><span class="mi">64</span><span class="p">,)]</span>
@@ -1294,6 +1637,7 @@ y_test:   (328, 1)
     <span class="n">hidden_layers</span> <span class="o">=</span> <span class="n">hidden_layers_list</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
     <span class="n">dropout</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;dropout&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
     <span class="n">lr</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="mf">5e-4</span><span class="p">,</span> <span class="mf">3e-3</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1">#lr = 0.1</span>
     <span class="n">weight_decay</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;weight_decay&quot;</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">batch_size</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s2">&quot;batch_size&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">])</span>
     <span class="n">epochs</span> <span class="o">=</span> <span class="mi">50</span>
@@ -1311,10 +1655,14 @@ y_test:   (328, 1)
     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="n">weight_decay</span><span class="p">)</span>
     <span class="c1"># Define loss function: Mean Squared Error</span>
     <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
-    
+
+    <span class="c1"># Check model progress and store checkpoints</span>
+    <span class="n">best_rmse</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+    <span class="n">best_ckpt_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CKPT_DIR</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;best_trial.pt&quot;</span><span class="p">)</span>
+
     <span class="c1"># Run epochs for training with validation at the end of each epoch</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Epochs&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="c1"># Train with model updates</span>
+        <span class="c1"># Train for one epoch and update model parameters</span>
         <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
         <span class="n">train_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
@@ -1327,7 +1675,7 @@ y_test:   (328, 1)
             <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">x_batch</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">train_loss</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
 
-        <span class="c1"># Validate for test data without model updates</span>
+        <span class="c1"># Validate in this epoch for test data without updating model parameters</span>
         <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
         <span class="n">val_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="n">preds</span><span class="p">,</span> <span class="n">trues</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
@@ -1352,6 +1700,23 @@ y_test:   (328, 1)
         <span class="n">trial</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;val_rmse_epoch_</span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">val_rmse</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">should_prune</span><span class="p">():</span>
             <span class="k">raise</span> <span class="n">optuna</span><span class="o">.</span><span class="n">TrialPruned</span><span class="p">()</span>
+
+        <span class="c1"># Store model checkpoint if model improved</span>
+        <span class="k">if</span> <span class="n">val_rmse</span> <span class="o">&lt;</span> <span class="n">best_rmse</span><span class="p">:</span>
+            <span class="n">best_rmse</span> <span class="o">=</span> <span class="n">val_rmse</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;state_dict&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+                    <span class="s2">&quot;model_params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;in_dim&quot;</span><span class="p">:</span> <span class="n">X_train_t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="s2">&quot;hidden&quot;</span><span class="p">:</span> <span class="n">hidden_layers</span><span class="p">,</span>
+                        <span class="s2">&quot;dropout&quot;</span><span class="p">:</span> <span class="n">dropout</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+                <span class="n">best_ckpt_path</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">trial</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s2">&quot;best_model_ckpt&quot;</span><span class="p">,</span> <span class="n">best_ckpt_path</span><span class="p">)</span>
+            <span class="n">trial</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s2">&quot;best_val_rmse&quot;</span><span class="p">,</span> <span class="n">best_rmse</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">val_rmse</span>   
 </pre></div>
@@ -1369,6 +1734,8 @@ y_test:   (328, 1)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c62bc81e12bd4e1887792983fa5dd738", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "d8fb578912074c1290d427d0e20e73f2", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "b3fd3a967f894bb39fabf9cc3d4cf9db", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "b656156f76924d84872e4a957b1547d7", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6c11eac1dcb54ba8b4e04a0f09875f8c", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "4876bce831eb44e4a00b2d3a664729c1", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "33ccd641f5b94cba80376d17f81ec8a0", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "a67b2b0f67344fb9a9c013217f355a2a", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "fc90c4f135914b6c9d6897c5739ab326", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "5c37eeefe19f449db80c4825be01a4ad", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "f65cde6fe10044f5bc279a9249de9db9", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "15acfeec01c54de9a0a86536e44370a9", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "0e84f1fe8c66448680cc298f6e695eed", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "3800e6d927904aea9b0ec2af1b24afff", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "110ed3a1830147bb871e1d2b8a9bbab0", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "4cd7661899684a8d80ab45abcea8f94e", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "d0cdbb70736645a7a296691f1638add4", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "2b24808483f64761ba797f222b39c52f", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "5265c0276ff640c1a27ae666263637df", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "65adb8c27ba447168699395ccf439ad7", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 </section>
@@ -1377,7 +1744,8 @@ y_test:   (328, 1)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_trial</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">best_trial</span>
-<span class="n">display</span><span class="p">(</span><span class="s2">&quot;Params:&quot;</span><span class="p">,</span> <span class="n">best_trial</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<span class="n">best_params</span> <span class="o">=</span> <span class="n">best_trial</span><span class="o">.</span><span class="n">params</span>
+<span class="n">display</span><span class="p">(</span><span class="s2">&quot;Params:&quot;</span><span class="p">,</span> <span class="n">best_params</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best RMSE:&quot;</span><span class="p">,</span> <span class="n">best_trial</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1386,14 +1754,14 @@ y_test:   (328, 1)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Params:&#39;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;hidden_layers_idx&#39;: 0,
- &#39;dropout&#39;: 0.007087859540424846,
- &#39;lr&#39;: 0.0010776365403513469,
- &#39;weight_decay&#39;: 2.8400326138316148e-06,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;hidden_layers_idx&#39;: 1,
+ &#39;dropout&#39;: 0.08436995612384487,
+ &#39;lr&#39;: 0.0027353884778077557,
+ &#39;weight_decay&#39;: 1.3565682991643851e-06,
  &#39;batch_size&#39;: 16}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best RMSE: 1.7798393419177838
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best RMSE: 2.367166953422588
 </pre></div>
 </div>
 </div>
@@ -1436,11 +1804,11 @@ y_test:   (328, 1)
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       train_loss  val_loss  val_rmse_orig
 epoch                                     
-0        0.221369  0.037140       5.827601
-1        0.039834  0.034281       5.598833
-2        0.030917  0.024792       4.761287
-3        0.026653  0.023000       4.585942
-4        0.027124  0.023841       4.669043
+0        0.212837  0.057968       7.368030
+1        0.062150  0.028728       5.186882
+2        0.054407  0.024758       4.815195
+3        0.044266  0.022345       4.574517
+4        0.037966  0.021755       4.513753
 </pre></div>
 </div>
 </div>
@@ -1470,7 +1838,7 @@ memory usage: 1.6 KB
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
 </pre></div>
 </div>
-<img alt="../_images/ac1ba5749e34ada2832d8f1f8dd1e8aa8f57ac4c0f36e5db1260d78fdfa9d8bf.png" src="../_images/ac1ba5749e34ada2832d8f1f8dd1e8aa8f57ac4c0f36e5db1260d78fdfa9d8bf.png" />
+<img alt="../_images/da92c53a3df283315314d962b0e2856aa5b12ed632562d546cb454ac2a49b96a.png" src="../_images/da92c53a3df283315314d962b0e2856aa5b12ed632562d546cb454ac2a49b96a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1482,10 +1850,145 @@ memory usage: 1.6 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dc334e83d7f98efc56eeb28fd20c063e96a0196f346d5fad039847436d0cc450.png" src="../_images/dc334e83d7f98efc56eeb28fd20c063e96a0196f346d5fad039847436d0cc450.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best RMSE:  1.7798393419177838
+<img alt="../_images/21a7524e2677b5c62e821fb0833c077f5c3e5b5ace8fab1206c0b595431422f8.png" src="../_images/21a7524e2677b5c62e821fb0833c077f5c3e5b5ace8fab1206c0b595431422f8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best RMSE:  2.367166953422588
 </pre></div>
 </div>
+</div>
+</div>
+</section>
+<section id="load-pretrained-model-and-predict">
+<h2>Load pretrained model and predict<a class="headerlink" href="#load-pretrained-model-and-predict" title="Permalink to this heading">#</a></h2>
+<p>Now we can load a model with our best parameter settings. We use our checkpoint for this. We finally want to predict on our validation data we sempled at the very beginning.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ckpt_path</span> <span class="o">=</span> <span class="n">best_trial</span><span class="o">.</span><span class="n">user_attrs</span><span class="p">[</span><span class="s2">&quot;best_model_ckpt&quot;</span><span class="p">]</span>
+<span class="n">ckpt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">ckpt_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Our checkpoint contains the state dict with the trained model parameters</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">ckpt</span><span class="p">[</span><span class="s2">&quot;state_dict&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;net.0.weight&#39;,
+ tensor([[ 1.2998e-01, -5.8599e-02, -9.1701e-03,  ...,  8.2666e-02,
+          -2.6167e-01, -1.7932e-01],
+         [ 1.2702e-01,  6.9853e-02, -1.2293e-01,  ...,  1.6299e-02,
+          -1.6481e-02, -4.8893e-04],
+         [-1.5479e-02,  1.0947e-01,  6.0697e-01,  ..., -1.0442e-02,
+          -1.9027e-01,  2.7875e-03],
+         ...,
+         [ 1.3420e-01, -5.1409e-02,  9.5353e-03,  ..., -7.1964e-02,
+          -7.3765e-02, -5.6624e-02],
+         [-2.4891e-01, -2.2578e-01,  4.7792e-01,  ..., -2.1212e-01,
+           1.6324e-01,  2.6180e-03],
+         [-1.8884e-01, -3.5862e-02, -1.8236e-01,  ..., -1.3896e-01,
+          -5.1755e-02, -2.4016e-03]]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_model</span> <span class="o">=</span> <span class="n">MLPRegressorTorch</span><span class="p">(</span>
+    <span class="n">in_dim</span><span class="o">=</span><span class="n">ckpt</span><span class="p">[</span><span class="s2">&quot;model_params&quot;</span><span class="p">][</span><span class="s2">&quot;in_dim&quot;</span><span class="p">],</span>
+    <span class="n">hidden</span><span class="o">=</span><span class="n">ckpt</span><span class="p">[</span><span class="s2">&quot;model_params&quot;</span><span class="p">][</span><span class="s2">&quot;hidden&quot;</span><span class="p">],</span>
+    <span class="n">dropout</span><span class="o">=</span><span class="n">ckpt</span><span class="p">[</span><span class="s2">&quot;model_params&quot;</span><span class="p">][</span><span class="s2">&quot;dropout&quot;</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">best_model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">ckpt</span><span class="p">[</span><span class="s2">&quot;state_dict&quot;</span><span class="p">])</span>
+<span class="n">best_model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MLPRegressorTorch(
+  (net): Sequential(
+    (0): Linear(in_features=16, out_features=128, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.03769065706514282, inplace=False)
+    (3): Linear(in_features=128, out_features=64, bias=True)
+    (4): ReLU()
+    (5): Dropout(p=0.03769065706514282, inplace=False)
+    (6): Linear(in_features=64, out_features=1, bias=True)
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separate features and target</span>
+<span class="n">X_val</span> <span class="o">=</span> <span class="n">df_val</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;energy&quot;</span><span class="p">])</span>
+<span class="n">y_val</span> <span class="o">=</span> <span class="n">df_val</span><span class="p">[</span><span class="s2">&quot;energy&quot;</span><span class="p">]</span>
+
+<span class="c1"># Apply same scaler(s) used for training</span>
+<span class="n">X_val_t</span> <span class="o">=</span> <span class="n">x_preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
+<span class="n">y_val_t</span> <span class="o">=</span> <span class="n">y_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_val</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Convert to torch tensors</span>
+<span class="n">X_val_ts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">X_val_t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">y_val_ts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">y_val_t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">y_pred_t</span> <span class="o">=</span> <span class="n">best_model</span><span class="p">(</span><span class="n">X_val_ts</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="c1"># Invert scaling for predictions and targets</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_pred_t</span><span class="p">)</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">y_scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_val_ts</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Validate with regression metrics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="n">r2</span>   <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSE on validation sample: </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R2-score on validation sample: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE on validation sample: 2.065
+R2-score on validation sample: 0.994
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot predictions vs true values</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Model predictions vs. true values (validation set)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;True values&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Predicted values&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">y_true</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_true</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+    <span class="p">[</span><span class="n">y_true</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_true</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+    <span class="s2">&quot;r--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Perfect regression line&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4ba10e379c21813436a2330c819abcadb86c4e9d127393315c0970c3f1a57c42.png" src="../_images/4ba10e379c21813436a2330c819abcadb86c4e9d127393315c0970c3f1a57c42.png" />
 </div>
 </div>
 </section>
@@ -1558,6 +2061,13 @@ memory usage: 1.6 KB
     <a class="reference internal nav-link" href="#load-and-inspect-data">
      Load and inspect data
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#check-for-outliers-and-missing-data">
+       Check for outliers and missing data
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#prepare-train-and-test-data">
@@ -1586,6 +2096,11 @@ memory usage: 1.6 KB
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#evaluate-model">
    Evaluate model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-pretrained-model-and-predict">
+   Load pretrained model and predict
   </a>
  </li>
 </ul>
