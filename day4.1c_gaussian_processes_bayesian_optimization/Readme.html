@@ -268,6 +268,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -695,7 +699,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -708,6 +714,19 @@ title="Print to PDF"
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#agenda">
+   Agenda
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -716,14 +735,16 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="gaussian-processes-and-bayesian-optimization">
 <h1>Gaussian Processes and Bayesian Optimization<a class="headerlink" href="#gaussian-processes-and-bayesian-optimization" title="Permalink to this heading">#</a></h1>
-<p>Agenda</p>
-<p>0 Challenges in Process Optimization
-1 Gaussian Process Intuition
-2 Gaussian Process Regression
-2a Stochastic Processes
-2b Bayesian conditioning / updating
-2c Log marginal likelihood
+<section id="agenda">
+<h2>Agenda<a class="headerlink" href="#agenda" title="Permalink to this heading">#</a></h2>
+<p>0 Challenges in Process Optimization<br />
+1 Gaussian Process Intuition<br />
+2 Gaussian Process Regression<br />
+2a Stochastic Processes<br />
+2b Bayesian conditioning / updating<br />
+2c Log marginal likelihood<br />
 3 Bayesian Optimization</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -761,6 +782,27 @@ title="Print to PDF"
           
           
           
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#agenda">
+   Agenda
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
           
         </div>
         <footer class="bd-footer-content">
@@ -782,7 +824,7 @@ By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-10-05.<br>
+Last updated on 2025-10-06.<br>
 </p>
   </div>
   

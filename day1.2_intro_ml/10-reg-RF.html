@@ -762,7 +762,7 @@ title="Print to PDF"
 <img alt="../_images/2171ebecaac0b82442e005f55d62815f2f134f8b23ca55c84c17903acc90fba4.png" src="../_images/2171ebecaac0b82442e005f55d62815f2f134f8b23ca55c84c17903acc90fba4.png" />
 </div>
 </div>
-<p>The first box is the root node. All training data (“samples = 1310”) is on this node. The data is split into two subsets resulting in the two nodes below. The left one consists of 209 samples, the right one of 1101 samples. A hydrogen bond energy of -81.206 kJ/mol (second row, left node) is predicted for an input value less/equal than -0.22 a.u. while it is -26.449 kJ/mol (second row, right node) for larger values. A mean squared error (MSE) of 914.405 kJ/mol (see root node) is obtained for this prediction based on the samples of the root node. The partial charge of -0.22 a.u. was selected since it minimizes the MSE. The subsequent node act similar but uses only the data passed to the this node to optimize the MSE. The bottom boxes are the leaf nodes which are the final prediction of the model.</p>
+<p>The first box is the root node. All training data (“samples = 1310”) is on this node. The data is split into two subsets resulting in the two nodes below. The left one consists of 209 samples, the right one of 1101 samples. A hydrogen bond energy of -81.206 kJ/mol (second row, left node) is predicted for an input value less/equal than -0.22 a.u. while it is -26.449 kJ/mol (second row, right node) for larger values. The mean squared error (MSE) is used as impurity score for the model. It is 914.405 kJ/mol (see root node) for the prediction based on the samples of the root node where the prediction is always -35.157 kJ/mol. The partial charge of -0.22 a.u. was selected to split the root node since it minimize the impurity of the next two nodes. The subsequent nodes act similar but use only the data passed to the node to optimize the MSE. The bottom boxes are the leaf nodes which are the final prediction of the model.</p>
 <p>As you can imagine from this example, decision trees are very flexible regression models. They are also computationally efficient and can be used to train models with numerous features and instances. However, they are bad in interpolating and extrapolating since they show a stepwise fit. Furthermore, they strongly depend on the training data. To fix the dependency on the training data, random forests are an ensemble of decision trees trained on different random subsets of the training set. Commonly bagging is employed where instances are taken randomly with replacement from the training data, e.g. the new data set can contain the same instance of the original data set several times. Nonetheless, random forests show still poor performance for inter- and extrapolation due to the stepwise predictions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -925,7 +925,7 @@ By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-10-05.<br>
+Last updated on 2025-10-06.<br>
 </p>
   </div>
   
