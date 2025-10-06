@@ -1,0 +1,989 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Visualizing lanaguage embeddings &#8212; AI School at Leibniz IOM 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day4.1_llms/guessing_institutes/03_plot';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo-all.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo-all.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day0_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day1.1_juypter_notebooks/readme.html">
+                        Python Jupyter Notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day1.2_intro_ml/readme.html">
+                        Introduction to Machine Learning / Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day2.1_data_wrangling/readme.html">
+                        Data Wrangling
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day2.2_ml_classification/readme.html">
+                        Machine Learning Techniques / Classification
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day2.3_ml_clustering/readme.html">
+                        Machine Learning Techniques / Clustering
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day3.1_deep_learning/readme.html">
+                        Deep Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day3.2_data_visualization/readme.html">
+                        Data Visualization
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../readme.html">
+                        Large Language Models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://aischool.iom-leipzig.de/">
+                        AI School Website
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://creativecommons.org/licenses/by/4.0/">
+                        License CC-BY 4.0
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day0_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day1.1_juypter_notebooks/readme.html">
+                        Python Jupyter Notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day1.2_intro_ml/readme.html">
+                        Introduction to Machine Learning / Regression
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day2.1_data_wrangling/readme.html">
+                        Data Wrangling
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day2.2_ml_classification/readme.html">
+                        Machine Learning Techniques / Classification
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day2.3_ml_clustering/readme.html">
+                        Machine Learning Techniques / Clustering
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day3.1_deep_learning/readme.html">
+                        Deep Learning
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../day3.2_data_visualization/readme.html">
+                        Data Visualization
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../readme.html">
+                        Large Language Models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://aischool.iom-leipzig.de/">
+                        AI School Website
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://creativecommons.org/licenses/by/4.0/">
+                        License CC-BY 4.0
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo-all.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo-all.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Leibniz MMS AI School 2025
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../day0_setup/readme.html">Setting up your computer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../day0_setup/HPC-setup.html">Prepare your Jupyter Lab environment</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Monday</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../day1.1_juypter_notebooks/readme.html">Python Jupyter Notebooks</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.1_juypter_notebooks/01_juptyer_notebook.html">Python code in Jupyter notebooks</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../day1.1_juypter_notebooks/02_notebook_pitfalls.html">Pitfalls when working with Jupyter notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.1_juypter_notebooks/03_ai-assistant.html">AI Assitant in Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../day1.2_intro_ml/readme.html">Introduction to Machine Learning / Regression</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/01-bigpicture.html">Look at the big picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/02-getdata.html">Get the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/03-data-split.html">Create a test data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/04-exploredata.html">Explore and Visualize</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/05-prepare-data.html">Prepare the data</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/06-reg-overview.html">Overview Training and Tuning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/07-reg-linear.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/08-reg-polynom.html">Polynomial Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/09-reg-regularized.html">Regularized Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/10-reg-RF.html">Random Forests Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/11-reg-SVR.html">Support Vector Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/12-reg-boosting.html">Boosting (Regression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/13-reg-exercise.html">Exercise on regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day1.2_intro_ml/14-present.html">Present and store your model</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tuesday</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../day2.1_data_wrangling/readme.html">Data Wrangling</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/01_pandas_introduction.html">Introduction to Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/02_pandas_select_df.html">Selecting data from DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/03_pandas_appending_df.html">Appending and extending DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/04_pandas_datatypes.html">Datatypes and Conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/05_pandas_missing_data.html">Handling missing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/06_pandas_group_by.html">Group by: split-apply-combine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/07_tidy_data.html">Tidy-Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/11_dask_delayed_mandelbrot.html">Delayed processing with Dask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/21_tiling_images_naive_approach.html">Tiling images - the naive approach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/22_tiling_images_with_overlap.html">Tiling images with overlap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/23_tiled_image_file_formats_zarr.html">Tiled image file formats: zarr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.1_data_wrangling/24_tiled_nuclei_counting_quick.html">Tiled image processing</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../day2.2_ml_classification/readme.html">Machine Learning Techniques / Classification</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.2_ml_classification/01_first_model.html">Training a binary classifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.2_ml_classification/02_performance.html">Performance Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.2_ml_classification/03_precision-recall.html">Precision-Recall-Tradeoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.2_ml_classification/04_ROC.html">ROC Curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.2_ml_classification/05_bc_exercise.html">Exercise on binary classifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.2_ml_classification/06_multiclass.html">Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.2_ml_classification/07_error_analysis.html">Error analysis in multiclass classification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../day2.3_ml_clustering/readme.html">Machine Learning Techniques / Clustering</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.3_ml_clustering/01_kmeans.html">K-Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.3_ml_clustering/02_gaussian_mixtures.html">Gaussian Mixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.3_ml_clustering/03_DBScan.html">DBSCAN and HDBSCAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day2.3_ml_clustering/04_clustering_exercise.html">Exercise</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wednesday</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../day3.1_deep_learning/readme.html">Deep Learning</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../day3.1_deep_learning/01_torch_regression.html">Train a Neural Network for Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../day3.2_data_visualization/readme.html">Data Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../day3.2_data_visualization/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day3.2_data_visualization/02_Plotting_distributions.html">Plotting Distributions with Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day3.2_data_visualization/03_Multivariate_views.html">Multivariate views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day3.2_data_visualization/10_plotly_basic.html">Plotly basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day3.2_data_visualization/12_plotly_3d.html">Plotting in 3D with plotly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../day3.2_data_visualization/20_stackview.html">Interactive Image Visualization with Stackview</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Thursday</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../readme.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/ScaDS/ai-school-iom-2025/raw/refs/heads/main/docs/day4.1_llms/LLMs.pdf">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01_bia-bob-demo.html">BiA-Bob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_generate_notebook.html">AI-assisted Notebook generation</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../03_translating_notebooks.html">Translating notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_documenting_code.html">Documenting code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_bia_bob-statistical_testing.html">Statistical testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../20_gui_plots.html">Graphical user interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../40_generating_images.html">Generating image data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_synthetic_customer_data_llms.html">Generating synthetic customer data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../51_synthetic_customer_data_rnd_generators.html">Combining LLMs with Random number generators for data generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../90_under_the_hood.html">Under the hood: Configure bia-bob’s <em>behaviour</em> through system messages</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://aischool.iom-leipzig.de/">AI School Website</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">License CC-BY 4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../imprint.html">Imprint</a></li>
+
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday4.1_llms/guessing_institutes/03_plot.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/day4.1_llms/guessing_institutes/03_plot.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Visualizing lanaguage embeddings</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="visualizing-lanaguage-embeddings">
+<h1>Visualizing lanaguage embeddings<a class="headerlink" href="#visualizing-lanaguage-embeddings" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we will visualize UMAP representations of language embeddings together with word clouds generated from the underlying text data. This is a game: You can draw outlines around point clouds and the wordcloud will update. From the wordcloud of PhD topics you can guess at which institute the researchers might work. You can test if your guess is right by clicking the <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">solution</span></code> button at the bottom.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="c1">#import umap</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">stackview</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;phd_topics.yml&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TSNE0</th>
+      <th>TSNE1</th>
+      <th>UMAP0</th>
+      <th>UMAP1</th>
+      <th>embedding</th>
+      <th>name</th>
+      <th>research_field</th>
+      <th>selection</th>
+      <th>topic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.548442</td>
+      <td>8.969955</td>
+      <td>-1.020463</td>
+      <td>9.660064</td>
+      <td>[0.019196026027202606, 0.010897933505475521, -...</td>
+      <td>Taylor Reed</td>
+      <td>FIZ-KA - Leibniz-Institut für Informationsinfr...</td>
+      <td>1</td>
+      <td>Digital Archives, Embodied Knowledge, and the ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-12.006737</td>
+      <td>-13.473205</td>
+      <td>1.419240</td>
+      <td>6.479001</td>
+      <td>[0.016622617840766907, -0.009818249382078648, ...</td>
+      <td>Riley Jain</td>
+      <td>HKI - Leibniz-Institut für Naturstoff-Forschun...</td>
+      <td>1</td>
+      <td>Microbial Secondary Metabolites and Narrative:...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-10.385350</td>
+      <td>12.543368</td>
+      <td>4.321546</td>
+      <td>4.795953</td>
+      <td>[-0.016480615362524986, 0.014093692414462566, ...</td>
+      <td>Taylor Adams</td>
+      <td>IÖR - Leibniz-Institut für ökologische Raument...</td>
+      <td>1</td>
+      <td>Spatial Imaginaries of Ecological Transition: ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8.713301</td>
+      <td>-10.254994</td>
+      <td>0.332513</td>
+      <td>10.496520</td>
+      <td>[0.008821303024888039, 0.005257884040474892, -...</td>
+      <td>Devon Thomas</td>
+      <td>IWM - Leibniz-Institut für Wissensmedien, Tübi...</td>
+      <td>1</td>
+      <td>Algorithmic Storytelling and the Evolution of ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-12.952323</td>
+      <td>3.004944</td>
+      <td>2.245961</td>
+      <td>3.266387</td>
+      <td>[-0.02530881017446518, 0.004650192800909281, -...</td>
+      <td>Alex Lee</td>
+      <td>MfN - Museum für Naturkunde - Leibniz-Institut...</td>
+      <td>1</td>
+      <td>The Literary Ecology of Scientific Illustratio...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from wordcloud import STOPWORDS</span>
+<span class="c1">#STOPWORDS.update((&quot;mir mich mehr weil bin habe dass sodass fühle kann meine es im um die und zu für das von zur ist sowie bie den der durch oder bei zudem person wie des sie er eine mit anderen andere über darüber hinaus diese ein ich verantwortlich koordination mitarbeiter auch einer Doktorarbeit auf könnte sein unterstützen beraten analysieren koordinieren erstellen überwachen dabei erstellung einhaltung unterstützung sind planung umsetzung optimierung analyse überwachung prüfen führen bewertung deren bereiten verschiedene insbesondere beim schwierigkeiten zeigen zeigt patient wird empfohlen sich berichtet seit bleibt trotz beim weist führt werden zeigte zeigt als nicht weiterführende klagt maßnahmen ggf&quot;).split(&quot; &quot;))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+
+<span class="c1"># original wordcloud widget</span>
+<span class="n">wc</span> <span class="o">=</span> <span class="n">stackview</span><span class="o">.</span><span class="n">wordcloudplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_text</span><span class="o">=</span><span class="s2">&quot;topic&quot;</span><span class="p">,</span> <span class="n">column_x</span><span class="o">=</span><span class="s2">&quot;UMAP0&quot;</span><span class="p">,</span> <span class="n">column_y</span><span class="o">=</span><span class="s2">&quot;UMAP1&quot;</span><span class="p">)</span>
+
+<span class="c1"># new controls</span>
+<span class="n">show_btn</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Show solution&quot;</span><span class="p">)</span>
+<span class="n">reset_btn</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Reset&quot;</span><span class="p">)</span>
+<span class="n">label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># read-only</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;70%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;150px&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">code_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_show</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="c1"># 1. Filter rows where selection == 1</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;selection&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># 2. Get unique values (excluding NaNs) and sort them for readability</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">filtered</span><span class="p">[</span><span class="s1">&#39;research_field&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()))</span> 
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_reset</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<span class="n">wc</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">on_reset</span><span class="p">)</span>
+
+<span class="n">show_btn</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_show</span><span class="p">)</span>
+<span class="n">reset_btn</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_reset</span><span class="p">)</span>
+
+<span class="n">controls</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">show_btn</span><span class="p">,</span> <span class="n">reset_btn</span><span class="p">,</span> <span class="n">label</span><span class="p">])</span>
+<span class="n">ui</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">wc</span><span class="p">,</span> <span class="n">controls</span><span class="p">])</span>
+
+<span class="c1"># display the combined UI (putting ui as last expression will display it in a notebook)</span>
+<span class="n">ui</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9ff749d5a26746f994c044322eeef1df", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./day4.1_llms/guessing_institutes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on 2025-10-06.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+Copyright: Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> unless mentioned otherwise. 
+Contributions and feedback are welcome.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
