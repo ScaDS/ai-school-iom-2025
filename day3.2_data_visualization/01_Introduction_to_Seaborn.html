@@ -539,6 +539,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="02_Plotting_distributions.html">Plotting Distributions with Seaborn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_Multivariate_views.html">Multivariate views</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_plotly_basic.html">Plotly basic usage</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="12_plotly_3d.html">Plotting in 3D with plotly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_stackview.html">Interactive Image Visualization with Stackview</a></li>
 </ul>
@@ -757,13 +758,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-1">
-   Exercise 1
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-2">
-   Exercise 2
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
@@ -910,7 +906,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2e6046a48e5fa8239cb0a47c17cc4007a2900de62057c2e452c247868189bf2c.png" src="../_images/2e6046a48e5fa8239cb0a47c17cc4007a2900de62057c2e452c247868189bf2c.png" />
+<img alt="../_images/1c3879754119cdaca00ccbe03ea8bba8b1c5d68ab579cc5b0b101be9d5c0a67b.png" src="../_images/1c3879754119cdaca00ccbe03ea8bba8b1c5d68ab579cc5b0b101be9d5c0a67b.png" />
 </div>
 </div>
 <p>We can already embbed and visualize another feature by providing an extra argument: we want the size of the dots to be proportional to the variable <code class="docutils literal notranslate"><span class="pre">area</span></code>.</p>
@@ -920,12 +916,12 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
             <span class="n">x</span><span class="o">=</span><span class="s2">&quot;aspect_ratio&quot;</span><span class="p">,</span>
             <span class="n">y</span><span class="o">=</span><span class="s2">&quot;intensity_mean&quot;</span><span class="p">,</span>
-            <span class="n">size</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">);</span>          <span class="c1"># Use the values in &quot;area&quot; to set the dots&#39; size</span>
+            <span class="n">size</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4ba246458c8bab087807c83fdcfe99d4ab9b27cc6865ec30d024678244e4f3d7.png" src="../_images/4ba246458c8bab087807c83fdcfe99d4ab9b27cc6865ec30d024678244e4f3d7.png" />
+<img alt="../_images/47d6618e67077bfa5197555c3d1ec51261cfb20385e3db76a34345c0be28b17b.png" src="../_images/47d6618e67077bfa5197555c3d1ec51261cfb20385e3db76a34345c0be28b17b.png" />
 </div>
 </div>
 <p>We can embbed and visualize one more feature by providing another argument. Now the variable <code class="docutils literal notranslate"><span class="pre">major_axis_length</span></code> will be represented by a continuous color gradient.</p>
@@ -935,12 +931,12 @@ title="Print to PDF"
             <span class="n">x</span><span class="o">=</span><span class="s2">&quot;aspect_ratio&quot;</span><span class="p">,</span>
             <span class="n">y</span><span class="o">=</span><span class="s2">&quot;intensity_mean&quot;</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">,</span>
-            <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;major_axis_length&quot;</span><span class="p">);</span>   <span class="c1"># Use the values in &quot;major_axis_length&quot; to set the dots&#39; color</span>
+            <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;major_axis_length&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/212fc7b6b0d30599e4e6fc1ef1f63a6e1832f9def605f856a67f06c0758d4dce.png" src="../_images/212fc7b6b0d30599e4e6fc1ef1f63a6e1832f9def605f856a67f06c0758d4dce.png" />
+<img alt="../_images/5207b4cb4fbd5c2fa4e2f98984aec9467e7f17322eb52f79b1dbaaf96d561995.png" src="../_images/5207b4cb4fbd5c2fa4e2f98984aec9467e7f17322eb52f79b1dbaaf96d561995.png" />
 </div>
 </div>
 <p>We can even visualize an additional feature by encoding the marker type—using a dot or a triangle—depending on the <code class="docutils literal notranslate"><span class="pre">file_name</span></code> variable. This allows us to represent five variables in a single 2D diagram! However, while it is possible to include this many visual distinctions, the result might not look very clear or aesthetically pleasing.</p>
@@ -952,13 +948,13 @@ title="Print to PDF"
             <span class="n">y</span><span class="o">=</span><span class="s2">&quot;intensity_mean&quot;</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">,</span>
             <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;major_axis_length&quot;</span><span class="p">,</span>          
-            <span class="n">style</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">,</span>       <span class="c1"># Grouping variable that will produce elements with different styles</span>
-            <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;^&quot;</span><span class="p">]);</span>     <span class="c1"># Define which markers are to be used for the style variable</span>
+            <span class="n">style</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">,</span>      
+            <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;^&quot;</span><span class="p">]);</span>  
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/af5d39fbc823c731cd67aa06f1d4183f674aae5a87f08e1c94db2fe124e4d2bc.png" src="../_images/af5d39fbc823c731cd67aa06f1d4183f674aae5a87f08e1c94db2fe124e4d2bc.png" />
+<img alt="../_images/450e31613b02802056df3dce03543df7034151a68f28dd7c160cc9906e149522.png" src="../_images/450e31613b02802056df3dce03543df7034151a68f28dd7c160cc9906e149522.png" />
 </div>
 </div>
 </section>
@@ -973,12 +969,12 @@ title="Print to PDF"
             <span class="n">y</span><span class="o">=</span><span class="s2">&quot;intensity_mean&quot;</span><span class="p">,</span>
             <span class="n">size</span><span class="o">=</span><span class="s2">&quot;area&quot;</span><span class="p">,</span>
             <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;major_axis_length&quot;</span><span class="p">,</span>
-            <span class="n">col</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">);</span>          <span class="c1"># Variable to define subsets to plot on different sublots</span>
+            <span class="n">col</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">);</span>          
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7a43aa01f88cc3a8ef4f5c383045a2a8740b121f37d677625bebfd9cc61e8f8c.png" src="../_images/7a43aa01f88cc3a8ef4f5c383045a2a8740b121f37d677625bebfd9cc61e8f8c.png" />
+<img alt="../_images/f72b1dab606c881ef3d2165b1e65794a2c251b906616f9e23dea31c7a2ad0ec4.png" src="../_images/f72b1dab606c881ef3d2165b1e65794a2c251b906616f9e23dea31c7a2ad0ec4.png" />
 </div>
 </div>
 </section>
@@ -1000,7 +996,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/954a8955cacda3d7afbae4442a4aca5f90e226c390c176756d3f351b2595c957.png" src="../_images/954a8955cacda3d7afbae4442a4aca5f90e226c390c176756d3f351b2595c957.png" />
+<img alt="../_images/542f10f57cd00ace5b48607b61bacc4ff1090aa8f2fcf5384a338819fdba2a13.png" src="../_images/542f10f57cd00ace5b48607b61bacc4ff1090aa8f2fcf5384a338819fdba2a13.png" />
 </div>
 </div>
 <p>Further, we want to change the labels of the x and y axes, and give a title to the whole graph. To accomplish this, we will have Seaborn return a FacetGrid object, which we will refer to as <code class="docutils literal notranslate"><span class="pre">g</span></code>. This object allows us to control the appearance and layout of the plot.</p>
@@ -1050,32 +1046,9 @@ title="Print to PDF"
 </div>
 </section>
 <hr class="docutils" />
-<section id="exercise-1">
-<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this heading">#</a></h2>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
 <p>Plot the same line regression model as above, but on a single plot, with points and regression lines having two different colors according to <code class="docutils literal notranslate"><span class="pre">file_name</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="exercise-2">
-<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this heading">#</a></h2>
-<p>Until now, we have used the Seaborn default apperance. We want now to customize the theme of the plot above by changing:</p>
-<ul class="simple">
-<li><p>the background: change to a white background without a grid</p></li>
-<li><p>the font family: change to “serif”</p></li>
-<li><p>the color palette: change the two colors some red tone and some light green.</p></li>
-</ul>
-<p>Reflect about why this color choice is a bad idea and what you should do instead.</p>
-<p>Then, give your plot a title and position it properly.</p>
-<p>Hints:</p>
-<ul class="simple">
-<li><p>Check the documentation of <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.set_theme.html"><code class="docutils literal notranslate"><span class="pre">set_theme</span></code></a> and customize the theme <em>before</em> plotting the data.</p></li>
-<li><p>Many colors can be called by their Matplotlib <a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">name</a>. You will need to pass the two colors as a Python list.</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
@@ -1170,13 +1143,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-1">
-   Exercise 1
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-2">
-   Exercise 2
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>

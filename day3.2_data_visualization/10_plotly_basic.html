@@ -270,6 +270,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -535,6 +539,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="02_Plotting_distributions.html">Plotting Distributions with Seaborn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_Multivariate_views.html">Multivariate views</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Plotly basic usage</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="12_plotly_3d.html">Plotting in 3D with plotly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_stackview.html">Interactive Image Visualization with Stackview</a></li>
 </ul>
@@ -707,7 +712,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -720,6 +727,24 @@ title="Print to PDF"
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Plotly basic usage
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -878,7 +903,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c40e73f9d1e9193b080f92c1a018bbed067a8e5ba90b59d79b850d4978432f12.png" src="../_images/c40e73f9d1e9193b080f92c1a018bbed067a8e5ba90b59d79b850d4978432f12.png" />
+<img alt="../_images/2266e0b6aa414343708eae12cf6a62c2aefd2394bd4812317dbba16465fe885e.png" src="../_images/2266e0b6aa414343708eae12cf6a62c2aefd2394bd4812317dbba16465fe885e.png" />
 </div>
 </div>
 <p>Violin plots allow us to split the data into groups and visualize their distribution. For example, we can split objects into small and large groups and then visualize their perimeter.</p>
@@ -894,15 +919,19 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">px</span><span class="o">.</span><span class="n">violin</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span>
     <span class="n">x</span><span class="o">=</span><span class="s2">&quot;size&quot;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;perimeter&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;perimeter&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8a471b183f8de0ca5fe4c762af0133aa31b25aefbfd89f39a70b610d6bd7aeb9.png" src="../_images/8a471b183f8de0ca5fe4c762af0133aa31b25aefbfd89f39a70b610d6bd7aeb9.png" />
+<img alt="../_images/7480989a481184e0f9a8ea94af3b421ee702a51928eb7e1c0fedb9a98193d4e5.png" src="../_images/7480989a481184e0f9a8ea94af3b421ee702a51928eb7e1c0fedb9a98193d4e5.png" />
 </div>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise">
+<h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h1>
+<p>Visualize <code class="docutils literal notranslate"><span class="pre">area</span></code>, <code class="docutils literal notranslate"><span class="pre">perimeter</span></code>, <code class="docutils literal notranslate"><span class="pre">solidity</span></code> and <code class="docutils literal notranslate"><span class="pre">eccentricity</span></code>. What is <code class="docutils literal notranslate"><span class="pre">eccentricity</span></code> most related to?</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -953,6 +982,32 @@ title="Print to PDF"
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Plotly basic usage
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>

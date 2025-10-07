@@ -537,6 +537,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="02_Plotting_distributions.html">Plotting Distributions with Seaborn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_Multivariate_views.html">Multivariate views</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_plotly_basic.html">Plotly basic usage</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="12_plotly_3d.html">Plotting in 3D with plotly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20_stackview.html">Interactive Image Visualization with Stackview</a></li>
 </ul>
@@ -735,6 +736,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#catplot-kind-box">
+   Catplot (kind=box)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#boxplot">
    Boxplot
   </a>
@@ -817,31 +823,48 @@ title="Print to PDF"
     <tr>
       <th>0</th>
       <td>Normal (μ=50)</td>
-      <td>40.350269</td>
+      <td>42.186536</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Normal (μ=50)</td>
-      <td>46.570224</td>
+      <td>73.783153</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Normal (μ=50)</td>
-      <td>38.112093</td>
+      <td>61.814164</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Normal (μ=50)</td>
-      <td>33.938015</td>
+      <td>45.557737</td>
     </tr>
     <tr>
       <th>4</th>
       <td>Normal (μ=50)</td>
-      <td>51.081920</td>
+      <td>60.892085</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+</section>
+<section id="catplot-kind-box">
+<h2>Catplot (kind=box)<a class="headerlink" href="#catplot-kind-box" title="Permalink to this heading">#</a></h2>
+<p>Boxplots are a special version of category plots.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+            <span class="n">x</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>            
+            <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9660bc2f64cc015f126212a8753d4d2f43b49b5eca0c30a440f3ce13124b65c9.png" src="../_images/9660bc2f64cc015f126212a8753d4d2f43b49b5eca0c30a440f3ce13124b65c9.png" />
+</div>
 </div>
 </section>
 <section id="boxplot">
@@ -849,15 +872,14 @@ title="Print to PDF"
 <p>Boxplots summarize center and spread; with the wider normal std, both boxes appear more similar despite different underlying shapes. We save the plot to disk.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> 
+            <span class="n">x</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span> 
+            <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;group&#39;, ylabel=&#39;value&#39;&gt;
-</pre></div>
-</div>
-<img alt="../_images/4c1e1a5389893221fe67e24289753511d3b66097da724c9f6491559f86e6d6dc.png" src="../_images/4c1e1a5389893221fe67e24289753511d3b66097da724c9f6491559f86e6d6dc.png" />
+<img alt="../_images/7f860a0334a55c85c62031ad336765fe76511dff51781414bf9c5f61170bf607.png" src="../_images/7f860a0334a55c85c62031ad336765fe76511dff51781414bf9c5f61170bf607.png" />
 </div>
 </div>
 </section>
@@ -874,7 +896,7 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;group&#39;, ylabel=&#39;value&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/d28911425586f4e1d3d11c7eaad7ed570a2f6cb04785e7cf14b840b60c643525.png" src="../_images/d28911425586f4e1d3d11c7eaad7ed570a2f6cb04785e7cf14b840b60c643525.png" />
+<img alt="../_images/408af0770064e44270b365de72c20fe01803229a6ac6b57a6fe93951cd0b8876.png" src="../_images/408af0770064e44270b365de72c20fe01803229a6ac6b57a6fe93951cd0b8876.png" />
 </div>
 </div>
 </section>
@@ -927,6 +949,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#generate-synthetic-data">
    Generate synthetic data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#catplot-kind-box">
+   Catplot (kind=box)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
