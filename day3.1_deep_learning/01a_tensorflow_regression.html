@@ -774,9 +774,11 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">set_jit</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">enable_op_determinism</span><span class="p">()</span>
-<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tensorflow error handling</span>
+<span class="c1">#tf.config.optimizer.set_jit(False)</span>
+<span class="c1">#tf.config.experimental.enable_op_determinism()</span>
+<span class="c1">#tf.random.set_seed(1)</span>
+<span class="c1">#os.environ[&quot;CUDA_VISIBLE_DEVICES&quot;] = &quot;-1&quot;</span>
 <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">()</span>
 </pre></div>
 </div>
