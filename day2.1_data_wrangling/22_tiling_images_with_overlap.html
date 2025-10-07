@@ -760,6 +760,7 @@ title="Print to PDF"
 <span class="kn">from</span><span class="w"> </span><span class="nn">skimage.filters</span><span class="w"> </span><span class="kn">import</span> <span class="n">gaussian</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">skimage.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">cells3d</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">stackview</span><span class="w"> </span><span class="kn">import</span> <span class="n">imshow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
 </pre></div>
 </div>
 </div>
@@ -776,13 +777,13 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cells3d</span><span class="p">()[</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/nuclei2d.tif&quot;</span><span class="p">)</span>
 <span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/36e50f9c5f0cb6f0167fcc250654916cbb8658f46f24ad14df6ba9418cbc8a0b.png" src="../_images/36e50f9c5f0cb6f0167fcc250654916cbb8658f46f24ad14df6ba9418cbc8a0b.png" />
+<img alt="../_images/fd9569edb190c0d6ecae86c30457c792385c679044f8b28b2089dc7904292d09.png" src="../_images/fd9569edb190c0d6ecae86c30457c792385c679044f8b28b2089dc7904292d09.png" />
 </div>
 </div>
 <p>After loading the image, we tile it as usual.</p>
@@ -886,8 +887,11 @@ processing (128, 128)
 processing (128, 128)
 processing (132, 132)
 processing (132, 132)
-processing (136, 136)
 processing (140, 140)
+processing (140, 140)
+processing (140, 140)
+processing (144, 144)
+processing (144, 144)
 </pre></div>
 </div>
 </div>
@@ -928,7 +932,7 @@ processing (0, 0)
 processing (1, 1)
 </pre></div>
 </div>
-<img alt="../_images/2405cc479654455722c45790359008d225e6a4533562245301b36f0de3f3ca7d.png" src="../_images/2405cc479654455722c45790359008d225e6a4533562245301b36f0de3f3ca7d.png" />
+<img alt="../_images/316ca8685bf04e1dddc555852eb7cffbb9e9fd1a12aefb3b953115ff2dbb7578.png" src="../_images/316ca8685bf04e1dddc555852eb7cffbb9e9fd1a12aefb3b953115ff2dbb7578.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum difference 1.528818863147824
 -----------------------------------
 Overlap width 2
@@ -938,7 +942,7 @@ processing (132, 132)
 processing (132, 132)
 </pre></div>
 </div>
-<img alt="../_images/5f318d89f42a5eef995ee3ba95fc47361cff8079fa0d881c303fde9389fc9aa5.png" src="../_images/5f318d89f42a5eef995ee3ba95fc47361cff8079fa0d881c303fde9389fc9aa5.png" />
+<img alt="../_images/7752f649cb5486064be5a30940f8546507251f025281d79bfef68cc4e68eb4d3.png" src="../_images/7752f649cb5486064be5a30940f8546507251f025281d79bfef68cc4e68eb4d3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum difference 5.971294396376637
 -----------------------------------
 Overlap width 4
@@ -947,20 +951,19 @@ processing (1, 1)
 processing (136, 136)
 processing (136, 136)
 processing (136, 136)
+processing (136, 136)
 </pre></div>
 </div>
-<img alt="../_images/52023bb3c85385c1c74cb88a324fc1c913baf99b50db41c3f314b6ab5a260b51.png" src="../_images/52023bb3c85385c1c74cb88a324fc1c913baf99b50db41c3f314b6ab5a260b51.png" />
+<img alt="../_images/5f06b0ce7d05ffcb0acc2e62b2aef52538217875a59e50bb29278f0eb2546e19.png" src="../_images/5f06b0ce7d05ffcb0acc2e62b2aef52538217875a59e50bb29278f0eb2546e19.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum difference 3.823608171106622
 -----------------------------------
 Overlap width 6
 processing (0, 0)
 processing (1, 1)
 processing (140, 140)
-processing (140, 140)
-processing (140, 140)
 </pre></div>
 </div>
-<img alt="../_images/2fdea8d912b6520cd5390e8174b54d24b2ebe573e301115e5df3ade93c6b62e1.png" src="../_images/2fdea8d912b6520cd5390e8174b54d24b2ebe573e301115e5df3ade93c6b62e1.png" />
+<img alt="../_images/0bff4d82b8a8a73a651f8bdce7d521d837c1ce04645495ebe92d07600cece27e.png" src="../_images/0bff4d82b8a8a73a651f8bdce7d521d837c1ce04645495ebe92d07600cece27e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum difference 0.9650985532492449
 -----------------------------------
 Overlap width 8
@@ -968,11 +971,9 @@ processing (0, 0)
 processing (1, 1)
 processing (144, 144)
 processing (144, 144)
-processing (144, 144)
-processing (144, 144)
 </pre></div>
 </div>
-<img alt="../_images/36ad04ef4c49515692647151ea864e72cea65349ae3f62e5925ee9499f7bf55e.png" src="../_images/36ad04ef4c49515692647151ea864e72cea65349ae3f62e5925ee9499f7bf55e.png" />
+<img alt="../_images/b6b8bb9e62c95e8810dd2c8a680084eb7ef8eda0d94c8b36a7fba48626b3f8b4.png" src="../_images/b6b8bb9e62c95e8810dd2c8a680084eb7ef8eda0d94c8b36a7fba48626b3f8b4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum difference 0.3836489788163834
 -----------------------------------
 </pre></div>
@@ -1083,7 +1084,7 @@ By Stefan Zahn, Martin Rudolph, Matthias Täschner, Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-10-06.<br>
+Last updated on 2025-10-07.<br>
 </p>
   </div>
   
