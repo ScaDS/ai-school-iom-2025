@@ -61,27 +61,24 @@ From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peacefu
 ## Covered Python libraries
 
 * [bia-bob](https://github.com/haesleinhuepf/bia-bob): AI-assisted Code Generation
-* [jupyter-ai](https://github.com/jupyterlab/jupyter-ai): Generative AI assistant for Jupyter
 * [numpy](https://numpy.org/): Basic numeric operations and processing for Python
+* [dask](https://github.com/dask/dask)
 * [pandas](https://pandas.pydata.org/): Data analysis and manipulation
 * [scipy](https://scipy.org/): Fundamental algorithms for scientific computing
 * [scikit-image](https://scikit-image.org/): Scientific Image Processing
 * [scikit-learn](https://scikit-learn.org/): Comprehensive Machine Learning Library (CPU-only, no deep learning)
 * [seaborn](https://seaborn.pydata.org/): Statistical data visualization
+* [plotly](https://github.com/plotly/plotly.py)
 * [pytorch](https://docs.pytorch.org/tutorials/intro.html): Comprehensive deep learning framework
 * [tensorflow](https://www.tensorflow.org/) with [keras](https://keras.io/): High level deep learning frameworks
 * [stackview](https://github.com/haesleinhuepf/stackview): An interactive nD image viewer for Jupyter Notebooks
+* [zarr](https://zarr.dev/)
 
-## Related materials
-
-If you want to learn more about the topics, these materials shall be recommended:
-* [Introduction to BioImage Analysis by Pete Bankhead et al.](https://bioimagebook.github.io/index.html)
-* [BioImage Analysis Notebooks by Robert Haase et al.](https://haesleinhuepf.github.io/BioImageAnalysisNotebooks/intro.html)
 
 ## Acknowledgements 
 
 We reused materials
-* about data visualization originally made by Marie-Sophie von Braun and Jan Ewald, ScaDS.AI, [shared](https://github.com/ScaDS/BIDS-training-2024) under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en).
+* about data visualization originally made by Marie-Sophie von Braun and Jan Ewald (ScaDS.AI, Uni Leipzig) [shared](https://github.com/ScaDS/BIDS-training-2024) and from Marcelo Zoccoler and Mara Lampert (TU Dresen), licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en).
 
 
 We acknowledge the financial support by the Federal Ministry of Education and Research of Germany and by Sächsische Staatsministerium für Wissenschaft, Kultur und Tourismus in the programme Center of Excellence for AI-research „Center for Scalable Data Analytics and Artificial Intelligence Dresden/Leipzig“, project identification number: ScaDS.AI
