@@ -555,12 +555,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l2"><a class="reference internal" href="03_translating_notebooks.html">Translating notebooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_documenting_code.html">Documenting code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_bia_bob-statistical_testing.html">Statistical testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="20_gui_plots.html">Graphical user interfaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_generating_images.html">Generating image data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="50_synthetic_customer_data_llms.html">Generating synthetic customer data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="51_synthetic_customer_data_rnd_generators.html">Combining LLMs with Random number generators for data generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="90_under_the_hood.html">Under the hood: Configure bia-bob’s <em>behaviour</em> through system messages</a></li>
 </ul>
 </li>
 </ul>
@@ -756,22 +751,19 @@ title="Print to PDF"
 <h1>AI-assisted Notebook generation<a class="headerlink" href="#ai-assisted-notebook-generation" title="Permalink to this heading">#</a></h1>
 <p>We can also use <code class="docutils literal notranslate"><span class="pre">bia-bob</span></code> to generate entire Jupyter notebooks in a single shot if we can describe our task in detail enough.
 Therefore, it might be necessary to use bioimage-analyst’s terminology.</p>
-<p>For training purposes, we will use the LLM infrastructure of <a class="reference external" href="https://scads.ai">ScaDS.AI</a> in the <a class="reference external" href="https://tu-dresden.de/zih">National Compute Center ZIH TU Dresden</a>.</p>
 <p>When using bia-bob to prompt LLMs, the prompts you enter including existing variable names etc. are sent to the LLM provider.
 Do not submit any sensitive, secret or private information. Also check bia-bob’s code recommendations before executing them.
 LLMs make mistakes.</p>
 <p>First, we configure bia-bob:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load secret API key. You must unpack the contents of api_key.zip </span>
-<span class="c1"># into the same folder before going ahead.</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="n">load_dotenv</span><span class="p">()</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">bia_bob</span><span class="w"> </span><span class="kn">import</span> <span class="n">bob</span>
+<span class="n">bob</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;https://chat-ai.academiccloud.de/v1&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;openai-gpt-oss-120b&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;KISSKI_API_KEY&#39;</span><span class="p">))</span>
 <span class="c1">#bob.initialize(endpoint=&#39;https://llm.scads.ai/v1&#39;, model=&#39;openai/gpt-oss-120b&#39;, api_key=os.environ.get(&#39;SCADSAI_API_KEY&#39;))</span>
-<span class="n">bob</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;https://chat-ai.academiccloud.de/v1&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;gpt-oss-120b&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;KISSKI_API_KEY&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -779,7 +771,7 @@ LLMs make mistakes.</p>
 <div class="output text_html">
             <div style="font-size:7pt">
             This notebook may contain text, code and images generated by artificial intelligence.
-            Used model: gpt-oss-120b, vision model: None, endpoint: https://chat-ai.academiccloud.de/v1, bia-bob version: 0.33.0.. Do not enter sensitive or private information and verify generated contents according to good scientific practice. Read more: <a href="https://github.com/haesleinhuepf/bia-bob#disclaimer">https://github.com/haesleinhuepf/bia-bob#disclaimer</a>
+            Used model: openai-gpt-oss-120b, vision model: None, endpoint: https://chat-ai.academiccloud.de/v1, bia-bob version: 0.34.3.. Do not enter sensitive or private information and verify generated contents according to good scientific practice. Read more: <a href="https://github.com/haesleinhuepf/bia-bob#disclaimer">https://github.com/haesleinhuepf/bia-bob#disclaimer</a>
             </div>
             </div></div>
 </div>
@@ -795,7 +787,7 @@ LLMs make mistakes.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>A notebook has been saved as <a class="reference external" href="blob_segmentation_and_area_analysis.ipynb">blob_segmentation_and_area_analysis.ipynb</a>.</p>
+<p>A notebook has been saved as <a class="reference external" href="blob_segmentation_and_area_analysis_1.ipynb">blob_segmentation_and_area_analysis_1.ipynb</a>.</p>
 </div>
 </div>
 </section>

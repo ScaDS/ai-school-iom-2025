@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Combining LLMs with Random number generators for data generation &#8212; AI School at Leibniz IOM 2025</title>
+    <title>KISSKI / GWDG endpoint &#8212; AI School at Leibniz IOM 2025</title>
   
   
   
@@ -58,11 +58,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'day4.1_llms/51_synthetic_customer_data_rnd_generators';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day4.1_llms/00_test_kisski_endpoint';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Under the hood: Configure bia-bob’s behaviour through system messages" href="90_under_the_hood.html" />
-    <link rel="prev" title="Generating synthetic customer data" href="50_synthetic_customer_data_llms.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -197,7 +195,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
                         Large Language Models
                       </a>
@@ -358,7 +356,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
                         Large Language Models
                       </a>
@@ -547,20 +545,15 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thursday</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="readme.html">Large Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="readme.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference external" href="https://github.com/ScaDS/ai-school-iom-2025/raw/refs/heads/main/docs/day4.1_llms/LLMs.pdf">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_bia-bob-demo.html">BiA-Bob</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_generate_notebook.html">AI-assisted Notebook generation</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="03_translating_notebooks.html">Translating notebooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_documenting_code.html">Documenting code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_bia_bob-statistical_testing.html">Statistical testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="20_gui_plots.html">Graphical user interfaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_generating_images.html">Generating image data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="50_synthetic_customer_data_llms.html">Generating synthetic customer data</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Combining LLMs with Random number generators for data generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="90_under_the_hood.html">Under the hood: Configure bia-bob’s <em>behaviour</em> through system messages</a></li>
 </ul>
 </li>
 </ul>
@@ -655,7 +648,7 @@ title="Source repository"
 </a>
 </a>
       
-      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday4.1_llms/51_synthetic_customer_data_rnd_generators.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday4.1_llms/00_test_kisski_endpoint.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -680,7 +673,7 @@ title="Open an issue"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="../_sources/day4.1_llms/51_synthetic_customer_data_rnd_generators.ipynb" target="_blank"
+      <li><a href="../_sources/day4.1_llms/00_test_kisski_endpoint.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -723,7 +716,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Combining LLMs with Random number generators for data generation</h1>
+    <h1>KISSKI / GWDG endpoint</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -734,42 +727,7 @@ title="Print to PDF"
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#define-random-data-generation-functions">
-   Define random data generation functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#define-the-synthetic-data-generation-function">
-   Define the synthetic data generation function
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#collect-and-validate-customer-records">
-   Collect and validate customer records
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transform-data-into-a-dataframe">
-   Transform data into a DataFrame
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualize-relationships-in-the-data">
-   Visualize relationships in the data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#additional-analysis-shopping-patterns-by-gender">
-   Additional Analysis: Shopping patterns by gender
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercise">
-   Exercise
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
    Exercise
   </a>
  </li>
@@ -782,376 +740,116 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="combining-llms-with-random-number-generators-for-data-generation">
-<h1>Combining LLMs with Random number generators for data generation<a class="headerlink" href="#combining-llms-with-random-number-generators-for-data-generation" title="Permalink to this heading">#</a></h1>
-<p>In this notebook, we will use functions to generate random age and income data, before we provide this information to an LLM to produce corresponding customer data (number of people in household, shopping list).</p>
-<p>Note: This notebook was AI-generated (and human curated) using an LLM as shown <a class="reference external" href="https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/issues/64">here</a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="kisski-gwdg-endpoint">
+<h1>KISSKI / GWDG endpoint<a class="headerlink" href="#kisski-gwdg-endpoint" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we will use the <a class="reference external" href="https://kisski.gwdg.de/leistungen/2-02-llm-service/">KISSKI LLM service</a> infrastructure. KISSKI is the German AI Service Center for Sensible and Critical Infrastructure. Before you can access it, you need to create an API key by filling out <a class="reference external" href="https://services.kisski.de/services/en/service/?service=2-02-llm-service.json">this form</a>; make sure to check the box “API access to our chat service”. You will see that also this method uses the OpenAI API and we change the <code class="docutils literal notranslate"><span class="pre">base_url</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reusing LLM utility functions from earlier exercise</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../20_chatbots/&quot;</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">llm_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_scadsai_llm</span><span class="p">,</span> <span class="n">prompt_ollama</span><span class="p">,</span> <span class="n">prompt_blablador</span><span class="p">,</span> <span class="n">prompt_kisski</span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="n">prompt_scadsai_llm</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="define-random-data-generation-functions">
-<h2>Define random data generation functions<a class="headerlink" href="#define-random-data-generation-functions" title="Permalink to this heading">#</a></h2>
-<p>We’ll create functions to generate realistic age and income distributions.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_random_age</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a random age between 18 and 80 with a normal distribution centered at 40&quot;&quot;&quot;</span>
-    <span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">age</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">generate_random_income</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a random yearly income between 20000 and 150000 with a log-normal distribution&quot;&quot;&quot;</span>
-    <span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">income</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">150000</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">generate_random_gender</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a random gender from a list of possibilities.&quot;&quot;&quot;</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy.random</span>
-    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;male&quot;</span><span class="p">,</span> <span class="s2">&quot;female&quot;</span><span class="p">,</span> <span class="s2">&quot;non-binary&quot;</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
-
-<span class="c1"># Test the functions</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample age: </span><span class="si">{</span><span class="n">generate_random_age</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample income: $</span><span class="si">{</span><span class="n">generate_random_income</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample gender: </span><span class="si">{</span><span class="n">generate_random_gender</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample age: 33
-Sample income: $66989.57
-Sample gender: male
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.2.0&#39;
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="define-the-synthetic-data-generation-function">
-<h2>Define the synthetic data generation function<a class="headerlink" href="#define-the-synthetic-data-generation-function" title="Permalink to this heading">#</a></h2>
-<p>We’ll create a function that uses the LLM to generate customer data in JSON format, using our random age and income values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_customer</span><span class="p">(</span><span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">income</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">gender</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">prompt_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Generate one realistic customer profile in valid JSON format with the following structure:</span>
-<span class="s2">    </span><span class="se">{{</span>
-<span class="s2">        &#39;name&#39;: str,</span>
-<span class="s2">        &#39;gender&#39;: </span><span class="si">{</span><span class="n">gender</span><span class="si">}</span><span class="s2">,</span>
-<span class="s2">        &#39;age&#39;: </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">,</span>
-<span class="s2">        &#39;income&#39;: </span><span class="si">{</span><span class="n">income</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">,</span>
-<span class="s2">        &#39;household_size&#39;: int,</span>
-<span class="s2">        &#39;grocery_list&#39;: [</span>
-<span class="s2">            </span><span class="se">{{</span><span class="s2">&#39;item&#39;: str, &#39;price&#39;: float</span><span class="se">}}</span><span class="s2">,</span>
-<span class="s2">            ...</span>
-<span class="s2">        ]</span>
-<span class="s2">    </span><span class="se">}}</span>
-<span class="s2">    Include 5-10 grocery items with realistic prices. Do not modify gender, age and income specified above.</span>
-<span class="s2">    </span>
-<span class="s2">    Respond with the JSON data only and no markdown fences.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">prompt</span><span class="p">(</span><span class="n">prompt_text</span><span class="p">)</span>
-
-<span class="c1"># Test the function</span>
-<span class="n">sample_data</span> <span class="o">=</span> <span class="n">generate_customer</span><span class="p">(</span><span class="n">generate_random_age</span><span class="p">(),</span> <span class="n">generate_random_income</span><span class="p">(),</span> <span class="n">generate_random_gender</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sample_data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-    &quot;name&quot;: &quot;Ethan Thompson&quot;,
-    &quot;gender&quot;: &quot;male&quot;,
-    &quot;age&quot;: 24,
-    &quot;income&quot;: 46524.30,
-    &quot;household_size&quot;: 2,
-    &quot;grocery_list&quot;: [
-        {&quot;item&quot;: &quot;Milk&quot;, &quot;price&quot;: 2.99},
-        {&quot;item&quot;: &quot;Bread&quot;, &quot;price&quot;: 1.49},
-        {&quot;item&quot;: &quot;Eggs&quot;, &quot;price&quot;: 1.79},
-        {&quot;item&quot;: &quot;Chicken breast&quot;, &quot;price&quot;: 6.99},
-        {&quot;item&quot;: &quot;Apples&quot;, &quot;price&quot;: 3.49},
-        {&quot;item&quot;: &quot;Pasta&quot;, &quot;price&quot;: 1.29},
-        {&quot;item&quot;: &quot;Marinara sauce&quot;, &quot;price&quot;: 2.49},
-        {&quot;item&quot;: &quot;Shredded cheese&quot;, &quot;price&quot;: 3.99},
-        {&quot;item&quot;: &quot;Ground beef&quot;, &quot;price&quot;: 5.99},
-        {&quot;item&quot;: &quot;Carrots&quot;, &quot;price&quot;: 0.69}
-    ]
-}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="collect-and-validate-customer-records">
-<h2>Collect and validate customer records<a class="headerlink" href="#collect-and-validate-customer-records" title="Permalink to this heading">#</a></h2>
-<p>We’ll generate 100 customer records using random age and income values, and validate the JSON format.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customer_records</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">age</span> <span class="o">=</span> <span class="n">generate_random_age</span><span class="p">()</span>
-        <span class="n">income</span> <span class="o">=</span> <span class="n">generate_random_income</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">age</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
-        <span class="n">gender</span> <span class="o">=</span> <span class="n">generate_random_gender</span><span class="p">()</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">generate_customer</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">income</span><span class="p">,</span> <span class="n">gender</span><span class="p">)</span>
-        <span class="c1"># Validate JSON</span>
-        <span class="n">customer_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">customer_records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">customer_data</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid JSON format in record </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Collected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">customer_records</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid customer records&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_kisski</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai-gpt-oss-120b&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A prompt helper function that sends a message to KISSKI Chat AI API</span>
+<span class="sd">    and returns only the text response.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+    
+    <span class="c1"># convert message in the right format if necessary</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
+    
+    <span class="c1"># setup connection to the LLM</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://chat-ai.academiccloud.de/v1&quot;</span><span class="p">,</span>
+                           <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;KISSKI_API_KEY&#39;</span><span class="p">)</span>
+                          <span class="p">)</span>
+    
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">message</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># extract answer</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_kisski</span><span class="p">(</span><span class="s2">&quot;Hi!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████| 100/100 [08:44&lt;00:00,  5.24s/it]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collected 100 valid customer records
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello! How can I help you today?&#39;
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="transform-data-into-a-dataframe">
-<h2>Transform data into a DataFrame<a class="headerlink" href="#transform-data-into-a-dataframe" title="Permalink to this heading">#</a></h2>
-<p>We’ll create the DataFrame with customer information and calculate total weekly grocery spending.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract customer info</span>
-<span class="n">customer_info</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">customer_records</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Calculate total spending</span>
-        <span class="n">total_spending</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;grocery_list&#39;</span><span class="p">])</span>
-        
-        <span class="n">customer_info</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;income&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;income&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;household_size&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;household_size&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;weekly_spending&#39;</span><span class="p">:</span> <span class="n">total_spending</span>
-        <span class="p">})</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error processing record&quot;</span><span class="p">)</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">customer_info</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-      <th>gender</th>
-      <th>age</th>
-      <th>income</th>
-      <th>household_size</th>
-      <th>weekly_spending</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Emily Wilson</td>
-      <td>female</td>
-      <td>36</td>
-      <td>101458.13</td>
-      <td>4</td>
-      <td>43.51</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Ethan Thompson</td>
-      <td>male</td>
-      <td>25</td>
-      <td>93115.30</td>
-      <td>2</td>
-      <td>33.30</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Emily Wilson</td>
-      <td>female</td>
-      <td>36</td>
-      <td>204000.00</td>
-      <td>4</td>
-      <td>31.20</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Emily Wilson</td>
-      <td>female</td>
-      <td>49</td>
-      <td>52605.04</td>
-      <td>3</td>
-      <td>28.41</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Emily Wilson</td>
-      <td>female</td>
-      <td>21</td>
-      <td>92815.23</td>
-      <td>2</td>
-      <td>31.40</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>95</th>
-      <td>Margaret Thompson</td>
-      <td>female</td>
-      <td>60</td>
-      <td>156249.31</td>
-      <td>2</td>
-      <td>44.70</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>Margaret Thompson</td>
-      <td>female</td>
-      <td>62</td>
-      <td>166246.40</td>
-      <td>2</td>
-      <td>43.50</td>
-    </tr>
-    <tr>
-      <th>97</th>
-      <td>Emily Wilson</td>
-      <td>female</td>
-      <td>51</td>
-      <td>80358.35</td>
-      <td>3</td>
-      <td>36.51</td>
-    </tr>
-    <tr>
-      <th>98</th>
-      <td>John Smith</td>
-      <td>male</td>
-      <td>43</td>
-      <td>83308.36</td>
-      <td>4</td>
-      <td>28.41</td>
-    </tr>
-    <tr>
-      <th>99</th>
-      <td>Emily Wilson</td>
-      <td>female</td>
-      <td>18</td>
-      <td>117190.39</td>
-      <td>4</td>
-      <td>33.50</td>
-    </tr>
-  </tbody>
-</table>
-<p>100 rows × 6 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="visualize-relationships-in-the-data">
-<h2>Visualize relationships in the data<a class="headerlink" href="#visualize-relationships-in-the-data" title="Permalink to this heading">#</a></h2>
-<p>Let’s create several plots to analyze relationships between variables:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with three subplots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-
-<span class="c1"># Age vs Income</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Age vs Income&#39;</span><span class="p">)</span>
-
-<span class="c1"># Income vs Weekly Shopping</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;weekly_spending&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Income vs Weekly Spending&#39;</span><span class="p">)</span>
-
-<span class="c1"># Household Size vs Weekly Shopping</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;household_size&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;weekly_spending&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Household Size vs Weekly Spending&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/4f363c9dd055a05b15edc4d0823d9e5137e31199de1395c732e660494bf02412.png" src="../_images/4f363c9dd055a05b15edc4d0823d9e5137e31199de1395c732e660494bf02412.png" />
-</div>
-</div>
-</section>
-<section id="additional-analysis-shopping-patterns-by-gender">
-<h2>Additional Analysis: Shopping patterns by gender<a class="headerlink" href="#additional-analysis-shopping-patterns-by-gender" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Box plot of weekly spending by gender</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;weekly_spending&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Weekly Spending Distribution by Gender&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/7641421aa356f4d040e9b1d72de2e3894b4d0e20ad7bdcf9e773a7335750883c.png" src="../_images/7641421aa356f4d040e9b1d72de2e3894b4d0e20ad7bdcf9e773a7335750883c.png" />
-</div>
-</div>
-</section>
 <section id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
-<p>Modify the prompt to ensure that the average money spent per week is higher, the more people live in the household.
-Also assuming that people have kids in certain age ranges, the number of people per houshold versus age could show a certain pattern.</p>
-</section>
-<section id="id1">
-<h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>Determine how often income is modified by the LLM even as we asked it to not modify that number.</p>
+<p>List the models available in the KISSKI endpoint and try them out by specifying them when calling <code class="docutils literal notranslate"><span class="pre">prompt_kisski()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://chat-ai.academiccloud.de/v1&quot;</span><span class="p">,</span>
+                       <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;KISSKI_API_KEY&#39;</span><span class="p">)</span>
+                      <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">list</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>meta-llama-3.1-8b-instruct
+openai-gpt-oss-120b
+gemma-3-27b-it
+qwen3-30b-a3b-instruct-2507
+qwen3-30b-a3b-thinking-2507
+qwen3-32b
+qwen3-235b-a22b
+llama-3.3-70b-instruct
+qwen2.5-vl-72b-instruct
+medgemma-27b-it
+qwq-32b
+deepseek-r1
+deepseek-r1-distill-llama-70b
+mistral-large-instruct
+qwen2.5-coder-32b-instruct
+internvl2.5-8b
+teuken-7b-instruct-research
+codestral-22b
+llama-3.1-sauerkrautlm-70b-instruct
+meta-llama-3.1-8b-rag
+meta-llama-3.1-8b-rag-dev
+qwen2.5-omni-7b
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -1183,20 +881,6 @@ Also assuming that people have kids in certain age ranges, the number of people 
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="50_synthetic_customer_data_llms.html" title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-          <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Generating synthetic customer data</p>
-      </div>
-  </a>
-  <a class='right-next' id="next-link" href="90_under_the_hood.html" title="next page">
-  <div class="prev-next-info">
-      <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Under the hood: Configure bia-bob’s <em>behaviour</em> through system messages</p>
-  </div>
-  <i class="fa-solid fa-angle-right"></i>
-  </a>
 </div>
             </footer>
             
@@ -1214,42 +898,7 @@ Also assuming that people have kids in certain age ranges, the number of people 
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#define-random-data-generation-functions">
-   Define random data generation functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#define-the-synthetic-data-generation-function">
-   Define the synthetic data generation function
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#collect-and-validate-customer-records">
-   Collect and validate customer records
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transform-data-into-a-dataframe">
-   Transform data into a DataFrame
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualize-relationships-in-the-data">
-   Visualize relationships in the data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#additional-analysis-shopping-patterns-by-gender">
-   Additional Analysis: Shopping patterns by gender
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercise">
-   Exercise
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
    Exercise
   </a>
  </li>

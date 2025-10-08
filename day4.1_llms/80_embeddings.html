@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Statistical testing &#8212; AI School at Leibniz IOM 2025</title>
+    <title>Text embeddings &#8212; AI School at Leibniz IOM 2025</title>
   
   
   
@@ -58,11 +58,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'day4.1_llms/10_bia_bob-statistical_testing';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day4.1_llms/80_embeddings';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Graphical user interfaces" href="20_gui_plots.html" />
-    <link rel="prev" title="Documenting code" href="04_documenting_code.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -197,7 +195,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
                         Large Language Models
                       </a>
@@ -358,7 +356,7 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
-                    <li class="nav-item current active">
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="readme.html">
                         Large Language Models
                       </a>
@@ -547,20 +545,15 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Thursday</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="readme.html">Large Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="readme.html">Large Language Models</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference external" href="https://github.com/ScaDS/ai-school-iom-2025/raw/refs/heads/main/docs/day4.1_llms/LLMs.pdf">Slides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_bia-bob-demo.html">BiA-Bob</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_generate_notebook.html">AI-assisted Notebook generation</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="03_translating_notebooks.html">Translating notebooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_documenting_code.html">Documenting code</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Statistical testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="20_gui_plots.html">Graphical user interfaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40_generating_images.html">Generating image data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="50_synthetic_customer_data_llms.html">Generating synthetic customer data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="51_synthetic_customer_data_rnd_generators.html">Combining LLMs with Random number generators for data generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="90_under_the_hood.html">Under the hood: Configure bia-bob’s <em>behaviour</em> through system messages</a></li>
 </ul>
 </li>
 </ul>
@@ -655,7 +648,7 @@ title="Source repository"
 </a>
 </a>
       
-      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday4.1_llms/10_bia_bob-statistical_testing.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ScaDS/ai-school-iom-2025/issues/new?title=Issue%20on%20page%20%2Fday4.1_llms/80_embeddings.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -680,7 +673,7 @@ title="Open an issue"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      <li><a href="../_sources/day4.1_llms/10_bia_bob-statistical_testing.ipynb" target="_blank"
+      <li><a href="../_sources/day4.1_llms/80_embeddings.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
@@ -723,7 +716,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Statistical testing</h1>
+    <h1>Text embeddings</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -734,13 +727,8 @@ title="Print to PDF"
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-over-simplified-approach">
-   The over-simplified approach
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#professional-statistical-testing">
-   Professional statistical testing
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
@@ -752,251 +740,157 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="statistical-testing">
-<h1>Statistical testing<a class="headerlink" href="#statistical-testing" title="Permalink to this heading">#</a></h1>
-<p>In this notebook we will use <code class="docutils literal notranslate"><span class="pre">bia_bob</span></code> to apply a statistical test to some example data. The data is tricky (for a reason).</p>
-<p>For training purposes, we will use the LLM infrastructure of <a class="reference external" href="https://scads.ai">ScaDS.AI</a> in the <a class="reference external" href="https://tu-dresden.de/zih">National Compute Center ZIH TU Dresden</a>.</p>
-<p>When using bia-bob to prompt LLMs, the prompts you enter including existing variable names etc. are sent to the LLM provider.
-Do not submit any sensitive, secret or private information. Also check bia-bob’s code recommendations before executing them.
-LLMs make mistakes.</p>
-<p>First, we configure bia-bob:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="text-embeddings">
+<h1>Text embeddings<a class="headerlink" href="#text-embeddings" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we take a look under the hood how large language models (LLMs) work. At their very core, LLMs express words, sentences and texts as vectors of numbers. We will just visualize some of these embeddings.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load secret API key. You must unpack the contents of api_key.zip </span>
-<span class="c1"># into the same folder before going ahead.</span>
-<span class="c1">#from dotenv import load_dotenv</span>
-<span class="c1">#load_dotenv()</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">bia_bob</span><span class="w"> </span><span class="kn">import</span> <span class="n">bob</span>
-<span class="n">bob</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;https://llm.scads.ai/v1&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;openai/gpt-oss-120b&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-            <div style="font-size:7pt">
-            This notebook may contain text, code and images generated by artificial intelligence.
-            Used model: openai/gpt-oss-120b, vision model: None, endpoint: https://llm.scads.ai/v1, bia-bob version: 0.33.0.. Do not enter sensitive or private information and verify generated contents according to good scientific practice. Read more: <a href="https://github.com/haesleinhuepf/bia-bob#disclaimer">https://github.com/haesleinhuepf/bia-bob#disclaimer</a>
-            </div>
-            </div></div>
-</div>
-<section id="the-over-simplified-approach">
-<h2>The over-simplified approach<a class="headerlink" href="#the-over-simplified-approach" title="Permalink to this heading">#</a></h2>
-<p>In the first attempt, we ask to determine if columns <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> are significantly different without any further instructions.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bob</span> load data/data.csv and 
-determine if the columns A and B 
-are significantly different.
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<p>I will load <code class="docutils literal notranslate"><span class="pre">data/data.csv</span></code>, extract columns <strong>A</strong> and <strong>B</strong>, and test whether their means differ significantly using an independent two‑sample t‑test. The result (t‑statistic and p‑value) will be printed, and a quick box‑plot will be shown for visual comparison.</p>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">ttest_ind</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="c1"># 1. Load the CSV file</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/data.csv&#39;</span><span class="p">)</span>
-
-<span class="c1"># 2. Keep only rows where both A and B are present</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-
-<span class="c1"># 3. Extract the two series</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># 4. Perform independent two‑sample t‑test</span>
-<span class="n">t_stat</span><span class="p">,</span> <span class="n">p_val</span> <span class="o">=</span> <span class="n">ttest_ind</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Welch&#39;s t‑test</span>
-
-<span class="c1"># 5. Output the results</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t‑statistic: </span><span class="si">{</span><span class="n">t_stat</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p‑value: </span><span class="si">{</span><span class="n">p_val</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">p_val</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&gt; The difference between columns A and B is statistically significant (α=0.05).&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&gt; No statistically significant difference detected (α=0.05).&quot;</span><span class="p">)</span>
-
-<span class="c1"># 6. Visual comparison: box‑plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Box plot of columns A and B&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>t‑statistic: -1.3287
-p‑value: 1.8428e-01
-=&gt; No statistically significant difference detected (α=0.05).
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\AppData\Local\Temp\ipykernel_23620\3276436669.py:29: MatplotlibDeprecationWarning: The &#39;labels&#39; parameter of boxplot() has been renamed &#39;tick_labels&#39; since Matplotlib 3.9; support for the old name will be dropped in 3.11.
-  plt.boxplot([a, b], labels=[&#39;A&#39;, &#39;B&#39;])
-</pre></div>
-</div>
-<img alt="../_images/187beb073f31bb3bd29bf12a0a5e7295a752529ac1e60ad9ba62d5c73b0dd15d.png" src="../_images/187beb073f31bb3bd29bf12a0a5e7295a752529ac1e60ad9ba62d5c73b0dd15d.png" />
-</div>
-</div>
-<p>This result might be misleading, simply because we didn’t study the data yet.
-Let’s plot the data.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bob</span>
-Plot histograms for A and B
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<p>I will create histograms for the values in columns <strong>A</strong> and <strong>B</strong> of the already‑loaded <code class="docutils literal notranslate"><span class="pre">data/data.csv</span></code>. The histograms will be displayed side‑by‑side for easy visual comparison.</p>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming df, a, b are already defined from the previous step.</span>
-<span class="c1"># If not, uncomment the following lines to load them again:</span>
-<span class="c1"># import pandas as pd</span>
-<span class="c1"># df = pd.read_csv(&#39;data/data.csv&#39;)[[&#39;A&#39;,&#39;B&#39;]].dropna()</span>
-<span class="c1"># a = df[&#39;A&#39;].values</span>
-<span class="c1"># b = df[&#39;B&#39;].values</span>
-
-<span class="c1"># Determine a common bin range for both histograms</span>
-<span class="n">min_val</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">b</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-<span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">b</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-<span class="n">bins</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># you can adjust the number of bins</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-
-<span class="c1"># Histogram for column A</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Column A&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-
-<span class="c1"># Histogram for column B</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;indianred&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Column B&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/843bac9b9007c3c5a2150315f62781dd639f112de1ba82d7dae6ed7874000a7c.png" src="../_images/843bac9b9007c3c5a2150315f62781dd639f112de1ba82d7dae6ed7874000a7c.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
 </div>
 </div>
-<p>From this visualization we can guess that the data in B is not normal distributed; a pre-condition for the T-test used above.</p>
-</section>
-<section id="professional-statistical-testing">
-<h2>Professional statistical testing<a class="headerlink" href="#professional-statistical-testing" title="Permalink to this heading">#</a></h2>
-<p>An improved prompt contains an additional task: Checking preconditions. Hence, the resulting code will be longer and more detailed.</p>
+</div>
+<p>This short helper function will allow us to turn texts into vector embeddings. We use the <a class="reference external" href="https://huggingface.co/Qwen/Qwen3-Embedding-4B">embedding model Qwen 3</a> to demonstrate this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bob</span>
-Please test again if columns A and B are significantly different.
-Before applying a statistical test, ensure that the necessary 
-pre-conditions are met.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Qwen/Qwen3-Embedding-4B&quot;</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://llm.scads.ai/v1&quot;</span><span class="p">,</span>
+                    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">))</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">embeddings</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="nb">input</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">embedding</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function returns a vector <code class="docutils literal notranslate"><span class="pre">v</span></code> which is a list of numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>I will re‑evaluate whether columns <strong>A</strong> and <strong>B</strong> differ significantly, but first I will check the required assumptions:</p>
-<ol class="arabic simple">
-<li><p><strong>Normality</strong> of each column (Shapiro‑Wilk test).</p></li>
-<li><p><strong>Equality of variances</strong> (Levene’s test).</p></li>
-</ol>
-<p>Based on those results I will choose the appropriate statistical test:</p>
-<ul class="simple">
-<li><p>Both normal &amp; equal variances → classic Student’s t‑test.</p></li>
-<li><p>Both normal &amp; unequal variances → Welch’s t‑test.</p></li>
-<li><p>Any non‑normal → Mann‑Whitney U test (non‑parametric).</p></li>
-</ul>
-<p>The results of all tests (statistics and p‑values) will be printed.</p>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2560
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">shapiro</span><span class="p">,</span> <span class="n">levene</span><span class="p">,</span> <span class="n">mannwhitneyu</span>
-<span class="c1"># Note: pandas (pd), numpy (np), and ttest_ind are already available.</span>
-
-<span class="c1"># 1. Load data (keep original df/a/b untouched)</span>
-<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;data/data.csv&#39;</span>
-<span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
-<span class="c1"># keep only rows where both A and B are present</span>
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_raw</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">a_vals</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">b_vals</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># 2. Normality tests (Shapiro‑Wilk)</span>
-<span class="n">shapiro_a_stat</span><span class="p">,</span> <span class="n">shapiro_a_p</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">a_vals</span><span class="p">)</span>
-<span class="n">shapiro_b_stat</span><span class="p">,</span> <span class="n">shapiro_b_p</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">b_vals</span><span class="p">)</span>
-
-<span class="c1"># 3. Equality of variances (Levene)</span>
-<span class="n">lev_stat</span><span class="p">,</span> <span class="n">lev_p</span> <span class="o">=</span> <span class="n">levene</span><span class="p">(</span><span class="n">a_vals</span><span class="p">,</span> <span class="n">b_vals</span><span class="p">)</span>
-
-<span class="c1"># 4. Choose appropriate hypothesis test</span>
-<span class="k">if</span> <span class="n">shapiro_a_p</span> <span class="o">&gt;</span> <span class="mf">0.05</span> <span class="ow">and</span> <span class="n">shapiro_b_p</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
-    <span class="c1"># both distributions look normal</span>
-    <span class="k">if</span> <span class="n">lev_p</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
-        <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Student&#39;s t‑test (equal variances)&quot;</span>
-        <span class="n">t_stat</span><span class="p">,</span> <span class="n">p_val</span> <span class="o">=</span> <span class="n">ttest_ind</span><span class="p">(</span><span class="n">a_vals</span><span class="p">,</span> <span class="n">b_vals</span><span class="p">,</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Welch&#39;s t‑test (unequal variances)&quot;</span>
-        <span class="n">t_stat</span><span class="p">,</span> <span class="n">p_val</span> <span class="o">=</span> <span class="n">ttest_ind</span><span class="p">(</span><span class="n">a_vals</span><span class="p">,</span> <span class="n">b_vals</span><span class="p">,</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="c1"># at least one non‑normal → use non‑parametric test</span>
-    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Mann‑Whitney U test (non‑parametric)&quot;</span>
-    <span class="c1"># two-sided test</span>
-    <span class="n">t_stat</span><span class="p">,</span> <span class="n">p_val</span> <span class="o">=</span> <span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">a_vals</span><span class="p">,</span> <span class="n">b_vals</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s1">&#39;two-sided&#39;</span><span class="p">)</span>
-
-<span class="c1"># 5. Print report</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Assumption checks ===&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shapiro‑Wilk A:  statistic=</span><span class="si">{</span><span class="n">shapiro_a_stat</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, p=</span><span class="si">{</span><span class="n">shapiro_a_p</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> &quot;</span>
-      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;normal&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">shapiro_a_p</span><span class="o">&gt;</span><span class="mf">0.05</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;non‑normal&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shapiro‑Wilk B:  statistic=</span><span class="si">{</span><span class="n">shapiro_b_stat</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, p=</span><span class="si">{</span><span class="n">shapiro_b_p</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> &quot;</span>
-      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;normal&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">shapiro_b_p</span><span class="o">&gt;</span><span class="mf">0.05</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;non‑normal&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Levene variance test: statistic=</span><span class="si">{</span><span class="n">lev_stat</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, p=</span><span class="si">{</span><span class="n">lev_p</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> &quot;</span>
-      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;equal variances&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">lev_p</span><span class="o">&gt;</span><span class="mf">0.05</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;unequal variances&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Final hypothesis test ===&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test used: </span><span class="si">{</span><span class="n">test_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Statistic = </span><span class="si">{</span><span class="n">t_stat</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P‑value   = </span><span class="si">{</span><span class="n">p_val</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">p_val</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&gt; Significant difference between columns A and B (α=0.05).&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&gt; No significant difference detected (α=0.05).&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Assumption checks ===
-Shapiro‑Wilk A:  statistic=0.9972, p=5.6236e-01 normal
-Shapiro‑Wilk B:  statistic=0.8937, p=4.0635e-18 non‑normal
-Levene variance test: statistic=80.6718, p=1.3016e-18 unequal variances
-
-=== Final hypothesis test ===
-Test used: Mann‑Whitney U test (non‑parametric)
-Statistic = 113657.0000
-P‑value   = 1.3000e-02
-=&gt; Significant difference between columns A and B (α=0.05).
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0001030213970807381,
+ -0.02199709229171276,
+ 0.011862305924296379,
+ 0.03385939821600914,
+ 0.0005146571202203631]
 </pre></div>
 </div>
 </div>
 </div>
-<p>The result is now different: This test <em>sees</em> the differences between the datasets.</p>
+<p>This helper function allows us to draw embeddings of words.
+To visualize the 2560 dimensions, we apply <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a> first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_embedding</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="c1"># Example of input dictionary</span>
+    <span class="n">object_coords</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">embed</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">}</span>
+    
+    <span class="c1"># Extract names and numerical lists</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">object_coords</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">data_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">object_coords</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+    
+    <span class="c1"># Apply PCA</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Reduce to 2 components for visualization</span>
+    <span class="n">transformed_data</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">)</span>
+    
+    <span class="c1"># Create scatter plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">transformed_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">transformed_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    
+    <span class="c1"># Annotate data points with names</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">transformed_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">transformed_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PCA of text embedding&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is how a word embedding looks like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;microscope&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;fur&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;white&quot;</span><span class="p">]</span>
+
+<span class="n">draw_embedding</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1bc6f8d2a80febf2f003ffef4c32469e402bb8fcf1a21c2c44f05f3bfc5f6622.png" src="../_images/1bc6f8d2a80febf2f003ffef4c32469e402bb8fcf1a21c2c44f05f3bfc5f6622.png" />
+</div>
+</div>
+<p>A text embedding works analogously. Note that scientists may use different models for texts and words. We just use the same here for demonstration purposes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The sun is shining.&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Today it is raining.&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Fries taste good.&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Cats hate dogs.&quot;</span><span class="p">]</span>
+
+<span class="n">draw_embedding</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4f9b1ce603862d85d8acfd1333984e94190d8f411f0640d01c832572420ef2cf.png" src="../_images/4f9b1ce603862d85d8acfd1333984e94190d8f411f0640d01c832572420ef2cf.png" />
+</div>
+</div>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>Take terms or sentences from your scientific domain and draw an embedding for them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">]</span>
+
+<span class="n">draw_embedding</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5e403f34ecf6cabcb2d82f54c2a871848ca29e8b3c34d4711dbd1330e3fa0232.png" src="../_images/5e403f34ecf6cabcb2d82f54c2a871848ca29e8b3c34d4711dbd1330e3fa0232.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -1028,20 +922,6 @@ P‑value   = 1.3000e-02
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="04_documenting_code.html" title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-          <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Documenting code</p>
-      </div>
-  </a>
-  <a class='right-next' id="next-link" href="20_gui_plots.html" title="next page">
-  <div class="prev-next-info">
-      <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Graphical user interfaces</p>
-  </div>
-  <i class="fa-solid fa-angle-right"></i>
-  </a>
 </div>
             </footer>
             
@@ -1059,13 +939,8 @@ P‑value   = 1.3000e-02
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-over-simplified-approach">
-   The over-simplified approach
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#professional-statistical-testing">
-   Professional statistical testing
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
 </ul>
