@@ -81,7 +81,7 @@ From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peacefu
   * [Part 1 - Python Basics and Tools](https://come2data.gp.hrz.tu-chemnitz.de/c2d_ap5/training_materials/lp24_python4pilot.social/lp24_python_basics/intro.html)
   * [Part 2 - Data Analysis for Tables, Text Data, Web Resources](https://lp24-python-data-analysis-come2data-c2d-ap5-trai-e96070d6a3286b.gp.hrz.tu-chemnitz.de/intro.html)
   * [Part 3 - Machine Learning Basics for Text Data](https://lp24-python-and-ml-come2data-c2d-ap5-training-ma-22b48e9ada58f0.gp.hrz.tu-chemnitz.de/intro.html)
-* ...
+* [Data Science and AI for Medicine Training School](https://scads.github.io/ai4medicine-2025/intro.html)
 
 ## Acknowledgements 
 
