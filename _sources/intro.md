@@ -62,17 +62,17 @@ From 19:00: Visit to the Festival of Lights in Leipzig commemorating the peacefu
 
 * [bia-bob](https://github.com/haesleinhuepf/bia-bob): AI-assisted Code Generation
 * [numpy](https://numpy.org/): Basic numeric operations and processing for Python
-* [dask](https://github.com/dask/dask)
-* [pandas](https://pandas.pydata.org/): Data analysis and manipulation
-* [scipy](https://scipy.org/): Fundamental algorithms for scientific computing
+* [dask](https://github.com/dask/dask): Python library for parallel and distributed computing
+* [pandas](https://pandas.pydata.org/): Python data analysis and manipulation
+* [scipy](https://scipy.org/): Fundamental algorithms for scientific computing in Python
 * [scikit-image](https://scikit-image.org/): Scientific Image Processing
 * [scikit-learn](https://scikit-learn.org/): Comprehensive Machine Learning Library (CPU-only, no deep learning)
 * [seaborn](https://seaborn.pydata.org/): Statistical data visualization
-* [plotly](https://github.com/plotly/plotly.py)
+* [plotly](https://github.com/plotly/plotly.py): Python plotting library for interactive visualizations
 * [pytorch](https://docs.pytorch.org/tutorials/intro.html): Comprehensive deep learning framework
 * [tensorflow](https://www.tensorflow.org/) with [keras](https://keras.io/): High level deep learning frameworks
 * [stackview](https://github.com/haesleinhuepf/stackview): An interactive nD image viewer for Jupyter Notebooks
-* [zarr](https://zarr.dev/)
+* [zarr](https://zarr.dev/): Python library for reading and writing Zarr groups and arrays
 
 ## Related Trainings
 
