@@ -12,7 +12,7 @@ The notebooks are written for scientists with basic knowledge of Python programm
 
 * [Dr. Stefan Zahn](https://www.iom-leipzig.de/en/stefan-zahn.html) (IOM)
 * [Dr. Martin Rudolph](https://www.iom-leipzig.de/en/martin-rudolph.html) (IOM)
-* [Matthias Täschner](www.uni-leipzig.de/personenprofil/mitarbeiter/matthias-taeschner) (Leipzig University, ScaDS.AI)
+* [Matthias Täschner](https://www.uni-leipzig.de/personenprofil/mitarbeiter/matthias-taeschner) (Leipzig University, ScaDS.AI)
 * [Dr. Robert Haase](https://haesleinhuepf.github.io/) (Leipzig University, ScaDS.AI)
 * Dr. Rodrigo Escobar Díaz Guerrero (IPHT)
 * Dr. Jamile Mohammad Jafari (IPHT)
