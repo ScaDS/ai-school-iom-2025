@@ -16,5 +16,5 @@ This section will introduce into following cluster approaches which are availabl
 2. Gaussian Mixtures
 3. DBSCAN and HDBSCAN
 
-An exercise will close this section.
+An exercise will close this section. The session was prepared by Dr. Stefan Zahn (IOM). If you have any questions, you can contact him.
 
