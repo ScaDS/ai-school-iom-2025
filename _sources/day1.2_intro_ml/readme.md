@@ -16,4 +16,4 @@ Scikit-learn is a Python library providing access to classification, regression,
 Furthermore, essential workflows for preprocessing the data or to validate the generated models are available as well. 
 More details on scikit-learn can be found here: <a href="https://scikit-learn.org/stable/">Link to website scikit-learn</a>
    
-Within this section, diverse regression models will be trained to introduce the general workflow of a machine learning project and to get familiar with scikit-learn.  
+Within this section, diverse regression models will be trained to introduce the general workflow of a machine learning project and to get familiar with scikit-learn. The session was prepared by Dr. Stefan Zahn (IOM). If you have any questions, you can contact him.  
