@@ -16,7 +16,7 @@ The notebooks are written for scientists with basic knowledge of Python programm
 * Dr. Jamile Mohammad Jafari (IPHT)
 * [Dr. Omid Shayestehpour](https://www.uni-paderborn.de/en/person/114187) (Paderborn University)
 
-## Preliminary Program
+## Program
 
 ```
 
