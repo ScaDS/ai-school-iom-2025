@@ -2,8 +2,6 @@
 
 This page contains training materials for the [AI School of the Leibniz Research Network Modelling and Simulation (MMS)](https://aischool.iom-leipzig.de/) at the Leibniz Institute of Surface Engineering (IOM) in Leipzig.
 
-**Note: This page is under heavy construction**
-
 ## Target audience
 
 The notebooks are written for scientists with basic knowledge of Python programming and are beginners in machine learning (ML) and artificial intelligence (AI). By the end of the training, active participants will have acquired fundamental knowledge in ML and AI. They will then know how to apply suitable ML/AI techniques to automatically process, analyze, and visualize data.
