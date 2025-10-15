@@ -4,7 +4,7 @@ This page contains training materials for the [AI School of the Leibniz Research
 
 ## Target audience
 
-The notebooks are written for scientists with basic knowledge of Python programming and are beginners in machine learning (ML) and artificial intelligence (AI). By the end of the training, active participants will have acquired fundamental knowledge in ML and AI. They will then know how to apply suitable ML/AI techniques to automatically process, analyze, and visualize data.
+The notebooks are written for scientists with basic knowledge of Python programming and are beginners in machine learning (ML) and artificial intelligence (AI). By the end of the training, active participants will have acquired fundamental knowledge in ML and AI. They will then know how to apply suitable ML/AI techniques to automatically process, analyze, and visualize data. The Jupyter notebooks and data sets of the course are available on GitHub [Link](https://github.com/ScaDS/ai-school-iom-2025).
 
 ## Trainer / Speaker
 
