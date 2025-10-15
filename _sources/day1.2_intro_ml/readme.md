@@ -18,4 +18,4 @@ More details on scikit-learn can be found here: <a href="https://scikit-learn.or
    
 Within this section, diverse regression models will be trained to introduce the general workflow of a machine learning project and to get familiar with scikit-learn. 
 
-The session was prepared by Dr. Stefan Zahn (IOM). If you have any questions, you can contact him.  
+The session was prepared by Dr. Stefan Zahn (IOM). If you have any questions, you can contact him. The intro slides to this session can be downloaded [here](2025_Intro-Slides.pdf).  
